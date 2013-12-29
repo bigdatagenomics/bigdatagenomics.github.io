@@ -11,4 +11,5 @@ To subscribe to the ADAM mailing list, send an email to `adam-developers+subscri
 
 Alternatively, you can read and post questions using the [web forum page](https://groups.google.com/forum/#!forum/adam-developers).
 
-We look forward to having you join the conversation.
+We look forward to having you join the conversation. Feel free to send an introductory email to the
+list when you join.
