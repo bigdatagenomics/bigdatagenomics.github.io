@@ -14,7 +14,7 @@ examples to define the data structures with pseudo-code and/or clear description
 cases. Once the team has reached consensus on an RFC, it should be *easy to turn the ideas
 into working code* relatively quickly.
 
-To create or modify an RFC,
+### To create or modify an RFC
 
 1. Join the [ADAM Mailing List](/mail)
 2. Fork the [bigdatagenomics.github.io repo](https://github.com/bigdatagenomics/bigdatagenomics.github.io)
@@ -28,7 +28,7 @@ To create or modify an RFC,
 
 All RFCs are open for comment by anyone with comment boxes in the footer of the page.
 
-List of RFCs:
+### List of RFCs
 
 1. [Example RFC](/rfc/1)
 2. Next RFC
