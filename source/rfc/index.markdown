@@ -23,7 +23,7 @@ To create or modify an RFC,
    - See [RFC #1](/rfc/1), for an example RFC. 
    - RFCs are written in [Markdown](http://daringfireball.net/projects/markdown/)
 4. Test your edits using `rake generate preview` and opening your browser to `http://localhost:4000`.
-5. Submit your changes as a pull request
+5. Submit your changes as a pull request against the `source` branch.
 
 All RFCs are open for comment with comment boxes in the footer.
 
