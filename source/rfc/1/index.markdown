@@ -8,7 +8,8 @@ footer: true
 ---
 
 _This is an example of an ADAM RFC. It is meant to demonstrate
-syntax of an RFC as well as potential headings and structure._
+syntax of an RFC as well as example headings and structure.
+You can [view the source for this RFC online](https://raw.github.com/bigdatagenomics/bigdatagenomics.github.io/source/source/rfc/1/index.markdown).
 
 ### Schema
 
