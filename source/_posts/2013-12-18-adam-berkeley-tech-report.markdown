@@ -3,7 +3,9 @@ layout: post
 title: "ADAM Tech Report Released"
 date: 2013-12-18 16:39:20 -0800
 comments: true
-categories: ADAM, Publications 
+categories:
+- ADAM
+- Publications
 ---
 
 Current genomics data formats and processing pipelines are not designed to scale well to large datasets. 
