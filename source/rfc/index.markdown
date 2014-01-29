@@ -32,4 +32,5 @@ All RFCs are open for comment by anyone with comment boxes in the footer of the 
 
 1. [Example RFC](/rfc/1)
 2. [Genome annotation RFC](/rfc/2)
+3. [Another Genome annotation RFC](/rfc/3)
 
