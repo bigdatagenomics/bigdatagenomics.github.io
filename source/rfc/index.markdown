@@ -14,19 +14,10 @@ examples to define the data structures with pseudo-code and/or clear description
 cases. Once the team has reached consensus on an RFC, it should be *easy to turn the ideas
 into working code* relatively quickly.
 
-### To create or modify an RFC
+All RFCs are open for comment by anyone either via the [ADAM mailing list](/mail) or the comment box in the footer of the
+specific RFC.
 
-1. Join the [ADAM Mailing List](/mail)
-2. Fork the [bigdatagenomics.github.io repo](https://github.com/bigdatagenomics/bigdatagenomics.github.io)
-3. Switch to the `source` branch and edit (or create) files in the `source/rfc` directory
-   - To create a new RFC, you simply run e.g. `rake new_page["rfc/42"]` to create RFC #42
-   - See [RFC #1](/rfc/1), for an example RFC
-   - RFCs are written in [Markdown](http://daringfireball.net/projects/markdown/)
-   - All [Octopress](http://octopress.org/docs/) extensions are supported
-4. Test your edits by running `rake generate preview` and opening [http://localhost:4000](http://localhost:4000) in your browser
-5. Submit your changes as a pull request against the `source` branch
-
-All RFCs are open for comment by anyone with comment boxes in the footer of the page.
+[Instructions for adding or updating RFCs](/rfc/instructions/)
 
 ### List of RFCs
 
