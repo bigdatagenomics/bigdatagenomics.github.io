@@ -31,5 +31,5 @@ All RFCs are open for comment by anyone with comment boxes in the footer of the 
 ### List of RFCs
 
 1. [Example RFC](/rfc/1)
-2. Next RFC
+2. [Genome annotation RFC](/rfc/2)
 
