@@ -6,8 +6,8 @@ comments: true
 categories: 
 ---
 
-Frank Nothaft gave a talk on ADAM at the [Strata Big Data Science Meetup](http://www.meetup.com/Big-Data-Science/events/107491582/)
-where he discussed the overall architecture and performance characteristics of ADAM 
+Frank Nothaft gave a talk at the [Strata Big Data Science Meetup](http://www.meetup.com/Big-Data-Science/events/107491582/)
+where he discussed the overall architecture and performance characteristics of ADAM.
 
 Frank is a graduate student in the AMP and ASPIRE labs at UC-Berkeley, and is advised by Prof. David Patterson. His current focus is 
 on high performance computer systems for bioinformatics, and is involved in the ADAM, avocado, and FireBox projects.
