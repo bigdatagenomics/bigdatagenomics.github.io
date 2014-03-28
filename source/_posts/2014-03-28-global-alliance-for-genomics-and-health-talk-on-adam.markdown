@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Global Alliance for Genomics and Health talk on ADAM"
+title: "Talk on ADAM at Global Alliance for Genomics and Health meeting"
 date: 2014-03-28 13:27:44 -0700
 comments: true
 categories: 
