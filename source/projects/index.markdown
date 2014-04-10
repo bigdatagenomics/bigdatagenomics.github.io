@@ -5,6 +5,7 @@ date: 2014-03-04 19:46
 comments: true
 sharing: true
 footer: true
+navbar: Projects
 ---
 
 Thanks to advances in both the cost and speed of sequencing technology, the amount of genomic

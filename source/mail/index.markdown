@@ -5,6 +5,7 @@ date: 2013-12-26 11:04
 comments: true
 sharing: true
 footer: true
+navbar: Mail
 ---
 
 To subscribe to the ADAM mailing list, send an email to `adam-developers+subscribe@googlegroups.com`.
