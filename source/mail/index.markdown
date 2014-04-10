@@ -20,8 +20,8 @@ list when you join.
   src="javascript:void(0)"
   scrolling="no"
   frameborder="0"
-  width="900"
-  height="700">
+  width="800"
+  height="800">
 </iframe>
 
 <script type="text/javascript">
