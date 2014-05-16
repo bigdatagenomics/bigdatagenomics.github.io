@@ -101,6 +101,7 @@ and interest in and to Your Contributions.
    are personally aware and which are associated with any part of Your
    Contributions.
 
+6. You are not expected to provide support for Your Contributions,
    except to the extent You desire to provide support. You may provide
    support for free, for a fee, or not at all. Unless required by
    applicable law or agreed to in writing, You provide Your
