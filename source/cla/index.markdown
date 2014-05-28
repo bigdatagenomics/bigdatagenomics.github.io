@@ -13,9 +13,11 @@ is allowed to commit rights to any repository in the [bigdatagenomics](https://g
 These agreements are for your protection as a Contributor and do *not* change your rights to use your Contributions
 for any other purpose.
 
-There are two CLAs: [individual](/cla/individual/) and [corporate](/cla/corporate/). These CLAs are identical to the [individual](http://www.apache.org/licenses/icla.txt)
-and [corporate](http://www.apache.org/licenses/cla-corporate.txt) agreements used at the [Apache Software Foundation](http://apache.org/) except for changing
-`"The Apache Software Foundation"` to `"The Big Data Genomics Project"` and `"Foundation"` to `"BDG Project"`.
+There are two CLAs: [individual](/cla/individual/) and [corporate](/cla/corporate/). 
+
+> *Note*: These CLAs are identical to the [individual](http://www.apache.org/licenses/icla.txt)
+> and [corporate](http://www.apache.org/licenses/cla-corporate.txt) agreements used at the [Apache Software Foundation](http://apache.org/) except for changing
+> "The Apache Software Foundation" to "The Big Data Genomics Project" and "Foundation" to "BDG Project".
 
 If you are contributing to the [bigdatagenomics](http://github.com/bigdatagenomics/) organization in your free time, you needn't concern yourself
 with having a Corporate Contributor License Agreement (CCLA) on file. However, if you are making contributions as
