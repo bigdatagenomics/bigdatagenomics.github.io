@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Big Data Genomics</title>
+  <meta name="author" content="Big Data Genomics">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bigdatagenomics.github.io">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-49914824-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Big Data Genomics</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/projects">Projects</a>
+                </li>
+                <li >
+                    <a href="/mail">Mailing List</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:bigdatagenomics.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index">
+      
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-06-02T16:48:42-07:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/02/adam-0-dot-11-dot-0-released/">ADAM 0.11.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.11.0">0.11.0</a> is now available.</p>
+
+<p>This release allows you not just read but also write to SAM/BAM files, adds utilities for trimming reads,
+implements contig-to-RefSeq translation, refactors SequenceDictionary to include RefSeq information (and without numeric IDs)
+and prepare ADAMGenotype for incorporating reference model information, and fixes a bug in FASTA fragments.</p>
+
+<p>For details see the following issues&hellip;</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/250">250</a>: Adding ADAM to SAM conversion.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/248">248</a>: Adding utilities for read trimming.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/252">252</a>: Added a note about rebasing-off-master to CONTRIBUTING.md</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/249">249</a>: Cosmetic changes to FastaConverter and FastaConverterSuite.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/251">251</a>: CHANGES.md is updated at release instead of per pull request</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/247">247</a>: For #244, Fragments were incorrect order and incomplete</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/246">246</a>: Making sample ID field in genotype nullable.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/245">245</a>: Adding ADAMContig back to ADAMVariant.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/243">243</a>: Rebase PR#238 onto master</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-15T10:00:00-07:00" pubdate data-updated="true">May 15<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/15/up-and-running-with-big-data-genomics/">Developing Big Data Genomics: A Screencast</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/BCoIXqUfFkU?autoplay=0&origin=http://bdgenomics.org" frameborder="0"></iframe>
+
+
+
+
+<br/><br/>
+
+
+<p>This short screencast is meant to get someone new to Scala, IntelliJ, and the Big Data Genomics stack up and running with a configured development environment suitable for working with or on projects like ADAM and Avocado.</p>
+
+<p>We&rsquo;ll walk you through downloading the appropriate JDK, IntelliJ IDE, and plugings. Then we will set up the project (using ADAM as the example), generating sources, packaging the application, and building the project. Finally, we cover running tests, as well as some basic exploration and code navigation using the IDE.</p>
+
+<hr />
+
+<p>Note, if you have trouble using <code>mvn package</code> in the command line, you may want to add the following to your <code>.bashrc</code>, or at least export these environment variables before running <code>mvn package</code>:</p>
+
+<pre><code>export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+</code></pre>
+
+<h3>Links</h3>
+
+<ul>
+<li>00:00:14  <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Oracle JDK 7</a></li>
+<li>00:00:28  <a href="http://www.jetbrains.com/idea/download/">IntelliJ IDE</a></li>
+<li>00:00:43  <a href="https://github.com/bigdatagenomics/adam">ADAM Github Repository</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-13T15:18:06-07:00" pubdate data-updated="true">May 13<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/13/adam-0-dot-10-dot-0-released/">ADAM 0.10.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">0.10.0</a> is now available.</p>
+
+<h2>Parquet 1.4.3 upgrade</h2>
+
+<p>As developers, you need to know about a small (but significant) change to way Parquet projections work now. In the past, any record fields that were not in the projections were returned as null values. With our upgrade to Parquet 1.4.3, fields that are not in the your projections will be set to their default value (if one exists).</p>
+
+<h2>BQSR Performance and Concordance</h2>
+
+<p>This release adds the cycle covariate to BQSR. Our BQSR implementation can process the 1000g NA12878 High-Coverage Whole Genome in under 45 minutes using 100 EC2 nodes. Our concordance with GATK is high (>99.9%) for the data we&rsquo;ve tested. We&rsquo;ll publish the scripts we use for concordance testing in an upcoming release to allow broader, automated testing. Additionally, ADAM now processes the OQ tag to make comparing original quality scores easier.</p>
+
+<h2>Lots of other bug fixes and features&hellip;</h2>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/242">242</a>: Upgrade to Parquet 1.4.3</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/241">241</a>: Fixes to FASTA code to properly handle indices.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/239">239</a>: Make ADAMVCFOutputFormat public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/233">233</a>: Build up reference information during cigar processing</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/234">234</a>: Predicate to filter conversion</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/235">235</a>: Remove unused contiglength field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/232">232</a>: Add <code>-pretty</code> and <code>-o</code> to the <code>print</code> command</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/230">230</a>: Remove duplicate mdtag field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/231">231</a>: Helper scripts to run an ADAM Console.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/226">226</a>: Fix ReferenceRegion from ADAMRecord</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/225">225</a>: Change Some to Option to check for unmapped reads</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/223">223</a>: Use SparkConf object to configure SparkContext</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/217">217</a>: Stop using reference IDs and use reference names instead</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/220">220</a>: Update SAM to ADAM conversion</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/213">213</a>: BQSR updates</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-28T13:27:44-07:00" pubdate data-updated="true">Mar 28<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam/">Talk on ADAM at Global Alliance for Genomics and Health Meeting</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Matt Massie gave a talk on ADAM at the <a href="http://genomicsandhealth.org/">Global Alliance for Genomics and Health</a>
+on the <a href="http://www.sanger.ac.uk/about/campus/">Hinxton Genome Campus</a>.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/31948595" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/mattmassie/ga4-gh-meeting-at-the-the-sanger-institute" title="Ga4 gh meeting at the the sanger institute" target="_blank">Ga4 gh meeting at the the sanger institute</a> </strong> from <strong><a href="http://www.slideshare.net/mattmassie" target="_blank">Matt Massie</a></strong> </div></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-02-12T12:05:11-08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/12/strata-big-data-science-talk/">Strata Big Data Science Talk</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Frank Nothaft gave a talk at the <a href="http://www.meetup.com/Big-Data-Science/events/107491582/">Strata Big Data Science Meetup</a>
+where he discussed the overall architecture and performance characteristics of ADAM.</p>
+
+<p>Frank is a graduate student in the AMP and ASPIRE labs at UC-Berkeley, and is advised by Prof. David Patterson. His current focus is
+on high performance computer systems for bioinformatics, and is involved in the ADAM, avocado, and FireBox projects.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/31138752" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-01-17T10:58:45-08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites/">ADAM Article Posted on O&#8217;Reilly and Forbes Sites</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM was featured in an article that was posted to both the
+<a href="http://strata.oreilly.com/2014/01/big-data-systems-are-making-a-difference-in-the-fight-against-cancer.html">O&#8217;Reilly Strata</a>
+and <a href="http://www.forbes.com/sites/oreillymedia/2014/01/17/big-data-systems-are-making-a-difference-in-the-fight-against-cancer/">Forbes</a> web
+sites that opens with the following:</p>
+
+<blockquote><p>As open source, big data tools enter the early stages of maturation, data engineers and data scientists will have
+many opportunities to use them to “<a href="http://radar.oreilly.com/2009/01/work-on-stuff-that-matters-fir.html">work on stuff that matters</a>”.
+Along those lines, computational biology and medicine
+are areas where skilled data professionals are already beginning to make an impact.</p></blockquote>
+
+<p>The Tim O&#8217;Reilly post, &ldquo;<a href="http://radar.oreilly.com/2009/01/work-on-stuff-that-matters-fir.html">Work on Stuff that Matters: First Principles</a>&rdquo;,
+is a great read that encourages readers to work on something that matters to you more than money, create more value than you capture
+and take the long view. While ADAM is a very new project, we hope that it will be used someday soon to help save lives and enable researchers
+to ask questions that aren&rsquo;t possible today. We are taking the long view and sharing all this valuable software as Apache-licensed open-source.</p>
+
+<p>If you&rsquo;re interested in contributing, <a href="/mail">join our mailing list</a> and introduce yourself. We also mark open issues that are good introductory
+projects with a &ldquo;<a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&amp;page=1&amp;state=open">pick me up!</a>&rdquo; label. Of course, we welcome any
+contribution you&rsquo;d like to make!</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-12-18T16:39:20-08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/18/adam-berkeley-tech-report/">ADAM Tech Report Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Current genomics data formats and processing pipelines are not designed to scale well to large datasets.
+The current Sequence/Binary Alignment/Map (SAM/BAM) formats were intended for single node processing.
+There have been attempts to adapt BAM to distributed computing environments, but they see limited scalability
+past eight nodes. Additionally, due to the lack of an explicit data schema, there are well known
+incompatibilities between libraries that implement SAM/BAM/Variant Call Format (VCF) data access.</p>
+
+<p>To address these
+problems, we introduce ADAM, a set of formats, APIs, and processing stage implementations for genomic data.
+ADAM is fully open source under the Apache 2 license, and is implemented on top of Avro and Parquet for data storage.
+Our reference pipeline is implemented on top of Spark, a high performance in-memory map-reduce system. This combination
+provides the following advantages:</p>
+
+<ol>
+<li>Avro provides explicit data schema access in C/C++/C#, Java/Scala, Python, php, and Ruby;</li>
+<li>Parquet allows access by database systems like Impala and Shark; and</li>
+<li>Spark improves performance through in-memory caching and reducing disk I/O.</li>
+</ol>
+
+
+<p><span class='pullquote-right' data-pullquote='on a 250 Gigabyte (GB) high (60×) coverage human genome, this system achieves a 50× speedup'>
+In addition to improving the format’s cross-platform portability, these changes lead to significant performance improvements.
+On a single node, we are able to speedup sort and duplicate marking by 2×. More importantly,
+on a 250 Gigabyte (GB) high (60×) coverage human genome, this system achieves a 50× speedup
+on a 100 node computing cluster (see Table 1), fulfilling the promise of scalability of ADAM.
+</span></p>
+
+<p>You can read the full tech report at <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html">http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next disabled"><a href="#">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <a href="/">
+<img src="http://gravatar.com/avatar/0bff5079826d1ecfd663cbcb743a9a25?s=256" height="256" width="256"/>
+</a>
+<br/>
+<hr size="1"/>
+<p>
+Join us! If you&#8217;re interested in contributing, <a href="/mail">join our mailing list</a>
+and take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">&#8220;pick me up!&#8221; issues</a>.
+</p>
+<hr size="1"/>
+
+<section class="panel panel-default clearfix">
+  <div class="panel-heading">
+      <h3 class="panel-title">GitHub Repos</h3>
+  </div>
+  <div class="list-group" id="gh_repos">
+    <p class="loading">Status updating&#8230;</p>
+  </div>
+  
+    <div class="gh-profile-link pull-right text-muted">
+      <a href="https://github.com/bigdatagenomics">@bigdatagenomics</a> on GitHub
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'bigdatagenomics',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+<a class="twitter-timeline" href="https://twitter.com/bigdatagenomics" data-widget-id="425697788114923521">Tweets by @bigdatagenomics</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2014/06/02/adam-0-dot-11-dot-0-released/">ADAM 0.11.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2014/05/15/up-and-running-with-big-data-genomics/">Developing Big Data Genomics: A Screencast</a>
+    
+    <a class="list-group-item " href="/blog/2014/05/13/adam-0-dot-10-dot-0-released/">ADAM 0.10.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam/">Talk on ADAM at Global Alliance for Genomics and Health Meeting</a>
+    
+    <a class="list-group-item " href="/blog/2014/02/12/strata-big-data-science-talk/">Strata Big Data Science Talk</a>
+    
+  </div>
+</section>
+<font size="-1"><i>
+YourKit is supporting the Big Data Genomics open source project with its full-featured Java Profiler.
+YourKit, LLC is the creator of innovative and intelligent tools for profiling
+Java and .NET applications. Take a look at YourKit&#8217;s leading software products:
+<a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
+<a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.
+</i></font>
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Big Data Genomics<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'bigdatagenomics';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>

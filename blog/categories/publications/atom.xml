@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Publications | Big Data Genomics]]></title>
+  <link href="http://bigdatagenomics.github.io/blog/categories/publications/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2014-06-02T17:14:15-07:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
+  <author>
+    <name><![CDATA[Big Data Genomics]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM Tech Report Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2013/12/18/adam-berkeley-tech-report/"/>
+    <updated>2013-12-18T16:39:20-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2013/12/18/adam-berkeley-tech-report</id>
+    <content type="html"><![CDATA[<p>Current genomics data formats and processing pipelines are not designed to scale well to large datasets.
+The current Sequence/Binary Alignment/Map (SAM/BAM) formats were intended for single node processing.
+There have been attempts to adapt BAM to distributed computing environments, but they see limited scalability
+past eight nodes. Additionally, due to the lack of an explicit data schema, there are well known
+incompatibilities between libraries that implement SAM/BAM/Variant Call Format (VCF) data access.</p>
+
+<p>To address these
+problems, we introduce ADAM, a set of formats, APIs, and processing stage implementations for genomic data.
+ADAM is fully open source under the Apache 2 license, and is implemented on top of Avro and Parquet for data storage.
+Our reference pipeline is implemented on top of Spark, a high performance in-memory map-reduce system. This combination
+provides the following advantages:</p>
+
+<ol>
+<li>Avro provides explicit data schema access in C/C++/C#, Java/Scala, Python, php, and Ruby;</li>
+<li>Parquet allows access by database systems like Impala and Shark; and</li>
+<li>Spark improves performance through in-memory caching and reducing disk I/O.</li>
+</ol>
+
+
+<p>Surround your pullquote like this {" text to be quoted "}</p>
+
+<p>You can read the full tech report at <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html">http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

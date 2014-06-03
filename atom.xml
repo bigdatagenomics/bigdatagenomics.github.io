@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Big Data Genomics]]></title>
+  <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2014-06-02T17:14:15-07:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
+  <author>
+    <name><![CDATA[Big Data Genomics]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.11.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/06/02/adam-0-dot-11-dot-0-released/"/>
+    <updated>2014-06-02T16:48:42-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/06/02/adam-0-dot-11-dot-0-released</id>
+    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.11.0">0.11.0</a> is now available.</p>
+
+<p>This release allows you not just read but also write to SAM/BAM files, adds utilities for trimming reads,
+implements contig-to-RefSeq translation, refactors SequenceDictionary to include RefSeq information (and without numeric IDs)
+and prepare ADAMGenotype for incorporating reference model information, and fixes a bug in FASTA fragments.</p>
+
+<p>For details see the following issues&hellip;</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/250">250</a>: Adding ADAM to SAM conversion.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/248">248</a>: Adding utilities for read trimming.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/252">252</a>: Added a note about rebasing-off-master to CONTRIBUTING.md</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/249">249</a>: Cosmetic changes to FastaConverter and FastaConverterSuite.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/251">251</a>: CHANGES.md is updated at release instead of per pull request</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/247">247</a>: For #244, Fragments were incorrect order and incomplete</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/246">246</a>: Making sample ID field in genotype nullable.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/245">245</a>: Adding ADAMContig back to ADAMVariant.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/243">243</a>: Rebase PR#238 onto master</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Developing Big Data Genomics: A Screencast]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/05/15/up-and-running-with-big-data-genomics/"/>
+    <updated>2014-05-15T10:00:00-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/05/15/up-and-running-with-big-data-genomics</id>
+    <content type="html"><![CDATA[<iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/BCoIXqUfFkU?autoplay=0&origin=http://bdgenomics.org" frameborder="0"></iframe>
+
+
+
+
+<br/><br/>
+
+
+<p>This short screencast is meant to get someone new to Scala, IntelliJ, and the Big Data Genomics stack up and running with a configured development environment suitable for working with or on projects like ADAM and Avocado.</p>
+
+<p>We&rsquo;ll walk you through downloading the appropriate JDK, IntelliJ IDE, and plugings. Then we will set up the project (using ADAM as the example), generating sources, packaging the application, and building the project. Finally, we cover running tests, as well as some basic exploration and code navigation using the IDE.</p>
+
+<hr />
+
+<p>Note, if you have trouble using <code>mvn package</code> in the command line, you may want to add the following to your <code>.bashrc</code>, or at least export these environment variables before running <code>mvn package</code>:</p>
+
+<pre><code>export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+</code></pre>
+
+<h3>Links</h3>
+
+<ul>
+<li>00:00:14  <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Oracle JDK 7</a></li>
+<li>00:00:28  <a href="http://www.jetbrains.com/idea/download/">IntelliJ IDE</a></li>
+<li>00:00:43  <a href="https://github.com/bigdatagenomics/adam">ADAM Github Repository</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.10.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/05/13/adam-0-dot-10-dot-0-released/"/>
+    <updated>2014-05-13T15:18:06-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/05/13/adam-0-dot-10-dot-0-released</id>
+    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">0.10.0</a> is now available.</p>
+
+<h2>Parquet 1.4.3 upgrade</h2>
+
+<p>As developers, you need to know about a small (but significant) change to way Parquet projections work now. In the past, any record fields that were not in the projections were returned as null values. With our upgrade to Parquet 1.4.3, fields that are not in the your projections will be set to their default value (if one exists).</p>
+
+<h2>BQSR Performance and Concordance</h2>
+
+<p>This release adds the cycle covariate to BQSR. Our BQSR implementation can process the 1000g NA12878 High-Coverage Whole Genome in under 45 minutes using 100 EC2 nodes. Our concordance with GATK is high (>99.9%) for the data we&rsquo;ve tested. We&rsquo;ll publish the scripts we use for concordance testing in an upcoming release to allow broader, automated testing. Additionally, ADAM now processes the OQ tag to make comparing original quality scores easier.</p>
+
+<h2>Lots of other bug fixes and features&hellip;</h2>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/242">242</a>: Upgrade to Parquet 1.4.3</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/241">241</a>: Fixes to FASTA code to properly handle indices.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/239">239</a>: Make ADAMVCFOutputFormat public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/233">233</a>: Build up reference information during cigar processing</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/234">234</a>: Predicate to filter conversion</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/235">235</a>: Remove unused contiglength field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/232">232</a>: Add <code>-pretty</code> and <code>-o</code> to the <code>print</code> command</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/230">230</a>: Remove duplicate mdtag field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/231">231</a>: Helper scripts to run an ADAM Console.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/226">226</a>: Fix ReferenceRegion from ADAMRecord</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/225">225</a>: Change Some to Option to check for unmapped reads</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/223">223</a>: Use SparkConf object to configure SparkContext</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/217">217</a>: Stop using reference IDs and use reference names instead</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/220">220</a>: Update SAM to ADAM conversion</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/213">213</a>: BQSR updates</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Talk on ADAM at Global Alliance for Genomics and Health meeting]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam/"/>
+    <updated>2014-03-28T13:27:44-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam</id>
+    <content type="html"><![CDATA[<p>Matt Massie gave a talk on ADAM at the <a href="http://genomicsandhealth.org/">Global Alliance for Genomics and Health</a>
+on the <a href="http://www.sanger.ac.uk/about/campus/">Hinxton Genome Campus</a>.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/31948595" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/mattmassie/ga4-gh-meeting-at-the-the-sanger-institute" title="Ga4 gh meeting at the the sanger institute" target="_blank">Ga4 gh meeting at the the sanger institute</a> </strong> from <strong><a href="http://www.slideshare.net/mattmassie" target="_blank">Matt Massie</a></strong> </div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Strata Big Data Science Talk]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/02/12/strata-big-data-science-talk/"/>
+    <updated>2014-02-12T12:05:11-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/02/12/strata-big-data-science-talk</id>
+    <content type="html"><![CDATA[<p>Frank Nothaft gave a talk at the <a href="http://www.meetup.com/Big-Data-Science/events/107491582/">Strata Big Data Science Meetup</a>
+where he discussed the overall architecture and performance characteristics of ADAM.</p>
+
+<p>Frank is a graduate student in the AMP and ASPIRE labs at UC-Berkeley, and is advised by Prof. David Patterson. His current focus is
+on high performance computer systems for bioinformatics, and is involved in the ADAM, avocado, and FireBox projects.</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/31138752" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM Article Posted on O'Reilly and Forbes Sites]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites/"/>
+    <updated>2014-01-17T10:58:45-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites</id>
+    <content type="html"><![CDATA[<p>ADAM was featured in an article that was posted to both the
+<a href="http://strata.oreilly.com/2014/01/big-data-systems-are-making-a-difference-in-the-fight-against-cancer.html">O&#8217;Reilly Strata</a>
+and <a href="http://www.forbes.com/sites/oreillymedia/2014/01/17/big-data-systems-are-making-a-difference-in-the-fight-against-cancer/">Forbes</a> web
+sites that opens with the following:</p>
+
+<blockquote><p>As open source, big data tools enter the early stages of maturation, data engineers and data scientists will have
+many opportunities to use them to “<a href="http://radar.oreilly.com/2009/01/work-on-stuff-that-matters-fir.html">work on stuff that matters</a>”.
+Along those lines, computational biology and medicine
+are areas where skilled data professionals are already beginning to make an impact.</p></blockquote>
+
+<p>The Tim O&#8217;Reilly post, &ldquo;<a href="http://radar.oreilly.com/2009/01/work-on-stuff-that-matters-fir.html">Work on Stuff that Matters: First Principles</a>&rdquo;,
+is a great read that encourages readers to work on something that matters to you more than money, create more value than you capture
+and take the long view. While ADAM is a very new project, we hope that it will be used someday soon to help save lives and enable researchers
+to ask questions that aren&rsquo;t possible today. We are taking the long view and sharing all this valuable software as Apache-licensed open-source.</p>
+
+<p>If you&rsquo;re interested in contributing, <a href="http://bigdatagenomics.github.io/mail">join our mailing list</a> and introduce yourself. We also mark open issues that are good introductory
+projects with a &ldquo;<a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&amp;page=1&amp;state=open">pick me up!</a>&rdquo; label. Of course, we welcome any
+contribution you&rsquo;d like to make!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM Tech Report Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2013/12/18/adam-berkeley-tech-report/"/>
+    <updated>2013-12-18T16:39:20-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2013/12/18/adam-berkeley-tech-report</id>
+    <content type="html"><![CDATA[<p>Current genomics data formats and processing pipelines are not designed to scale well to large datasets.
+The current Sequence/Binary Alignment/Map (SAM/BAM) formats were intended for single node processing.
+There have been attempts to adapt BAM to distributed computing environments, but they see limited scalability
+past eight nodes. Additionally, due to the lack of an explicit data schema, there are well known
+incompatibilities between libraries that implement SAM/BAM/Variant Call Format (VCF) data access.</p>
+
+<p>To address these
+problems, we introduce ADAM, a set of formats, APIs, and processing stage implementations for genomic data.
+ADAM is fully open source under the Apache 2 license, and is implemented on top of Avro and Parquet for data storage.
+Our reference pipeline is implemented on top of Spark, a high performance in-memory map-reduce system. This combination
+provides the following advantages:</p>
+
+<ol>
+<li>Avro provides explicit data schema access in C/C++/C#, Java/Scala, Python, php, and Ruby;</li>
+<li>Parquet allows access by database systems like Impala and Shark; and</li>
+<li>Spark improves performance through in-memory caching and reducing disk I/O.</li>
+</ol>
+
+
+<p><span class='pullquote-right' data-pullquote='on a 250 Gigabyte (GB) high (60×) coverage human genome, this system achieves a 50× speedup'>
+In addition to improving the format’s cross-platform portability, these changes lead to significant performance improvements.
+On a single node, we are able to speedup sort and duplicate marking by 2×. More importantly,
+on a 250 Gigabyte (GB) high (60×) coverage human genome, this system achieves a 50× speedup
+on a 100 node computing cluster (see Table 1), fulfilling the promise of scalability of ADAM.
+</span></p>
+
+<p>You can read the full tech report at <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html">http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>
