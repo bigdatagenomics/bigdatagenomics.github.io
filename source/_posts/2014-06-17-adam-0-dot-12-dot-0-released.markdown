@@ -8,7 +8,7 @@ categories:
 
 ADAM [0.12.0](https://github.com/bigdatagenomics/adam/releases) is now available!
 
-This release includes new Parquet utilities for reading/writing Parquet directly on S3, eliminating
+This release includes new Parquet utilities that are part of an effort to read/write Parquet directly on S3, eliminating
 the need to transfer data from S3 to HDFS for processing. This release also upgrades
 ADAM to Spark 1.0 and provides new schema definitions, bug fixes and features:
 
