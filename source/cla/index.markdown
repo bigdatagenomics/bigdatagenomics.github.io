@@ -5,6 +5,7 @@ date: 2014-05-14 09:03
 comments: false
 sharing: true
 footer: true
+navbar: CLAs
 ---
 
 A [Contributor License Agreement (CLA)](http://oss-watch.ac.uk/resources/cla) is a document that clearly defines the terms under which intellectual property
