@@ -4,7 +4,7 @@
   <title><![CDATA[Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2014-07-10T10:20:37-07:00</updated>
+  <updated>2014-07-10T10:21:54-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -18,7 +18,7 @@
     <link href="http://bigdatagenomics.github.io/blog/2014/07/02/spark-summit-talk-on-adam/"/>
     <updated>2014-07-02T00:31:44-07:00</updated>
     <id>http://bigdatagenomics.github.io/blog/2014/07/02/spark-summit-talk-on-adam</id>
-    <content type="html"><![CDATA[<p><a href="http://www.fnothaft.net">Frank Austin Nothaft</a> gave a talk on ADAM at the <a href="http://www.sparksummit.org">Spark Summit</a> in San Francisco.</p>
+    <content type="html"><![CDATA[<p><a href="http://www.fnothaft.net">Frank Austin Nothaft</a> gave a talk on ADAM at the <a href="http://www.spark-summit.org">Spark Summit</a> in San Francisco.</p>
 
 <iframe src="http://bigdatagenomics.github.io//www.slideshare.net/slideshow/embed_code/36516706" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
