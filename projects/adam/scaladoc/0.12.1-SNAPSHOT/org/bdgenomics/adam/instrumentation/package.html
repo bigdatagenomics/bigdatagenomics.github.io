@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>instrumentation - ADAM: Core 0.12.1-SNAPSHOT API - org.bdgenomics.adam.instrumentation</title>
+          <meta name="description" content="instrumentation - ADAM Core 0.12.1 - SNAPSHOT API - org.bdgenomics.adam.instrumentation" />
+          <meta name="keywords" content="instrumentation ADAM Core 0.12.1 SNAPSHOT API org.bdgenomics.adam.instrumentation" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'org.bdgenomics.adam.instrumentation.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.bdgenomics">bdgenomics</a>.<a href="../package.html" class="extype" name="org.bdgenomics.adam">adam</a></p>
+        <h1>instrumentation</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">instrumentation</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.bdgenomics.adam.instrumentation.ADAMMetrics" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ADAMMetricsextendsAnyRef"></a>
+      <a id="ADAMMetrics:ADAMMetrics"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ADAMMetrics.html"><span class="name">ADAMMetrics</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Contains metrics for ADAM.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.ADAMMetricsListener" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ADAMMetricsListenerextendsSparkListener"></a>
+      <a id="ADAMMetricsListener:ADAMMetricsListener"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ADAMMetricsListener.html"><span class="name">ADAMMetricsListener</span></a><span class="result"> extends <span class="extype" name="org.apache.spark.scheduler.SparkListener">SparkListener</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Spark listener that accumulates metrics in the passed-in <a href="ADAMMetrics.html" class="extype" name="org.bdgenomics.adam.instrumentation.ADAMMetrics">ADAMMetrics</a> object
+at stage completion time.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.ASCIITable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ASCIITableextendsAnyRef"></a>
+      <a id="ASCIITable:ASCIITable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ASCIITable.html"><span class="name">ASCIITable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Renders a table using ASCII characters.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.ASCIITableHeader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ASCIITableHeaderextendsProductwithSerializable"></a>
+      <a id="ASCIITableHeader:ASCIITableHeader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ASCIITableHeader.html"><span class="name">ASCIITableHeader</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="alignment">alignment: <a href="Alignment$.html#Alignment=org.bdgenomics.adam.instrumentation.Alignment.Value" class="extmbr" name="org.bdgenomics.adam.instrumentation.Alignment.Alignment">Alignment</a> = <span class="symbol">Alignment.Right</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.instrumentation.MonitorTable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MonitorTableextendsAnyRef"></a>
+      <a id="MonitorTable:MonitorTable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MonitorTable.html"><span class="name">MonitorTable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Tabular representation of a set of <span class="extype" name="Monitor">Monitor</span>s.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.ServoTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ServoTimerextendsCompositeMonitor[Object]withTaggable"></a>
+      <a id="ServoTimer:ServoTimer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ServoTimer.html"><span class="name">ServoTimer</span></a><span class="result"> extends <span class="extype" name="com.netflix.servo.monitor.CompositeMonitor">CompositeMonitor</span>[<span class="extype" name="scala.AnyRef">AnyRef</span>] with <a href="Taggable.html" class="extype" name="org.bdgenomics.adam.instrumentation.Taggable">Taggable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Timer that implements the <span class="extype" name="com.netflix.servo.monitor.CompositeMonitor">com.netflix.servo.monitor.CompositeMonitor</span> interface.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.SparkMetrics" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SparkMetricsextendsAnyRef"></a>
+      <a id="SparkMetrics:SparkMetrics"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SparkMetrics.html"><span class="name">SparkMetrics</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Allows metrics for Spark to be captured and rendered in tabular form.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.TableHeader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TableHeaderextendsProductwithSerializable"></a>
+      <a id="TableHeader:TableHeader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TableHeader.html"><span class="name">TableHeader</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="valueExtractor">valueExtractor: <a href="ValueExtractor.html" class="extype" name="org.bdgenomics.adam.instrumentation.ValueExtractor">ValueExtractor</a></span>, <span name="formatFunction">formatFunction: <span class="extype" name="scala.Option">Option</span>[(<span class="extype" name="scala.Any">Any</span>) ⇒ <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="alignment">alignment: <a href="Alignment$.html#Alignment=org.bdgenomics.adam.instrumentation.Alignment.Value" class="extmbr" name="org.bdgenomics.adam.instrumentation.Alignment.Alignment">Alignment</a> = <span class="symbol">Alignment.Right</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Specifies the title of a column, as well as how data is extracted to form the cells of this column
+</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.Taggable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TaggableextendsAnyRef"></a>
+      <a id="Taggable:Taggable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Taggable.html"><span class="name">Taggable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.instrumentation.TaskContext" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TaskContextextendsProductwithSerializable"></a>
+      <a id="TaskContext:TaskContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TaskContext.html"><span class="name">TaskContext</span></a><span class="params">(<span name="hostname">hostname: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="stageId">stageId: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.instrumentation.TaskTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TaskTimerextendsAnyRef"></a>
+      <a id="TaskTimer:TaskTimer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TaskTimer.html"><span class="name">TaskTimer</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.instrumentation.ValueExtractor" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ValueExtractorextendsAnyRef"></a>
+      <a id="ValueExtractor:ValueExtractor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ValueExtractor.html"><span class="name">ValueExtractor</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.bdgenomics.adam.instrumentation.Alignment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Alignment"></a>
+      <a id="Alignment:Alignment"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Alignment$.html"><span class="name">Alignment</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Represents alignment of a cell in a table
+</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.DurationFormatting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DurationFormatting"></a>
+      <a id="DurationFormatting:DurationFormatting"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DurationFormatting$.html"><span class="name">DurationFormatting</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Functions for formatting durations.</p>
+    </li><li name="org.bdgenomics.adam.instrumentation.ServoTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ServoTimer"></a>
+      <a id="ServoTimer:ServoTimer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ServoTimer$.html"><span class="name">ServoTimer</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.instrumentation.SparkMetrics" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SparkMetrics"></a>
+      <a id="SparkMetrics:SparkMetrics"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SparkMetrics$.html"><span class="name">SparkMetrics</span></a>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
+    </li><li name="org.bdgenomics.adam.instrumentation.ValueExtractor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ValueExtractor"></a>
+      <a id="ValueExtractor:ValueExtractor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ValueExtractor$.html"><span class="name">ValueExtractor</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+    </body>
+      </html>

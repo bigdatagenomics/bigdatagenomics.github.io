@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>parquet_reimpl - ADAM: Core 0.12.1-SNAPSHOT API - org.bdgenomics.adam.parquet_reimpl</title>
+          <meta name="description" content="parquet reimpl - ADAM Core 0.12.1 - SNAPSHOT API - org.bdgenomics.adam.parquet reimpl" />
+          <meta name="keywords" content="parquet reimpl ADAM Core 0.12.1 SNAPSHOT API org.bdgenomics.adam.parquet reimpl" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'org.bdgenomics.adam.parquet_reimpl.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.bdgenomics">bdgenomics</a>.<a href="../package.html" class="extype" name="org.bdgenomics.adam">adam</a></p>
+        <h1>parquet_reimpl</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">parquet_reimpl</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.bdgenomics.adam.parquet_reimpl.AvroIndexedParquetRDD" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AvroIndexedParquetRDD[T&lt;:org.apache.avro.generic.IndexedRecord]extendsRDD[T]"></a>
+      <a id="AvroIndexedParquetRDD[T&lt;:IndexedRecord]:AvroIndexedParquetRDD[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AvroIndexedParquetRDD.html"><span class="name">AvroIndexedParquetRDD</span></a><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="org.apache.avro.generic.IndexedRecord">IndexedRecord</span></span>]</span><span class="result"> extends <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="org.bdgenomics.adam.parquet_reimpl.AvroIndexedParquetRDD.T">T</span>]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">AvroIndexedParquetRDD is an RDD which reads an index file, and (for a given CombinedFilter,
+which contains a predicate on the entries of the index) has as many partitions as there are
+unique row groups within the indexed Parquet files whose index entries satisfy the predicate.</p>
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.AvroParquetRDD" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AvroParquetRDD[T&lt;:org.apache.avro.generic.IndexedRecord]extendsRDD[T]"></a>
+      <a id="AvroParquetRDD[T&lt;:IndexedRecord]:AvroParquetRDD[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AvroParquetRDD.html"><span class="name">AvroParquetRDD</span></a><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="org.apache.avro.generic.IndexedRecord">IndexedRecord</span></span>]</span><span class="result"> extends <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="org.bdgenomics.adam.parquet_reimpl.AvroParquetRDD.T">T</span>]</span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetAggregateType" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ParquetAggregateTypeextendsParquetType"></a>
+      <a id="ParquetAggregateType:ParquetAggregateType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetAggregateType.html"><span class="name">ParquetAggregateType</span></a><span class="result"> extends <a href="ParquetType.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.ParquetType">ParquetType</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetGroupType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetGroupTypeextendsParquetAggregateTypewithProductwithSerializable"></a>
+      <a id="ParquetGroupType:ParquetGroupType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetGroupType.html"><span class="name">ParquetGroupType</span></a><span class="params">(<span name="groupName">groupName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="groupRepetition">groupRepetition: <a href="Repetition$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="org.bdgenomics.adam.parquet_reimpl.Repetition.Value">Repetition.Value</a></span>, <span name="groupFields">groupFields: <span class="extype" name="scala.Seq">Seq</span>[<a href="ParquetType.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.ParquetType">ParquetType</a>]</span>)</span><span class="result"> extends <a href="ParquetAggregateType.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.ParquetAggregateType">ParquetAggregateType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetLister" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetLister[T&lt;:org.apache.avro.generic.IndexedRecord]extendsLogging"></a>
+      <a id="ParquetLister[T&lt;:IndexedRecord]:ParquetLister[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetLister.html"><span class="name">ParquetLister</span></a><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="org.apache.avro.generic.IndexedRecord">IndexedRecord</span></span>]</span><span class="result"> extends <span class="extype" name="org.apache.spark.Logging">Logging</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ParquetLister materializes the records within a Parquet row group as an Iterator[T].</p>
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetPartition" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetPartitionextendsPartition"></a>
+      <a id="ParquetPartition:ParquetPartition"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetPartition.html"><span class="name">ParquetPartition</span></a><span class="result"> extends <span class="extype" name="org.apache.spark.Partition">Partition</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">ParquetPartition is a Partition implementation, used in our RDD implementations, which corresponds to a
+single row group in a single Parquet file.</p>
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetPrimitiveType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetPrimitiveTypeextendsParquetTypewithProductwithSerializable"></a>
+      <a id="ParquetPrimitiveType:ParquetPrimitiveType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetPrimitiveType.html"><span class="name">ParquetPrimitiveType</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="repetition">repetition: <a href="Repetition$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="org.bdgenomics.adam.parquet_reimpl.Repetition.Value">Repetition.Value</a></span>, <span name="length">length: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="primitiveType">primitiveType: <a href="PrimitiveType$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="org.bdgenomics.adam.parquet_reimpl.PrimitiveType.Value">PrimitiveType.Value</a></span>, <span name="originalType">originalType: <a href="ParquetOriginalType$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="org.bdgenomics.adam.parquet_reimpl.ParquetOriginalType.Value">ParquetOriginalType.Value</a></span>)</span><span class="result"> extends <a href="ParquetType.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.ParquetType">ParquetType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetSchemaType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetSchemaTypeextendsParquetAggregateTypewithProductwithSerializable"></a>
+      <a id="ParquetSchemaType:ParquetSchemaType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetSchemaType.html"><span class="name">ParquetSchemaType</span></a><span class="params">(<span name="schemaName">schemaName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="schemaFields">schemaFields: <span class="extype" name="scala.Seq">Seq</span>[<a href="ParquetType.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.ParquetType">ParquetType</a>]</span>)</span><span class="result"> extends <a href="ParquetAggregateType.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.ParquetAggregateType">ParquetAggregateType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetType" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ParquetTypeextendsSerializable"></a>
+      <a id="ParquetType:ParquetType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetType.html"><span class="name">ParquetType</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">This is a reimplementation of the Type / GroupType / PrimitiveType / MessageType hierarchy
+from parquet.</p>
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.PartitionPageReadStore" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PartitionPageReadStoreextendsPageReadStore"></a>
+      <a id="PartitionPageReadStore:PartitionPageReadStore"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PartitionPageReadStore.html"><span class="name">PartitionPageReadStore</span></a><span class="result"> extends <span class="extype" name="parquet.column.page.PageReadStore">PageReadStore</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">PartitionPageReadStore is a holder for mapping between the ParquetColumnDescriptor values and the
+PageReader values.</p>
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.TypePath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TypePathextendsProductwithSerializable"></a>
+      <a id="TypePath:TypePath"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TypePath.html"><span class="name">TypePath</span></a><span class="params">(<span name="head">head: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suffix">suffix: <span class="extype" name="scala.Option">Option</span>[<a href="TypePath.html" class="extype" name="org.bdgenomics.adam.parquet_reimpl.TypePath">TypePath</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.bdgenomics.adam.parquet_reimpl.ParquetOriginalType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetOriginalType"></a>
+      <a id="ParquetOriginalType:ParquetOriginalType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetOriginalType$.html"><span class="name">ParquetOriginalType</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetPartition" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetPartition"></a>
+      <a id="ParquetPartition:ParquetPartition"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetPartition$.html"><span class="name">ParquetPartition</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.ParquetType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ParquetType"></a>
+      <a id="ParquetType:ParquetType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ParquetType$.html"><span class="name">ParquetType</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.PrimitiveType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PrimitiveType"></a>
+      <a id="PrimitiveType:PrimitiveType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PrimitiveType$.html"><span class="name">PrimitiveType</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.Repetition" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Repetition"></a>
+      <a id="Repetition:Repetition"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Repetition$.html"><span class="name">Repetition</span></a><span class="result"> extends <span class="extype" name="scala.Enumeration">Enumeration</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.TypePath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TypePath"></a>
+      <a id="TypePath:TypePath"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TypePath$.html"><span class="name">TypePath</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.filters" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="filters"></a>
+      <a id="filters:filters"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="filters/package.html"><span class="name">filters</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.bdgenomics.adam.parquet_reimpl.index" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="index"></a>
+      <a id="index:index"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="index/package.html"><span class="name">index</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+    </body>
+      </html>
