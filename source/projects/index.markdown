@@ -19,6 +19,8 @@ At the moment, we are working on three projects:
 
 * [ADAM](/projects/adam/): A scalable API & CLI for genome processing
 * [bdg-formats](/projects/bdg-formats): Schemas for genomic data
+* [bdg-services](/projects/bdg-services): Utility classes for wrapping services around an ADAM cluster
+* [RNAdam](/projects/RNAdam): An RNA pipeline built on top of ADAM
 * [avocado](/projects/avocado/): A Variant Caller, Distributed
 
 The source for these projects is available at [Github](http://www.github.com/bigdatagenomics).

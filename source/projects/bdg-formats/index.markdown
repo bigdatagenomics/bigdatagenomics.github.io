@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Big Data Genomics &en; bdg-formats"
+title: "Big Data Genomics &mdash; bdg-formats"
 date: 2014-03-04 19:46
 comments: true
 sharing: true
@@ -13,15 +13,24 @@ The bdg-formats project provides schemas for describing common genomic data, suc
 oriented data, variants, genotypes, and assemblies. The schemas developed by this project use
 [Apache Avro](http://avro.apache.org), which allows use across most common programming languages
 and platforms. These schemas form the core data structures used in the [ADAM](/projects/adam/)
-project.
-
-bdg-formats is on [Github](https://github.com/bigdatagenomics/bdg-formats).
+project. bdg-formats is on [Github](https://github.com/bigdatagenomics/bdg-formats).
 
 ### Releases
 
-Currently, the bdg-formats schemas are part of the ADAM 0.6.1 release. ADAM is available for
-projects using Maven or SBT through the [Sonatype OSS repository](https://docs.sonatype.org/display/Repository).
-We are working to deploy artifacts for non-JVM languages; watch this space for more info!
+The latest stable release of the bdg-formats is 0.1.0. Java artifacts are available for projects using Maven or SBT
+through Maven Central. Snapshots are available from the [Sonatype OSS repository](https://docs.sonatype.org/display/Repository).
+The dependency for the data formats is:
+
+```
+<dependency>
+  <groupId>org.bdgenomics.bdg-formats</groupId>
+  <artifactId>bdg-formats</artifactId>
+  <version>0.1.0</version>
+</dependency>
+```
+
+The changelist per release can be found [here](https://github.com/bigdatagenomics/bdg-services/blob/master/CHANGES.md).
+We hope to make C/C++ and Python artifacts available soon.
 
 ### Support
 
@@ -49,6 +58,6 @@ ADAM project. The Bibtex for this reference is:
 
 ### Licensing
 
-ADAM is available under the [Apache 2](http://www.apache.org/licenses/LICENSE-2.0.html)
+The bdg-formats are available under the [Apache 2](http://www.apache.org/licenses/LICENSE-2.0.html)
 open source software (OSS) license. This OSS license is non-viral, and places no restrictions on
 users who would like to use or modify the software.
