@@ -123,6 +123,105 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-08-20T14:04:41-07:00" pubdate data-updated="true">Aug 20<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.13.0">0.13.0</a> is now available!</p>
+
+<p>This release includes <a href="https://github.com/bigdatagenomics/adam/pull/346">genome visualization</a> to view aligned reads and coverage
+information over a reference region. You simply run e.g. <code>adam viz myreads.adam chr1</code> from the ADAM source directory and open
+your favorite web browser to <a href="http://localhost:8080/">http://localhost:8080/</a> to view your data.</p>
+
+<p>This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/343">343</a>: Allow retrying on failure for HTTPRangedByteAccess</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/349">349</a>: Fix for a NullPointerException when hostname is null in Task Metrics</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/347">347</a>: Bug fix for genome browser</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/346">346</a>: Genome visualization</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/342">342</a>: [ADAM-309] Update to bdg-formats 0.2.0</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/333">333</a>: [ADAM-332] Upgrades ADAM to Spark 1.0.1.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/341">341</a>: [ADAM-340] Adding the TrackedLayout trait and implementation.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/337">337</a>: [ADAM-335] Updated README.md to reflect migration to appassembler.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/311">311</a>: Adding several simple normalizations.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/330">330</a>: Make mismatch and deletes positions accessible</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/334">334</a>: Moving code coverage into a profile</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/329">329</a>: Add count of mismatches to mdtag</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/328">328</a>: [ADAM-326] Adding a 5-second retry on the HttpRangedByteAccess test.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/325">325</a>: Adding documentation for commit/issue nomenclature and rebasing</li>
+</ul>
+
+
+<p>This summer, we also quietly pushed out a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.12.1">0.12.1</a> release
+that included a number of features (e.g. Parquet and indexed Parquet Spark RDDs, k-mer/q-mer counting, fixed depth prefix tries) and bug fixes:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/308">308</a>: Fixing the &lsquo;index 0&rsquo; bug in features2adam</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/306">306</a>: Adding code for lifting over between sequences and the reference genome.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/320">320</a>: Remove extraneous implicit methods in ReferenceMappingContext</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/314">314</a>: Updates to indel realigner to improve performance and accuracy.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/319">319</a>: Adding scripts for publishing scaladoc.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/315">315</a>: Added table of (wall-clock) stage durations when print_metrics is used</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/312">312</a>: Fixing sources jar</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/313">313</a>: Making the CredentialsProperties file optional</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/267">267</a>: Parquet and indexed Parquet RDD implementations, and indices.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/301">301</a>: Add Beacon&rsquo;s AlleleCount</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/293">293</a>: Add aggregation and display of metrics obtained from Spark</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/295">295</a>: Fix broken link to ADAM specification for storing reads.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/292">292</a>: Cleaning up scaladoc generation warnings.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/289">289</a>: Modifying interleaved fastq format to be hadoop version independent.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/288">288</a>: Add ADAMFeature to Kryo registrator</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/286">286</a>: Removing some debug printout that was left in.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/287">287</a>: Cleaning hadoop dependencies</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/285">285</a>: Refactoring read groups to increase the amount of data stored.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/284">284</a>: Cleaning up build warnings.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/280">280</a>: Move to bdg-formats</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/283">283</a>: Fix reference name comment</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/282">282</a>: Minor cleanup on interleaved FASTQ input format.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/277">277</a>: Implemented HTTPRangedByteAccess.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/274">274</a>: Added clarifying note to <code>ADAMVariantContext</code></li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/279">279</a>: Simplify format-source</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/278">278</a>: Use maven license plugin to ensure source has correct license</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/268">268</a>: Adding fixed depth prefix trie implementation</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/273">273</a>: Fixes issue in reference models where strings are not sanitized on collection from avro.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/272">272</a>: Created command categories</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/269">269</a>: Adding k-mer and q-mer counting.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/271">271</a>: Consolidate Parquet logging configuration</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-07-02T00:31:44-07:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2014</time>
         
       </p>
@@ -668,6 +767,8 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2014/07/02/spark-summit-talk-on-adam/">Talk on ADAM at the Spark Summit</a>
     
     <a class="list-group-item " href="/blog/2014/06/17/adam-0-dot-12-dot-0-released/">ADAM 0.12.0 Released</a>
@@ -675,8 +776,6 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
     <a class="list-group-item " href="/blog/2014/06/02/adam-0-dot-11-dot-0-released/">ADAM 0.11.0 Released</a>
     
     <a class="list-group-item " href="/blog/2014/05/15/up-and-running-with-big-data-genomics/">Developing Big Data Genomics: A Screencast</a>
-    
-    <a class="list-group-item " href="/blog/2014/05/13/adam-0-dot-10-dot-0-released/">ADAM 0.10.0 Released</a>
     
   </div>
 </section>
