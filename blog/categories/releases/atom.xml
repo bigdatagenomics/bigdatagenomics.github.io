@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Releases | Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/blog/categories/releases/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2014-08-20T14:47:39-07:00</updated>
+  <updated>2014-09-17T16:59:15-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.14.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
+    <updated>2014-09-17T14:33:35-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
+    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
+
+<p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
+
+<p>The <a href="http://sourceforge.net/projects/hadoop-bam/">Hadoop-BAM</a> team is now publishing <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.seqdoop%22">their artifacts to Maven Central</a> (yea!) so we no longer rely on snapshot releases. ADAM <code>0.14.0</code> uses the <code>7.0.0</code> release of Hadoop-BAM.</p>
+
+<p>This release also adds a new Java plugin interface, improves MD tag processing as well as fixes numerous bugs.</p>
+
+<p>We hope that you enjoy this release. Drop by <code>#adamdev</code> on freenode.net, <a href="https://twitter.com/bigdatagenomics">follow us on Twitter</a> or <a href="http://bdgenomics.org/mail/">subscribe to our mailing list</a> to stay in touch.</p>
+
+<!-- more -->
+
+
+<p>For more details, see the changelog below:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/376">376</a>: [ADAM-375] Upgrade to Hadoop-BAM 7.0.0.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/378">378</a>: [ADAM-360] Upgrade to Spark 1.1.0.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/379">379</a>: Fix the position of the jar path in the submit.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/383">383</a>: Make Mdtags handle &lsquo;=&rsquo; and &lsquo;X&rsquo; cigar operators</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/369">369</a>: [ADAM-369] Improve debug output for indel realigner</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/377">377</a>: [ADAM-377] Update to Jenkins scripts and README.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/374">374</a>: [ADAM-372][ADAM-371][ADAM-365] Refactoring CLI to simplify and integrate with Spark model better</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/370">370</a>: [ADAM-367] Updated alias in README.md</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/368">368</a>: erasure, nonexhaustive-match, deprecation warnings</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/354">354</a>: [ADAM-353] Fixing issue with SAM/BAM/VCF header attachment when running distributed</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/357">357</a>: [ADAM-357] Added Java Plugin hook for ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/352">352</a>: Fix failing MD tag</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/363">363</a>: Adding maven assembly plugin configuration to create tarballs</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/364">364</a>: [ADAM-364] Fixing remaining cs.berkeley.edu URLs.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/362">362</a>: Remove mention of uberjar from README</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.13.0 Released]]></title>

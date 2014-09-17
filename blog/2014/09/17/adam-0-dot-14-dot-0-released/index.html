@@ -4,10 +4,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ADAM - Big Data Genomics</title>
+  <title>ADAM 0.14.0 Released - Big Data Genomics</title>
   <meta name="author" content="Big Data Genomics">
 
-  <meta name="description" content="Category: ADAM">
+  
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bigdatagenomics.github.ioblog/categories/adam">
+  <link rel="canonical" href="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
 
@@ -58,10 +58,10 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li >
+                <li class="active">
                     <a href="/">Blog</a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="/blog/archives">Archives</a>
                 </li>
                 <li >
@@ -101,31 +101,12 @@
         <div id="content">
           <div class="row">
   <div class="page-content col-md-9">
-    <article role="article">
+    <article class="hentry" role="article">
       
-        <header class="page-header">
-          
-          
-            <h1 class="entry-title">
-              Category: ADAM
-              
-            </h1>
-          
-        </header>
-      
-      <div class="entry-content">
-        <div id="blog-archives" class="category">
-
-
-
-  
-  <h2>2014</h2>
-
-<article class="page-header">
-  
-<h1><a href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a></h1>
-<p class="meta text-muted">
-  
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
 
 
 
@@ -139,103 +120,121 @@
 
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-09-17T14:33:35-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/releases/'>Releases</a>
-  
-</span>
-
-
-</p>
-
-</article>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        ADAM 0.14.0 Released
+        
+    </h1>
+    
+  </header>
 
 
+<div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
 
-<article class="page-header">
-  
-<h1><a href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a></h1>
-<p class="meta text-muted">
-  
+<p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
 
+<p>The <a href="http://sourceforge.net/projects/hadoop-bam/">Hadoop-BAM</a> team is now publishing <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.seqdoop%22">their artifacts to Maven Central</a> (yea!) so we no longer rely on snapshot releases. ADAM <code>0.14.0</code> uses the <code>7.0.0</code> release of Hadoop-BAM.</p>
 
+<p>This release also adds a new Java plugin interface, improves MD tag processing as well as fixes numerous bugs.</p>
 
+<p>We hope that you enjoy this release. Drop by <code>#adamdev</code> on freenode.net, <a href="https://twitter.com/bigdatagenomics">follow us on Twitter</a> or <a href="http://bdgenomics.org/mail/">subscribe to our mailing list</a> to stay in touch.</p>
 
-
-
-
+<!-- more -->
 
 
+<p>For more details, see the changelog below:</p>
 
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-08-20T14:04:41-07:00" pubdate data-updated="true">Aug 20<span>th</span>, 2014</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/releases/'>Releases</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
-
-
-  
-  <h2>2013</h2>
-
-<article class="page-header">
-  
-<h1><a href="/blog/2013/12/18/adam-berkeley-tech-report/">ADAM Tech Report Released</a></h1>
-<p class="meta text-muted">
-  
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-12-18T16:39:20-08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2013</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/publications/'>Publications</a>
-  
-</span>
-
-
-</p>
-
-</article>
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/376">376</a>: [ADAM-375] Upgrade to Hadoop-BAM 7.0.0.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/378">378</a>: [ADAM-360] Upgrade to Spark 1.1.0.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/379">379</a>: Fix the position of the jar path in the submit.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/383">383</a>: Make Mdtags handle &lsquo;=&rsquo; and &lsquo;X&rsquo; cigar operators</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/369">369</a>: [ADAM-369] Improve debug output for indel realigner</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/377">377</a>: [ADAM-377] Update to Jenkins scripts and README.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/374">374</a>: [ADAM-372][ADAM-371][ADAM-365] Refactoring CLI to simplify and integrate with Spark model better</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/370">370</a>: [ADAM-367] Updated alias in README.md</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/368">368</a>: erasure, nonexhaustive-match, deprecation warnings</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/354">354</a>: [ADAM-353] Fixing issue with SAM/BAM/VCF header attachment when running distributed</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/357">357</a>: [ADAM-357] Added Java Plugin hook for ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/352">352</a>: Fix failing MD tag</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/363">363</a>: Adding maven assembly plugin configuration to create tarballs</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/364">364</a>: [ADAM-364] Fixing remaining cs.berkeley.edu URLs.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/362">362</a>: Remove mention of uberjar from README</li>
+</ul>
 
 </div>
 
-      </div>
-      
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Big Data Genomics</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-09-17T14:33:35-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/releases/'>Releases</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/" data-via="bigdatagenomics" data-counturl="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/" title="Previous Post: ADAM 0.13.0 Released">&laquo; ADAM 0.13.0 Released</a></li>
+            
+            
+          </ul>
+        
+      </footer>
     </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
     
   </div>
 
   
-    <aside class="sidebar col-md-3">
-      
-        <a href="/">
+  <aside class="sidebar col-md-3">
+    
+      <a href="/">
 <img src="http://gravatar.com/avatar/0bff5079826d1ecfd663cbcb743a9a25?s=256" height="256" width="256"/>
 </a>
 <br/>
@@ -294,7 +293,7 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a>
+    <a class="list-group-item active" href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a>
     
     <a class="list-group-item " href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a>
     
@@ -314,8 +313,8 @@ Java and .NET applications. Take a look at YourKit's leading software products:
 <a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.
 </i></font>
 
-      
-    </aside>
+    
+  </aside>
   
 </div>
 
@@ -341,7 +340,10 @@ Java and .NET applications. Take a look at YourKit's leading software products:
       var disqus_shortname = 'bigdatagenomics';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/';
+        var disqus_url = 'http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

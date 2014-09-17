@@ -4,10 +4,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ADAM - Big Data Genomics</title>
+  <title>Big Data Genomics</title>
   <meta name="author" content="Big Data Genomics">
 
-  <meta name="description" content="Category: ADAM">
+  
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bigdatagenomics.github.ioblog/categories/adam">
+  <link rel="canonical" href="http://bigdatagenomics.github.io/blog/page/2">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
 
@@ -58,10 +58,10 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li >
+                <li class="active">
                     <a href="/">Blog</a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="/blog/archives">Archives</a>
                 </li>
                 <li >
@@ -101,102 +101,16 @@
         <div id="content">
           <div class="row">
   <div class="page-content col-md-9">
-    <article role="article">
+    <div class="blog-index">
       
-        <header class="page-header">
-          
-          
-            <h1 class="entry-title">
-              Category: ADAM
-              
-            </h1>
-          
-        </header>
       
-      <div class="entry-content">
-        <div id="blog-archives" class="category">
-
-
-
-  
-  <h2>2014</h2>
-
-<article class="page-header">
-  
-<h1><a href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a></h1>
-<p class="meta text-muted">
-  
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-09-17T14:33:35-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/releases/'>Releases</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
-
-
-<article class="page-header">
-  
-<h1><a href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a></h1>
-<p class="meta text-muted">
-  
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-08-20T14:04:41-07:00" pubdate data-updated="true">Aug 20<span>th</span>, 2014</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/releases/'>Releases</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
-
-
-  
-  <h2>2013</h2>
-
-<article class="page-header">
-  
-<h1><a href="/blog/2013/12/18/adam-berkeley-tech-report/">ADAM Tech Report Released</a></h1>
-<p class="meta text-muted">
-  
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
 
 
 
@@ -210,26 +124,60 @@
 
 
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-12-18T16:39:20-08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2013</time>
-  
-
-<span class="glyphicon glyphicon-tags"></span>&nbsp;
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/publications/'>Publications</a>
-  
-</span>
-
-
-</p>
-
-</article>
-
-</div>
-
-      </div>
-      
-    </article>
+        
+      </p>
     
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/18/adam-berkeley-tech-report/">ADAM Tech Report Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Current genomics data formats and processing pipelines are not designed to scale well to large datasets.
+The current Sequence/Binary Alignment/Map (SAM/BAM) formats were intended for single node processing.
+There have been attempts to adapt BAM to distributed computing environments, but they see limited scalability
+past eight nodes. Additionally, due to the lack of an explicit data schema, there are well known
+incompatibilities between libraries that implement SAM/BAM/Variant Call Format (VCF) data access.</p>
+
+<p>To address these
+problems, we introduce ADAM, a set of formats, APIs, and processing stage implementations for genomic data.
+ADAM is fully open source under the Apache 2 license, and is implemented on top of Avro and Parquet for data storage.
+Our reference pipeline is implemented on top of Spark, a high performance in-memory map-reduce system. This combination
+provides the following advantages:</p>
+
+<ol>
+<li>Avro provides explicit data schema access in C/C++/C#, Java/Scala, Python, php, and Ruby;</li>
+<li>Parquet allows access by database systems like Impala and Shark; and</li>
+<li>Spark improves performance through in-memory caching and reducing disk I/O.</li>
+</ol>
+
+
+<p><span class='pullquote-right' data-pullquote='on a 250 Gigabyte (GB) high (60×) coverage human genome, this system achieves a 50× speedup'>
+In addition to improving the format’s cross-platform portability, these changes lead to significant performance improvements.
+On a single node, we are able to speedup sort and duplicate marking by 2×. More importantly,
+on a 250 Gigabyte (GB) high (60×) coverage human genome, this system achieves a 50× speedup
+on a 100 node computing cluster (see Table 1), fulfilling the promise of scalability of ADAM.
+</span></p>
+
+<p>You can read the full tech report at <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html">http://www.eecs.berkeley.edu/Pubs/TechRpts/2013/EECS-2013-207.html</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
   </div>
 
   
@@ -241,9 +189,9 @@
 <br/>
 <hr size="1"/>
 <p>
-<em>Join in!</em> If you're interested in contributing, <a href="/mail">join our mailing list</a>,
+<em>Join in!</em> If you&#8217;re interested in contributing, <a href="/mail">join our mailing list</a>,
 hang out in the <code>#adamdev</code> freenode.net channel,
-and take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">"pick me up!" issues</a>.
+and take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">&#8220;pick me up!&#8221; issues</a>.
 </p>
 <hr size="1"/>
 
@@ -252,7 +200,7 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
       <h3 class="panel-title">GitHub Repos</h3>
   </div>
   <div class="list-group" id="gh_repos">
-    <p class="loading">Status updating...</p>
+    <p class="loading">Status updating&#8230;</p>
   </div>
   
     <div class="gh-profile-link pull-right text-muted">
@@ -309,7 +257,7 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
 <font size="-1"><i>
 YourKit is supporting the Big Data Genomics open source project with its full-featured Java Profiler.
 YourKit, LLC is the creator of innovative and intelligent tools for profiling
-Java and .NET applications. Take a look at YourKit's leading software products:
+Java and .NET applications. Take a look at YourKit&#8217;s leading software products:
 <a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
 <a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.
 </i></font>
