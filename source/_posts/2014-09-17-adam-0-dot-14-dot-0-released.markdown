@@ -8,7 +8,7 @@ categories:
 - Releases
 ---
 
-ADAM [0.14.0](https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0) is now available. Special thanks to Arun Ahuja, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!
+ADAM [0.14.0](https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0) is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!
 
 This release uses the [newly-released Apache Spark 1.1.0](https://spark.apache.org/releases/spark-release-1-1-0.html) which brings operational and performance improvements in Spark core. Two new scripts, `adam-shell` and `adam-submit`, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.
 
