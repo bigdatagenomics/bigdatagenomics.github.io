@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Releases | Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/blog/categories/releases/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2014-09-17T16:59:15-07:00</updated>
+  <updated>2014-09-17T17:06:41-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -65,7 +65,10 @@
 information over a reference region. You simply run e.g. <code>adam viz myreads.adam chr1</code> from the ADAM source directory and open
 your favorite web browser to <a href="http://localhost:8080/">http://localhost:8080/</a> to view your data.</p>
 
-<p>This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1:</p>
+<p>This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1.</p>
+
+<!-- more -->
+
 
 <ul>
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/343">343</a>: Allow retrying on failure for HTTPRangedByteAccess</li>
