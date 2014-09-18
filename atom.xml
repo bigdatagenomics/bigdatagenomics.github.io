@@ -4,7 +4,7 @@
   <title><![CDATA[Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2014-09-17T17:06:41-07:00</updated>
+  <updated>2014-09-18T10:19:16-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -18,7 +18,7 @@
     <link href="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
     <updated>2014-09-17T14:33:35-07:00</updated>
     <id>http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
-    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
+    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
 
 <p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
 
