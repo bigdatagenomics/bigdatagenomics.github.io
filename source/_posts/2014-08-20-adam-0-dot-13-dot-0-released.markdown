@@ -14,7 +14,9 @@ This release includes [genome visualization](https://github.com/bigdatagenomics/
 information over a reference region. You simply run e.g. `adam viz myreads.adam chr1` from the ADAM source directory and open
 your favorite web browser to http://localhost:8080/ to view your data. 
 
-This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1:
+This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1.
+
+<!-- more -->
 
 * ISSUE [343](https://github.com/bigdatagenomics/adam/pull/343): Allow retrying on failure for HTTPRangedByteAccess
 * ISSUE [349](https://github.com/bigdatagenomics/adam/pull/349): Fix for a NullPointerException when hostname is null in Task Metrics
