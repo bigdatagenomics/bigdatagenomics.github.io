@@ -12,7 +12,7 @@ categories:
 
 > We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren't designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.
 
-Andy and Xavier's talk included a demo: using Spark's MLlib to do population stratification across 1000 Genomes in just a few minutes in the cloud using Amazon Web Services (AWS). Their talk highlights the advantages of building on open-source technologies, like Apach [Spark](http://spark.apache.org) and [Parquet](http://parquet.io), designed for performance and scale.
+Andy and Xavier's talk included a demo: using Spark's MLlib to do population stratification across 1000 Genomes in just a few minutes in the cloud using Amazon Web Services (AWS). Their talk highlights the advantages of building on open-source technologies, like Apache [Spark](http://spark.apache.org) and [Parquet](http://parquet.io), designed for performance and scale.
 
 Andy also modified the [Scala Notebook](https://github.com/Bridgewater/scala-notebook) to create [Spark Notebook](https://github.com/andypetrella/spark-notebook) which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!
 
