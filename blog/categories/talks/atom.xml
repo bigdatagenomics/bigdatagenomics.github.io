@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: talks | Big Data Genomics]]></title>
+  <link href="http://bigdatagenomics.github.io/blog/categories/talks/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2014-11-03T13:06:54-08:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
+  <author>
+    <name><![CDATA[Big Data Genomics]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lightning Fast Genomics]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics/"/>
+    <updated>2014-11-03T08:24:15-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics</id>
+    <content type="html"><![CDATA[<p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
+
+<blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
+
+<p>Andy and Xavier&rsquo;s talk included a demo: using Spark&rsquo;s MLlib to do population stratification across 1000 Genomes in just a few minutes in the cloud using Amazon Web Services (AWS). Their talk highlights the advantages of building on open-source technologies, like Apache <a href="http://spark.apache.org">Spark</a> and <a href="http://parquet.io">Parquet</a>, designed for performance and scale.</p>
+
+<p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
+
+<iframe src="http://bigdatagenomics.github.io//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="http://bigdatagenomics.github.io//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bigdatagenomics.github.io//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
+]]></content>
+  </entry>
+  
+</feed>
