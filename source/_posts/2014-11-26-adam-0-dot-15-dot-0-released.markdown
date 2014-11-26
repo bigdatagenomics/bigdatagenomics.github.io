@@ -16,7 +16,7 @@ We have upgraded from Parquet `1.4.3` to `1.6.0` in order to dramatically reduce
 
 We are unhappy with the quality of the documentation we have been providing ADAM users and are working to improve it. With this release, all documentation has been centralized into the `./docs` directory and we're using `pandoc` to convert the Markdown source into both PDF and HTML formats. We are committed to improving the content of the docs over time and welcome your pull requests!
 
-This release includes [binary distributions](https://repo1.maven.org/maven2/org/bdgenomics/adam/adam-distribution/0.15.0/) to make it easier for you to get up and running with ADAM. We do not include any Spark or Hadoop artifacts in order to prevent versioning conflicts. For application developers, we have also changed our Spark and Hadoop dependencies to `provided`. This means that you can more easily running on ADAM using your preferred Spark and Hadoop version and configuration. We want to make deployment as easier as possible.
+This release includes [binary distributions](https://repo1.maven.org/maven2/org/bdgenomics/adam/adam-distribution/0.15.0/) to make it easier for you to get up and running with ADAM. We do not include any Spark or Hadoop artifacts in order to prevent versioning conflicts. For application developers, we have also changed our Spark and Hadoop dependencies to `provided`. This means that you can more easily running on ADAM using your preferred Spark and Hadoop version and configuration. We want to make deployment as easy as possible.
 
 This release includes numerous features and bug fixes that are detailed below:
 
