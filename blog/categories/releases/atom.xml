@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Releases | Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/blog/categories/releases/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2014-11-03T13:06:54-08:00</updated>
+  <updated>2014-11-26T10:59:50-08:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.15.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
+    <updated>2014-11-26T10:27:00-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
+    <content type="html"><![CDATA[<p>We&rsquo;re proud to announce the <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.15.0">release of ADAM 0.15.0</a>!</p>
+
+<p>This release includes important memory and performance improvements, better documentation, new features and many bug fixes.</p>
+
+<p>We have upgraded from Parquet <code>1.4.3</code> to <code>1.6.0</code> in order to dramatically reduce our memory footprint. For string columns with dictionary encoding, the amount of memory used will not be proportional to the number of dictionary entries instead of the number of records materialized. Parquet 1.6.0 also provides improved column statistics and the ability to store custom metadata. We will use these features in subsequent ADAM releases to improve random access performance. Note that ADAM <code>0.14.0</code> had a serious memory regression so upgrading to <code>0.15.0</code> as soon as possible is recommended.</p>
+
+<p>We are unhappy with the quality of the documentation we have been providing ADAM users and are working to improve it. With this release, all documentation has been centralized into the <code>./docs</code> directory and we&rsquo;re using <code>pandoc</code> to convert the Markdown source into both PDF and HTML formats. We are committed to improving the content of the docs over time and welcome your pull requests!</p>
+
+<p>This release includes <a href="https://repo1.maven.org/maven2/org/bdgenomics/adam/adam-distribution/0.15.0/">binary distributions</a> to make it easier for you to get up and running with ADAM. We do not include any Spark or Hadoop artifacts in order to prevent versioning conflicts. For application developers, we have also changed our Spark and Hadoop dependencies to <code>provided</code>. This means that you can more easily running on ADAM using your preferred Spark and Hadoop version and configuration. We want to make deployment as easier as possible.</p>
+
+<p>This release includes numerous features and bug fixes that are detailed below:</p>
+
+<!-- more -->
+
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/509">509</a>: Add a &lsquo;distribution&rsquo; module to create assemblies</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/508">508</a>: Upgrade from Parquet 1.4.3 to 1.6.0rc4</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/498">498</a>: [ADAM-496] Changes VCF to flat ADAM command name and usage</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/500">500</a>: [ADAM-495] Require SPARK_HOME for adam-submit</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/501">501</a>: [ADAM-499] Add -onlyvariants option to vcf2adam</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/507">507</a>: [ADAM-505] Removed <code>adam-local</code> from docs</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/504">504</a>: [ADAM-502] Add missing Long implicit to ColumnReaderInput</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/503">503</a>: [ADAM-473] Make RecordCondition and FieldCondition public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/494">494</a>: Fix foreach block for vcf ingest</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/492">492</a>: Documentation cleanup and style improvements</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/481">481</a>: [ADAM-480] Switch assembly to single goal.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/487">487</a>: [ADAM-486] Add port option to viz command.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/469">469</a>: [ADAM-461] Fix ReferenceRegion and ReferencePosition impl</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/440">440</a>: [ADAM-439] Fix ADAM to account for BDG-FORMATS-35: Avro uses Strings</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/470">470</a>: added ReferenceMapping for Genotype, filterByOverlappingRegion for GenotypeRDDFunctions</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/468">468</a>: refactor RDD loading; explicitly load alignments</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/474">474</a>: Consolidate documentation into a single location in source.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/471">471</a>: Fixed typo on MAVEN_OPTS quotation mark</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/467">467</a>: [ADAM-436] Optionally output original qualities to fastq</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/451">451</a>: add <code>adam view</code> command, analogous to <code>samtools view</code></li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/466">466</a>: working examples on .sam included in repo</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/458">458</a>: Remove unused val from Reads2Ref</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/438">438</a>: Add ability to save paired-FASTQ files</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/457">457</a>: A few random Predicate-related cleanups</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/459">459</a>: a few tweaks to scripts/jenkins-test</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/460">460</a>: Project only the sequence when kmer/qmer counting</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/450">450</a>: Refactor some file writing and reading logic</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/455">455</a>: [ADAM-454] Add serializers for Avro objects which don&rsquo;t have serializers</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/447">447</a>: Update the contribution guidelines</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/453">453</a>: Better null handling for isSameContig utility</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/417">417</a>: Stores original position and original cigar during realignment.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/449">449</a>: read “OQ” attr from structured SAMRecord field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/446">446</a>: Revert &ldquo;[ADAM-237] Migrate to Chill serialization libraries.&rdquo;</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/437">437</a>: random nits</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/434">434</a>: Few transform tweaks</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/435">435</a>: [ADAM-403] Remove seqDict from RegionJoin</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/431">431</a>: A few tweaks, typo corrections, and random cleanups</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/430">430</a>: [ADAM-429] adam-submit now handles args correctly.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/427">427</a>: Fixes for indel realigner issues</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/418">418</a>: [ADAM-416] Removing &lsquo;ADAM&rsquo; prefix</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/404">404</a>: [ADAM-327] Adding gene, transcript, and exon models.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/414">414</a>: Fix error in <code>adam-local</code> alias</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/415">415</a>: Update README.md to reflect Spark 1.1</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/412">412</a>: [ADAM-411] Updated usage aliases in README. Fixes #411.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/408">408</a>: [ADAM-405] Add FASTQ output.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/385">385</a>: [ADAM-384] Adds import from FASTQ.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/400">400</a>: [ADAM-399] Fix link to schemas.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/396">396</a>: [ADAM-388] Sets Kryo serialization with &mdash;conf args</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/394">394</a>: [ADAM-393] Adds knobs to SparkContext creation in SparkFunSuite</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/391">391</a>: [ADAM-237] Migrate to Chill serialization libraries.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/380">380</a>: Rewrite of MarkDuplicates which seems to improve performance</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/387">387</a>: fix some deprecation warnings</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.14.0 Released]]></title>
