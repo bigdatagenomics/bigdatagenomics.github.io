@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Mailing List"
+title: "Mailing Lists"
 date: 2014-07-10 16:06
 comments: true
 sharing: true
