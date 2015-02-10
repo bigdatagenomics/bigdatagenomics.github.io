@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Big Data Genomics &en; avocado"
+title: "Big Data Genomics &mdash; avocado"
 date: 2014-03-04 19:46
 comments: true
 sharing: true
@@ -25,6 +25,6 @@ Additionally, we track issues and feature enhancement requests through our
 
 ### Licensing
 
-ADAM is available under the [Apache 2](http://www.apache.org/licenses/LICENSE-2.0.html)
+avocado is available under the [Apache 2](http://www.apache.org/licenses/LICENSE-2.0.html)
 open source software (OSS) license. This OSS license is non-viral, and places no restrictions on
 users who would like to use or modify the software.

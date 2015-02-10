@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Big Data Genomics &en; ADAM"
+title: "Big Data Genomics &mdash; ADAM"
 date: 2014-03-04 19:46
 comments: true
 sharing: true
@@ -21,14 +21,29 @@ for [building ADAM for specific CDH releases](https://github.com/bigdatagenomics
 
 ### Releases
 
-The latest available release of ADAM is 0.6.1. ADAM is available for projects using Maven or SBT
-through the [Sonatype OSS repository](https://docs.sonatype.org/display/Repository).
+The latest stable release of ADAM is 0.12.0. ADAM is available for projects using Maven or SBT
+through Maven Central. Snapshots are available from the [Sonatype OSS repository](https://docs.sonatype.org/display/Repository).
+The dependency for the core API is:
+
+```
+<dependency>
+  <groupId>org.bdgenomics.adam</groupId>
+  <artifactId>adam-core</artifactId>
+  <version>0.12.0</version>
+</dependency>
+```
+
+The changelist per release can be found [here](https://github.com/bigdatagenomics/adam/blob/master/CHANGES.md).
 
 ### Support
 
 For support using ADAM, please contact the [ADAM developer mailing list](/mail/). Additionally, we
 track issues and feature enhancement requests through our
 [Github issue tracker](https://github.com/bigdatagenomics/adam/issues).
+
+Scaladoc for ADAM is available for the following versions:
+
+* [current](/projects/adam/scaladoc/0.12.1-SNAPSHOT/index.html)
 
 ### Citing
 
