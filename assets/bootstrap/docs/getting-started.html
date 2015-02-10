@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bigdatagenomics.github.io/assets/bootstrap/docs/getting-started.html">
+  <link rel="canonical" href="http://bdgenomics.org/assets/bootstrap/docs/getting-started.html">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
 
@@ -85,7 +85,7 @@
             </ul>
             
                 <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:bigdatagenomics.github.io">
+                    <input type="hidden" name="q" value="site:bdgenomics.org">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -226,7 +226,7 @@ Copy any changes made here over to the README too. -->
     &lt;link href=&quot;css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
 
     &lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;
-    &lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;
+    &lt;!-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;
     &lt;!--[if lt IE 9]&gt;
       &lt;script src=&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&quot;&gt;&lt;/script&gt;
       &lt;script src=&quot;https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;
@@ -235,7 +235,7 @@ Copy any changes made here over to the README too. -->
   &lt;body&gt;
     &lt;h1&gt;Hello, world!&lt;/h1&gt;
 
-    &lt;!-- jQuery (necessary for Bootstrap's JavaScript plugins) --&gt;
+    &lt;!-- jQuery (necessary for Bootstrap&#39;s JavaScript plugins) --&gt;
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&quot;&gt;&lt;/script&gt;
     &lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;
     &lt;script src=&quot;js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
@@ -602,13 +602,13 @@ Copy any changes made here over to the README too. -->
 
 <div>
   <pre><code class='js'>if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-  var msViewportStyle = document.createElement('style')
+  var msViewportStyle = document.createElement(&#39;style&#39;)
   msViewportStyle.appendChild(
     document.createTextNode(
-      '@-ms-viewport{width:auto!important}'
+      &#39;@-ms-viewport{width:auto!important}&#39;
     )
   )
-  document.querySelector('head').appendChild(msViewportStyle)
+  document.querySelector(&#39;head&#39;).appendChild(msViewportStyle)
 }</code></pre>
 </div>
 
@@ -649,9 +649,9 @@ Copy any changes made here over to the README too. -->
 <div>
   <pre><code class='html'>&lt;script&gt;
 var nua = navigator.userAgent
-var isAndroid = (nua.indexOf('Mozilla/5.0') &gt; -1 &amp;&amp; nua.indexOf('Android ') &gt; -1 &amp;&amp; nua.indexOf('AppleWebKit') &gt; -1 &amp;&amp; nua.indexOf('Chrome') === -1)
+var isAndroid = (nua.indexOf(&#39;Mozilla/5.0&#39;) &gt; -1 &amp;&amp; nua.indexOf(&#39;Android &#39;) &gt; -1 &amp;&amp; nua.indexOf(&#39;AppleWebKit&#39;) &gt; -1 &amp;&amp; nua.indexOf(&#39;Chrome&#39;) === -1)
 if (isAndroid) {
-  $('select.form-control').removeClass('form-control').css('width', '100%')
+  $(&#39;select.form-control&#39;).removeClass(&#39;form-control&#39;).css(&#39;width&#39;, &#39;100%&#39;)
 }
 &lt;/script&gt;</code></pre>
 </div>
@@ -678,14 +678,14 @@ if (isAndroid) {
  * region resets, are available as plain CSS and uncompiled Less formats.
  */
 
-/* Option 1A: Override a single element's box model via CSS */
+/* Option 1A: Override a single element&#39;s box model via CSS */
 .element {
   -webkit-box-sizing: content-box;
      -moz-box-sizing: content-box;
           box-sizing: content-box;
 }
 
-/* Option 1B: Override a single element's box model by using a Bootstrap Less mixin */
+/* Option 1B: Override a single element&#39;s box model by using a Bootstrap Less mixin */
 .element {
   .box-sizing(content-box);
 }
@@ -754,7 +754,7 @@ if (isAndroid) {
 ================================================== -->
 <div class="bs-docs-section">
   <h1 id="license-faqs" class="page-header">License FAQs</h1>
-  <p class="lead">Bootstrap is released under the MIT license and is copyright 2014 Twitter. Boiled down to smaller chunks, it can be described with the following conditions.</p>
+  <p class="lead">Bootstrap is released under the MIT license and is copyright 2015 Twitter. Boiled down to smaller chunks, it can be described with the following conditions.</p>
 
   <h4>It requires you to:</h4>
   <ul>
@@ -829,7 +829,7 @@ if (isAndroid) {
 }
 
 /* Apply the custom-colored gradients */
-/* Note: you'll need to include all the appropriate gradients for various browsers and standards. */
+/* Note: you&#39;ll need to include all the appropriate gradients for various browsers and standards. */
 .btn-ttc {
   background-repeat: repeat-x;
   background-image: linear-gradient(top, #009ED2 0%, #007DA7 100%);
@@ -889,7 +889,7 @@ if (isAndroid) {
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2014 - Big Data Genomics<br>
+  Copyright &copy; 2015 - Big Data Genomics<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

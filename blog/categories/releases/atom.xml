@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Releases | Big Data Genomics]]></title>
-  <link href="http://bigdatagenomics.github.io/blog/categories/releases/atom.xml" rel="self"/>
-  <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2014-11-27T09:05:55-08:00</updated>
-  <id>http://bigdatagenomics.github.io/</id>
+  <link href="http://bdgenomics.org/blog/categories/releases/atom.xml" rel="self"/>
+  <link href="http://bdgenomics.org/"/>
+  <updated>2015-02-10T08:50:10-08:00</updated>
+  <id>http://bdgenomics.org/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.15.0 Released]]></title>
-    <link href="http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
+    <link href="http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
     <updated>2014-11-26T10:27:00-08:00</updated>
-    <id>http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
+    <id>http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
     <content type="html"><![CDATA[<p>We&rsquo;re proud to announce the <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.15.0">release of ADAM 0.15.0</a>!</p>
 
 <p>This release includes important memory and performance improvements, better documentation, new features and many bug fixes.</p>
@@ -93,9 +93,9 @@
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.14.0 Released]]></title>
-    <link href="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
+    <link href="http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
     <updated>2014-09-17T14:33:35-07:00</updated>
-    <id>http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
+    <id>http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
 
 <p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
@@ -134,9 +134,9 @@
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.13.0 Released]]></title>
-    <link href="http://bigdatagenomics.github.io/blog/2014/08/20/adam-0-dot-13-dot-0-released/"/>
+    <link href="http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released/"/>
     <updated>2014-08-20T14:04:41-07:00</updated>
-    <id>http://bigdatagenomics.github.io/blog/2014/08/20/adam-0-dot-13-dot-0-released</id>
+    <id>http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.13.0">0.13.0</a> is now available!</p>
 
 <p>This release includes <a href="https://github.com/bigdatagenomics/adam/pull/346">genome visualization</a> to view aligned reads and coverage

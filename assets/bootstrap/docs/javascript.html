@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bigdatagenomics.github.io/assets/bootstrap/docs/javascript.html">
+  <link rel="canonical" href="http://bdgenomics.org/assets/bootstrap/docs/javascript.html">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
 
@@ -85,7 +85,7 @@
             </ul>
             
                 <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:bigdatagenomics.github.io">
+                    <input type="hidden" name="q" value="site:bdgenomics.org">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -127,28 +127,28 @@
 
   <p>That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the document namespaced with <code>data-api</code>. This looks like this:</p>
 <div>
-  <pre><code class='js'>$(document).off('.data-api')</code></pre>
+  <pre><code class='js'>$(document).off(&#39;.data-api&#39;)</code></pre>
 </div>
 
 
   <p>Alternatively, to target a specific plugin, just include the plugin&#8217;s name as a namespace along with the data-api namespace like this:</p>
 <div>
-  <pre><code class='js'>$(document).off('.alert.data-api')</code></pre>
+  <pre><code class='js'>$(document).off(&#39;.alert.data-api&#39;)</code></pre>
 </div>
 
 
   <h3 id="js-programmatic-api">Programmatic API</h3>
   <p>We also believe you should be able to use all Bootstrap plugins purely through the JavaScript API. All public APIs are single, chainable methods, and return the collection acted upon.</p>
 <div>
-  <pre><code class='js'>$('.btn.danger').button('toggle').addClass('fat')</code></pre>
+  <pre><code class='js'>$(&#39;.btn.danger&#39;).button(&#39;toggle&#39;).addClass(&#39;fat&#39;)</code></pre>
 </div>
 
 
   <p>All methods should accept an optional options object, a string which targets a particular method, or nothing (which initiates a plugin with default behavior):</p>
 <div>
-  <pre><code class='js'>$('#myModal').modal()                      // initialized with defaults
-$('#myModal').modal({ keyboard: false })   // initialized with no keyboard
-$('#myModal').modal('show')                // initializes and invokes show immediately</code></pre>
+  <pre><code class='js'>$(&#39;#myModal&#39;).modal()                      // initialized with defaults
+$(&#39;#myModal&#39;).modal({ keyboard: false })   // initialized with no keyboard
+$(&#39;#myModal&#39;).modal(&#39;show&#39;)                // initializes and invokes show immediately</code></pre>
 </div>
 
 
@@ -167,7 +167,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <p>As of 3.0.0, all Bootstrap events are namespaced.</p>
   <p>All infinitive events provide <code>preventDefault</code> functionality. This provides the ability to stop the execution of an action before it starts.</p>
 <div>
-  <pre><code class='js'>$('#myModal').on('show.bs.modal', function (e) {
+  <pre><code class='js'>$(&#39;#myModal&#39;).on(&#39;show.bs.modal&#39;, function (e) {
   if (!data) return e.preventDefault() // stops modal from being shown
 })</code></pre>
 </div>
@@ -414,7 +414,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <h3>Via JavaScript</h3>
   <p>Call a modal with id <code>myModal</code> with a single line of JavaScript:</p>
   <div>
-  <pre><code class='js'>$('#myModal').modal(options)</code></pre>
+  <pre><code class='js'>$(&#39;#myModal&#39;).modal(options)</code></pre>
 </div>
 
 
@@ -469,7 +469,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <h4>.modal(options)</h4>
   <p>Activates your content as a modal. Accepts an optional options <code>object</code>.</p>
 <div>
-  <pre><code class='js'>$('#myModal').modal({
+  <pre><code class='js'>$(&#39;#myModal&#39;).modal({
   keyboard: false
 })</code></pre>
 </div>
@@ -478,21 +478,21 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <h4>.modal(&#8216;toggle&#8217;)</h4>
   <p>Manually toggles a modal. <strong>Returns to the caller before the modal has actually been shown or hidden</strong> (i.e. before the <code>shown.bs.modal</code> or <code>hidden.bs.modal</code> event occurs).</p>
   <div>
-  <pre><code class='js'>$('#myModal').modal('toggle')</code></pre>
+  <pre><code class='js'>$(&#39;#myModal&#39;).modal(&#39;toggle&#39;)</code></pre>
 </div>
 
 
   <h4>.modal(&#8216;show&#8217;)</h4>
   <p>Manually opens a modal. <strong>Returns to the caller before the modal has actually been shown</strong> (i.e. before the <code>shown.bs.modal</code> event occurs).</p>
   <div>
-  <pre><code class='js'>$('#myModal').modal('show')</code></pre>
+  <pre><code class='js'>$(&#39;#myModal&#39;).modal(&#39;show&#39;)</code></pre>
 </div>
 
 
   <h4>.modal(&#8216;hide&#8217;)</h4>
   <p>Manually hides a modal. <strong>Returns to the caller before the modal has actually been hidden</strong> (i.e. before the <code>hidden.bs.modal</code> event occurs).</p>
   <div>
-  <pre><code class='js'>$('#myModal').modal('hide')</code></pre>
+  <pre><code class='js'>$(&#39;#myModal&#39;).modal(&#39;hide&#39;)</code></pre>
 </div>
 
 
@@ -531,7 +531,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('#myModal').on('hidden.bs.modal', function (e) {
+  <pre><code class='js'>$(&#39;#myModal&#39;).on(&#39;hidden.bs.modal&#39;, function (e) {
   // do something...
 })</code></pre>
 </div>
@@ -671,7 +671,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <h3>Via JavaScript</h3>
   <p>Call the dropdowns via JavaScript:</p>
 <div>
-  <pre><code class='js'>$('.dropdown-toggle').dropdown()</code></pre>
+  <pre><code class='js'>$(&#39;.dropdown-toggle&#39;).dropdown()</code></pre>
 </div>
 
   <div class="bs-callout bs-callout-info">
@@ -717,7 +717,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
     </table>
   </div><!-- ./bs-table-responsive -->
 <div>
-  <pre><code class='js'>$('#myDropdown').on('show.bs.dropdown', function () {
+  <pre><code class='js'>$(&#39;#myDropdown&#39;).on(&#39;show.bs.dropdown&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -798,7 +798,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <h3>Via JavaScript</h3>
   <p>Call the scrollspy via JavaScript:</p>
 <div>
-  <pre><code class='js'>$('body').scrollspy({ target: '.navbar-example' })</code></pre>
+  <pre><code class='js'>$(&#39;body&#39;).scrollspy({ target: &#39;.navbar-example&#39; })</code></pre>
 </div>
 
 
@@ -811,8 +811,8 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <h4>.scrollspy(&#8216;refresh&#8217;)</h4>
   <p>When using scrollspy in conjunction with adding or removing of elements from the DOM, you&#8217;ll need to call the refresh method like so:</p>
 <div>
-  <pre><code class='js'>$('[data-spy=&quot;scroll&quot;]').each(function () {
-  var $spy = $(this).scrollspy('refresh')
+  <pre><code class='js'>$(&#39;[data-spy=&quot;scroll&quot;]&#39;).each(function () {
+  var $spy = $(this).scrollspy(&#39;refresh&#39;)
 })</code></pre>
 </div>
 
@@ -859,7 +859,7 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
     </table>
   </div><!-- ./bs-table-responsive -->
 <div>
-  <pre><code class='js'>$('#myScrollspy').on('activate.bs.scrollspy', function () {
+  <pre><code class='js'>$(&#39;#myScrollspy&#39;).on(&#39;activate.bs.scrollspy&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -913,9 +913,9 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <p>Enable tabbable tabs via JavaScript (each tab needs to be activated individually):</p>
 
 <div>
-  <pre><code class='js'>$('#myTab a').click(function (e) {
+  <pre><code class='js'>$(&#39;#myTab a&#39;).click(function (e) {
   e.preventDefault()
-  $(this).tab('show')
+  $(this).tab(&#39;show&#39;)
 })</code></pre>
 </div>
 
@@ -923,10 +923,10 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
   <p>You can activate individual tabs in several ways:</p>
 
 <div>
-  <pre><code class='js'>$('#myTab a[href=&quot;#profile&quot;]').tab('show') // Select tab by name
-$('#myTab a:first').tab('show') // Select first tab
-$('#myTab a:last').tab('show') // Select last tab
-$('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)</code></pre>
+  <pre><code class='js'>$(&#39;#myTab a[href=&quot;#profile&quot;]&#39;).tab(&#39;show&#39;) // Select tab by name
+$(&#39;#myTab a:first&#39;).tab(&#39;show&#39;) // Select first tab
+$(&#39;#myTab a:last&#39;).tab(&#39;show&#39;) // Select last tab
+$(&#39;#myTab li:eq(2) a&#39;).tab(&#39;show&#39;) // Select third tab (0-indexed)</code></pre>
 </div>
 
 
@@ -985,7 +985,7 @@ $('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)</code></pre>
 
 &lt;script&gt;
   $(function () {
-    $('#myTab a:last').tab('show')
+    $(&#39;#myTab a:last&#39;).tab(&#39;show&#39;)
   })
 &lt;/script&gt;</code></pre>
 </div>
@@ -1013,7 +1013,7 @@ $('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)</code></pre>
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('a[data-toggle=&quot;tab&quot;]').on('shown.bs.tab', function (e) {
+  <pre><code class='js'>$(&#39;a[data-toggle=&quot;tab&quot;]&#39;).on(&#39;shown.bs.tab&#39;, function (e) {
   e.target // activated tab
   e.relatedTarget // previous tab
 })</code></pre>
@@ -1073,7 +1073,7 @@ $('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)</code></pre>
   <p>The tooltip plugin generates content and markup on demand, and by default places tooltips after their trigger element.</p>
   <p>Trigger the tooltip via JavaScript:</p>
 <div>
-  <pre><code class='js'>$('#example').tooltip(options)</code></pre>
+  <pre><code class='js'>$(&#39;#example&#39;).tooltip(options)</code></pre>
 </div>
 
 
@@ -1180,28 +1180,28 @@ $('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)</code></pre>
   <h4>.tooltip(&#8216;show&#8217;)</h4>
   <p>Reveals an element&#8217;s tooltip.</p>
   <div>
-  <pre><code class='js'>$('#element').tooltip('show')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).tooltip(&#39;show&#39;)</code></pre>
 </div>
 
 
   <h4>.tooltip(&#8216;hide&#8217;)</h4>
   <p>Hides an element&#8217;s tooltip.</p>
   <div>
-  <pre><code class='js'>$('#element').tooltip('hide')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).tooltip(&#39;hide&#39;)</code></pre>
 </div>
 
 
   <h4>.tooltip(&#8216;toggle&#8217;)</h4>
   <p>Toggles an element&#8217;s tooltip.</p>
   <div>
-  <pre><code class='js'>$('#element').tooltip('toggle')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).tooltip(&#39;toggle&#39;)</code></pre>
 </div>
 
 
   <h4>.tooltip(&#8216;destroy&#8217;)</h4>
   <p>Hides and destroys an element&#8217;s tooltip.</p>
   <div>
-  <pre><code class='js'>$('#element').tooltip('destroy')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).tooltip(&#39;destroy&#39;)</code></pre>
 </div>
 
 
@@ -1235,7 +1235,7 @@ $('#myTab li:eq(2) a').tab('show') // Select third tab (0-indexed)</code></pre>
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('#myTooltip').on('hidden.bs.tooltip', function () {
+  <pre><code class='js'>$(&#39;#myTooltip&#39;).on(&#39;hidden.bs.tooltip&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -1357,7 +1357,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h2 id="popovers-usage">Usage</h2>
   <p>Enable popovers via JavaScript:</p>
   <div>
-  <pre><code class='js'>$('#example').popover(options)</code></pre>
+  <pre><code class='js'>$(&#39;#example&#39;).popover(options)</code></pre>
 </div>
 
 
@@ -1449,28 +1449,28 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h4>.popover(&#8216;show&#8217;)</h4>
   <p>Reveals an elements popover.</p>
   <div>
-  <pre><code class='js'>$('#element').popover('show')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).popover(&#39;show&#39;)</code></pre>
 </div>
 
 
   <h4>.popover(&#8216;hide&#8217;)</h4>
   <p>Hides an elements popover.</p>
   <div>
-  <pre><code class='js'>$('#element').popover('hide')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).popover(&#39;hide&#39;)</code></pre>
 </div>
 
 
   <h4>.popover(&#8216;toggle&#8217;)</h4>
   <p>Toggles an elements popover.</p>
   <div>
-  <pre><code class='js'>$('#element').popover('toggle')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).popover(&#39;toggle&#39;)</code></pre>
 </div>
 
 
   <h4>.popover(&#8216;destroy&#8217;)</h4>
   <p>Hides and destroys an element&#8217;s popover.</p>
   <div>
-  <pre><code class='js'>$('#element').popover('destroy')</code></pre>
+  <pre><code class='js'>$(&#39;#element&#39;).popover(&#39;destroy&#39;)</code></pre>
 </div>
 
   <h3>Events</h3>
@@ -1503,7 +1503,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('#myPopover').on('hidden.bs.popover', function () {
+  <pre><code class='js'>$(&#39;#myPopover&#39;).on(&#39;hidden.bs.popover&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -1561,7 +1561,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h4>.alert(&#8216;close&#8217;)</h4>
   <p>Closes an alert.</p>
   <div>
-  <pre><code class='js'>$(&quot;.alert&quot;).alert('close')</code></pre>
+  <pre><code class='js'>$(&quot;.alert&quot;).alert(&#39;close&#39;)</code></pre>
 </div>
 
 
@@ -1589,7 +1589,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('#my-alert').bind('closed.bs.alert', function () {
+  <pre><code class='js'>$(&#39;#my-alert&#39;).bind(&#39;closed.bs.alert&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -1618,11 +1618,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   Loading state
 &lt;/button&gt;
 &lt;script&gt;
-  $('#loading-example-btn').click(function () {
+  $(&#39;#loading-example-btn&#39;).click(function () {
     var btn = $(this)
-    btn.button('loading')
+    btn.button(&#39;loading&#39;)
     $.ajax(...).always(function () {
-      btn.button('reset')
+      btn.button(&#39;reset&#39;)
     });
   });
 &lt;/script&gt;</code></pre>
@@ -1703,7 +1703,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h2 id="buttons-usage">Usage</h2>
   <p>Enable buttons via JavaScript:</p>
 <div>
-  <pre><code class='js'>$('.btn').button()</code></pre>
+  <pre><code class='js'>$(&#39;.btn&#39;).button()</code></pre>
 </div>
 
 
@@ -1732,11 +1732,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
 <div>
   <pre><code class='html'>&lt;button id=&quot;loading-example-btn&quot; type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-loading-text=&quot;loading stuff...&quot;&gt;...&lt;/button&gt;
 &lt;script&gt;
-  $('#loading-example-btn').click(function () {
+  $(&#39;#loading-example-btn&#39;).click(function () {
     var btn = $(this)
-    btn.button('loading')
+    btn.button(&#39;loading&#39;)
     $.ajax(...).always(function () {
-      btn.button('reset')
+      btn.button(&#39;reset&#39;)
     });
   });
 &lt;/script&gt;</code></pre>
@@ -1756,7 +1756,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
 <div>
   <pre><code class='html'>&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-complete-text=&quot;finished!&quot; &gt;...&lt;/button&gt;
 &lt;script&gt;
-  $('.btn').button('complete')
+  $(&#39;.btn&#39;).button(&#39;complete&#39;)
 &lt;/script&gt;</code></pre>
 </div>
 
@@ -1838,7 +1838,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     &lt;/div&gt;
     &lt;div id=&quot;collapseOne&quot; class=&quot;panel-collapse collapse in&quot;&gt;
       &lt;div class=&quot;panel-body&quot;&gt;
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1852,7 +1852,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     &lt;/div&gt;
     &lt;div id=&quot;collapseTwo&quot; class=&quot;panel-collapse collapse&quot;&gt;
       &lt;div class=&quot;panel-body&quot;&gt;
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1866,7 +1866,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     &lt;/div&gt;
     &lt;div id=&quot;collapseThree&quot; class=&quot;panel-collapse collapse&quot;&gt;
       &lt;div class=&quot;panel-body&quot;&gt;
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1901,7 +1901,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h3>Via JavaScript</h3>
   <p>Enable manually with:</p>
 <div>
-  <pre><code class='js'>$('.collapse').collapse()</code></pre>
+  <pre><code class='js'>$(&#39;.collapse&#39;).collapse()</code></pre>
 </div>
 
 
@@ -1939,7 +1939,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h4>.collapse(options)</h4>
   <p>Activates your content as a collapsible element. Accepts an optional options <code>object</code>.
 <div>
-  <pre><code class='js'>$('#myCollapsible').collapse({
+  <pre><code class='js'>$(&#39;#myCollapsible&#39;).collapse({
   toggle: false
 })</code></pre>
 </div>
@@ -1987,7 +1987,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('#myCollapsible').on('hidden.bs.collapse', function () {
+  <pre><code class='js'>$(&#39;#myCollapsible&#39;).on(&#39;hidden.bs.collapse&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -2133,7 +2133,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h3>Via JavaScript</h3>
   <p>Call carousel manually with:</p>
 <div>
-  <pre><code class='js'>$('.carousel').carousel()</code></pre>
+  <pre><code class='js'>$(&#39;.carousel&#39;).carousel()</code></pre>
 </div>
 
 
@@ -2177,7 +2177,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h4>.carousel(options)</h4>
   <p>Initializes the carousel with an optional options <code>object</code> and starts cycling through items.</p>
 <div>
-  <pre><code class='js'>$('.carousel').carousel({
+  <pre><code class='js'>$(&#39;.carousel&#39;).carousel({
   interval: 2000
 })</code></pre>
 </div>
@@ -2222,7 +2222,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     </table>
   </div><!-- /.table-responsive -->
 <div>
-  <pre><code class='js'>$('#myCarousel').on('slide.bs.carousel', function () {
+  <pre><code class='js'>$(&#39;#myCarousel&#39;).on(&#39;slide.bs.carousel&#39;, function () {
   // do something…
 })</code></pre>
 </div>
@@ -2267,11 +2267,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
   <h3>Via JavaScript</h3>
   <p>Call the affix plugin via JavaScript:</p>
 <div>
-  <pre><code class='js'>$('#my-affix').affix({
+  <pre><code class='js'>$(&#39;#my-affix&#39;).affix({
     offset: {
       top: 100
     , bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
+        return (this.bottom = $(&#39;.footer&#39;).outerHeight(true))
       }
     }
   })</code></pre>
@@ -2350,7 +2350,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.&quot;&gt;
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2014 - Big Data Genomics<br>
+  Copyright &copy; 2015 - Big Data Genomics<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
