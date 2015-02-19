@@ -14,4 +14,4 @@ node_modules
 *~
 #*
 Gemfile.lock
-.rubyversion
+.ruby-version
