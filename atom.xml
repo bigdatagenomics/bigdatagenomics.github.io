@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Big Data Genomics]]></title>
-  <link href="http://bdgenomics.org/atom.xml" rel="self"/>
-  <link href="http://bdgenomics.org/"/>
-  <updated>2015-02-10T08:50:10-08:00</updated>
-  <id>http://bdgenomics.org/</id>
+  <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2015-02-18T16:57:51-08:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
     
@@ -14,10 +14,60 @@
 
   
   <entry>
+    <title type="html"><![CDATA[ADAM 0.16.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released/"/>
+    <updated>2015-02-18T16:32:31-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.16.0">ADAM 0.16.0</a> is now available.</p>
+
+<p>This release improves the performance of Base Quality Score Recalibration (BQSR) by 3.5x, adds support for multiline FASTQ input, visualization of variants when given VCF input, includes a new RegionJoin implementation that is shuffle-based, and adds new methods for region coverage calculations.</p>
+
+<p>Drop into our Gitter channel to talk with us about this release</p>
+
+<p><a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a></p>
+
+<!-- more -->
+
+
+<p>Complete list of changes for ADAM <code>0.16.0</code>:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/570">570</a>: A few small conversion fixes</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/579">579</a>: [ADAM-578] Update end of read when trimming.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/564">564</a>: [ADAM-563] Add warning message when saving Parquet files with incorrect extension</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/576">576</a>: Changed hashCode implementations to improve performance of BQSR</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/569">569</a>: Typo in the narrowPeak parser</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/568">568</a>: Moved the Timers object from bdg-utils back to ADAM</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/478">478</a>: Move non-genomics code</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/550">550</a>: [ADAM-549] Added documentation for testing and CI for ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/555">555</a>: Makes maybeLoadVCF private.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/558">558</a>: Makes Features2ADAMSuite use SparkFunSuite</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/557">557</a>: Randomize ports and turn off Spark UI to reduce bind exceptions in tests</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/552">552</a>: Create test suite for FlagStat</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/554">554</a>: privatize ADAMContext.maybeLoad{Bam,Fastq}</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/551">551</a>: [ADAM-386] Multiline FASTQ input</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/542">542</a>: Variants Visualization</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/545">545</a>: [ADAM-543][ADAM-544] Fix issues with ADAM scripts and classpath</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/535">535</a>: [ADAM-441] put a check in for Nothing. Throws an IAE if no return type is provided</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/546">546</a>: [ADAM-532] Fix wigFix intermittent test failure</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/534">534</a>: [ADAM-528][ADAM-533] Adds new RegionJoin impl that is shuffle-based</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/531">531</a>: [ADAM-529] Attaching scaladoc to released distribution.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/413">413</a>: [ADAM-409][ADAM-520] Added local wigfix2bed tool</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/527">527</a>: [ADAM-526] <code>VcfAnnotation2ADAM</code> only counts once</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/523">523</a>: don&rsquo;t open non-.adam-extension files as ADAM files</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/521">521</a>: quieting wget output</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/482">482</a>: [ADAM-462] Coverage region calculation</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/515">515</a>: [ADAM-510] fix for bash syntax error; add ADDL_JARS check to adam-submit</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Scalable genomes clustering with ADAM and Spark]]></title>
-    <link href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
     <updated>2015-02-02T13:49:48-08:00</updated>
-    <id>http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
+    <id>http://bigdatagenomics.github.io/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
     <content type="html"><![CDATA[<p>In this post, we will detail how to perform simple scalable population stratification analysis, leveraging ADAM and Spark MLlib, as previously presented at <a href="http://www.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala">scala.io</a>.</p>
 
 <p>The data source is the set of genotypes from the <a href="http://1000genomes.org">1000genomes</a> project, resulting from whole genomes sequencing run on samples taken from about 1000 individuals with a known geographic and ethnic origin.</p>
@@ -169,7 +219,7 @@ To use them, launch the Spark Notebook as descrived above, you&rsquo;ll see them
 
 <p>Here is a screenshot of the clustering analysis notebook:</p>
 
-<p><img class="center" src="http://bdgenomics.org/images/1k-genomes-stratification.png"></p>
+<p><img class="center" src="http://bigdatagenomics.github.io/images/1k-genomes-stratification.png"></p>
 
 <h2>Data Analysis</h2>
 
@@ -426,9 +476,9 @@ Predict (collect):                                   25 sec
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.15.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
     <updated>2014-11-26T10:27:00-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
     <content type="html"><![CDATA[<p>We&rsquo;re proud to announce the <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.15.0">release of ADAM 0.15.0</a>!</p>
 
 <p>This release includes important memory and performance improvements, better documentation, new features and many bug fixes.</p>
@@ -504,9 +554,9 @@ Predict (collect):                                   25 sec
   
   <entry>
     <title type="html"><![CDATA[Lightning Fast Genomics]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics/"/>
     <updated>2014-11-03T08:24:15-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
 
 <blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
@@ -515,18 +565,18 @@ Predict (collect):                                   25 sec
 
 <p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
 
-<iframe src="http://bdgenomics.org//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="http://bigdatagenomics.github.io//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
 
-<p> <div style="margin-bottom:5px"> <strong> <a href="http://bdgenomics.org//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bdgenomics.org//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
+<p> <div style="margin-bottom:5px"> <strong> <a href="http://bigdatagenomics.github.io//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bigdatagenomics.github.io//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.14.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
     <updated>2014-09-17T14:33:35-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
 
 <p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
@@ -565,9 +615,9 @@ Predict (collect):                                   25 sec
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.13.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/08/20/adam-0-dot-13-dot-0-released/"/>
     <updated>2014-08-20T14:04:41-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/08/20/adam-0-dot-13-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.13.0">0.13.0</a> is now available!</p>
 
 <p>This release includes <a href="https://github.com/bigdatagenomics/adam/pull/346">genome visualization</a> to view aligned reads and coverage
@@ -639,12 +689,12 @@ that included a number of features (e.g. Parquet and indexed Parquet Spark RDDs,
   
   <entry>
     <title type="html"><![CDATA[Talk on ADAM at the Spark Summit]]></title>
-    <link href="http://bdgenomics.org/blog/2014/07/02/spark-summit-talk-on-adam/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/07/02/spark-summit-talk-on-adam/"/>
     <updated>2014-07-02T00:31:44-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/07/02/spark-summit-talk-on-adam</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/07/02/spark-summit-talk-on-adam</id>
     <content type="html"><![CDATA[<p><a href="http://www.fnothaft.net">Frank Austin Nothaft</a> gave a talk on ADAM at the <a href="http://www.spark-summit.org">Spark Summit</a> in San Francisco.</p>
 
-<iframe src="http://bdgenomics.org//www.slideshare.net/slideshow/embed_code/36516706" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="http://bigdatagenomics.github.io//www.slideshare.net/slideshow/embed_code/36516706" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
 
 <p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/fnothaft/adamspark-summit-2014" title="ADAM—Spark Summit, 2014" target="_blank">ADAM—Spark Summit, 2014</a> </strong> from <strong><a href="http://www.slideshare.net/fnothaft" target="_blank">fnothaft</a></strong> </div></p>
@@ -655,9 +705,9 @@ that included a number of features (e.g. Parquet and indexed Parquet Spark RDDs,
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.12.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/06/17/adam-0-dot-12-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/06/17/adam-0-dot-12-dot-0-released/"/>
     <updated>2014-06-17T15:35:12-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/06/17/adam-0-dot-12-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/06/17/adam-0-dot-12-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">0.12.0</a> is now available!</p>
 
 <p>This release includes new Parquet utilities that are part of an effort to read/write Parquet directly on S3, eliminating
@@ -682,9 +732,9 @@ ADAM to Spark 1.0 and provides new schema definitions, bug fixes and features:</
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.11.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/06/02/adam-0-dot-11-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/06/02/adam-0-dot-11-dot-0-released/"/>
     <updated>2014-06-02T16:48:42-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/06/02/adam-0-dot-11-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/06/02/adam-0-dot-11-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.11.0">0.11.0</a> is now available.</p>
 
 <p>This release allows you not just read but also write to SAM/BAM files, adds utilities for trimming reads,
@@ -710,9 +760,9 @@ and prepare ADAMGenotype for incorporating reference model information, and fixe
   
   <entry>
     <title type="html"><![CDATA[Developing Big Data Genomics: A Screencast]]></title>
-    <link href="http://bdgenomics.org/blog/2014/05/15/up-and-running-with-big-data-genomics/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/05/15/up-and-running-with-big-data-genomics/"/>
     <updated>2014-05-15T10:00:00-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/05/15/up-and-running-with-big-data-genomics</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/05/15/up-and-running-with-big-data-genomics</id>
     <content type="html"><![CDATA[<iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/BCoIXqUfFkU?autoplay=0&origin=http://bdgenomics.org" frameborder="0"></iframe>
 
 
@@ -746,9 +796,9 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.10.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/05/13/adam-0-dot-10-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/05/13/adam-0-dot-10-dot-0-released/"/>
     <updated>2014-05-13T15:18:06-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/05/13/adam-0-dot-10-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/05/13/adam-0-dot-10-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">0.10.0</a> is now available.</p>
 
 <h2>Parquet 1.4.3 upgrade</h2>
@@ -784,9 +834,9 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
   
   <entry>
     <title type="html"><![CDATA[Talk on ADAM at Global Alliance for Genomics and Health meeting]]></title>
-    <link href="http://bdgenomics.org/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam/"/>
     <updated>2014-03-28T13:27:44-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam</id>
     <content type="html"><![CDATA[<p>Matt Massie gave a talk on ADAM at the <a href="http://genomicsandhealth.org/">Global Alliance for Genomics and Health</a>
 on the <a href="http://www.sanger.ac.uk/about/campus/">Hinxton Genome Campus</a>.</p>
 
@@ -799,9 +849,9 @@ on the <a href="http://www.sanger.ac.uk/about/campus/">Hinxton Genome Campus</a>
   
   <entry>
     <title type="html"><![CDATA[Strata Big Data Science Talk]]></title>
-    <link href="http://bdgenomics.org/blog/2014/02/12/strata-big-data-science-talk/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/02/12/strata-big-data-science-talk/"/>
     <updated>2014-02-12T12:05:11-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/02/12/strata-big-data-science-talk</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/02/12/strata-big-data-science-talk</id>
     <content type="html"><![CDATA[<p>Frank Nothaft gave a talk at the <a href="http://www.meetup.com/Big-Data-Science/events/107491582/">Strata Big Data Science Meetup</a>
 where he discussed the overall architecture and performance characteristics of ADAM.</p>
 
@@ -815,9 +865,9 @@ on high performance computer systems for bioinformatics, and is involved in the 
   
   <entry>
     <title type="html"><![CDATA[ADAM Article Posted on O'Reilly and Forbes Sites]]></title>
-    <link href="http://bdgenomics.org/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites/"/>
     <updated>2014-01-17T10:58:45-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites</id>
     <content type="html"><![CDATA[<p>ADAM was featured in an article that was posted to both the
 <a href="http://strata.oreilly.com/2014/01/big-data-systems-are-making-a-difference-in-the-fight-against-cancer.html">O&#8217;Reilly Strata</a>
 and <a href="http://www.forbes.com/sites/oreillymedia/2014/01/17/big-data-systems-are-making-a-difference-in-the-fight-against-cancer/">Forbes</a> web
@@ -833,7 +883,7 @@ is a great read that encourages readers to work on something that matters to you
 and take the long view. While ADAM is a very new project, we hope that it will be used someday soon to help save lives and enable researchers
 to ask questions that aren&rsquo;t possible today. We are taking the long view and sharing all this valuable software as Apache-licensed open-source.</p>
 
-<p>If you&rsquo;re interested in contributing, <a href="http://bdgenomics.org/mail">join our mailing list</a> and introduce yourself. We also mark open issues that are good introductory
+<p>If you&rsquo;re interested in contributing, <a href="http://bigdatagenomics.github.io/mail">join our mailing list</a> and introduce yourself. We also mark open issues that are good introductory
 projects with a &ldquo;<a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&amp;page=1&amp;state=open">pick me up!</a>&rdquo; label. Of course, we welcome any
 contribution you&rsquo;d like to make!</p>
 ]]></content>
@@ -841,9 +891,9 @@ contribution you&rsquo;d like to make!</p>
   
   <entry>
     <title type="html"><![CDATA[ADAM Tech Report Released]]></title>
-    <link href="http://bdgenomics.org/blog/2013/12/18/adam-berkeley-tech-report/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2013/12/18/adam-berkeley-tech-report/"/>
     <updated>2013-12-18T16:39:20-08:00</updated>
-    <id>http://bdgenomics.org/blog/2013/12/18/adam-berkeley-tech-report</id>
+    <id>http://bigdatagenomics.github.io/blog/2013/12/18/adam-berkeley-tech-report</id>
     <content type="html"><![CDATA[<p>Current genomics data formats and processing pipelines are not designed to scale well to large datasets.
 The current Sequence/Binary Alignment/Map (SAM/BAM) formats were intended for single node processing.
 There have been attempts to adapt BAM to distributed computing environments, but they see limited scalability

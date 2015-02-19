@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bdgenomics.org">
+  <link rel="canonical" href="http://bigdatagenomics.github.io">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
 
@@ -85,7 +85,7 @@
             </ul>
             
                 <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
-                    <input type="hidden" name="q" value="site:bdgenomics.org">
+                    <input type="hidden" name="q" value="site:bigdatagenomics.github.io">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -103,6 +103,54 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-18T16:32:31-08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2015</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p><a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.16.0">ADAM 0.16.0</a> is now available.</p>
+
+<p>This release improves the performance of Base Quality Score Recalibration (BQSR) by 3.5x, adds support for multiline FASTQ input, visualization of variants when given VCF input, includes a new RegionJoin implementation that is shuffle-based, and adds new methods for region coverage calculations.</p>
+
+<p>Drop into our Gitter channel to talk with us about this release</p>
+
+<p><a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a></p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -589,72 +637,6 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-13T15:18:06-07:00" pubdate data-updated="true">May 13<span>th</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/13/adam-0-dot-10-dot-0-released/">ADAM 0.10.0 Released</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">0.10.0</a> is now available.</p>
-
-<h2>Parquet 1.4.3 upgrade</h2>
-
-<p>As developers, you need to know about a small (but significant) change to way Parquet projections work now. In the past, any record fields that were not in the projections were returned as null values. With our upgrade to Parquet 1.4.3, fields that are not in the your projections will be set to their default value (if one exists).</p>
-
-<h2>BQSR Performance and Concordance</h2>
-
-<p>This release adds the cycle covariate to BQSR. Our BQSR implementation can process the 1000g NA12878 High-Coverage Whole Genome in under 45 minutes using 100 EC2 nodes. Our concordance with GATK is high (>99.9%) for the data we&rsquo;ve tested. We&rsquo;ll publish the scripts we use for concordance testing in an upcoming release to allow broader, automated testing. Additionally, ADAM now processes the OQ tag to make comparing original quality scores easier.</p>
-
-<h2>Lots of other bug fixes and features&hellip;</h2>
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/242">242</a>: Upgrade to Parquet 1.4.3</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/241">241</a>: Fixes to FASTA code to properly handle indices.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/239">239</a>: Make ADAMVCFOutputFormat public</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/233">233</a>: Build up reference information during cigar processing</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/234">234</a>: Predicate to filter conversion</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/235">235</a>: Remove unused contiglength field</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/232">232</a>: Add <code>-pretty</code> and <code>-o</code> to the <code>print</code> command</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/230">230</a>: Remove duplicate mdtag field</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/231">231</a>: Helper scripts to run an ADAM Console.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/226">226</a>: Fix ReferenceRegion from ADAMRecord</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/225">225</a>: Change Some to Option to check for unmapped reads</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/223">223</a>: Use SparkConf object to configure SparkContext</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/217">217</a>: Stop using reference IDs and use reference names instead</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/220">220</a>: Update SAM to ADAM conversion</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/213">213</a>: BQSR updates</li>
-</ul>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -677,9 +659,11 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 <br/>
 <hr size="1"/>
 <p>
-<em>Join in!</em> If you&#8217;re interested in contributing, <a href="/mail">join our mailing list</a>,
-hang out in the <code>#adamdev</code> freenode.net channel,
-and take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">&#8220;pick me up!&#8221; issues</a>.
+<em>Chat with us&#8230;</em>
+<a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a>
+</p>
+<p>
+<em>If you&#8217;re interested in contributing, take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">&#8220;pick me up!&#8221; issues</a>.</em>
 </p>
 <hr size="1"/>
 
@@ -730,6 +714,8 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a>
     
     <a class="list-group-item " href="/blog/2014/11/26/adam-0-dot-15-dot-0-released/">ADAM 0.15.0 Released</a>
@@ -737,8 +723,6 @@ and take a look at the open <a href="https://github.com/bigdatagenomics/adam/iss
     <a class="list-group-item " href="/blog/2014/11/03/lightning-fast-genomics/">Lightning Fast Genomics</a>
     
     <a class="list-group-item " href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a>
     
   </div>
 </section>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ADAM | Big Data Genomics]]></title>
-  <link href="http://bdgenomics.org/blog/categories/adam/atom.xml" rel="self"/>
-  <link href="http://bdgenomics.org/"/>
-  <updated>2015-02-10T08:50:10-08:00</updated>
-  <id>http://bdgenomics.org/</id>
+  <link href="http://bigdatagenomics.github.io/blog/categories/adam/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2015-02-18T16:57:51-08:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
     
@@ -14,10 +14,60 @@
 
   
   <entry>
+    <title type="html"><![CDATA[ADAM 0.16.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released/"/>
+    <updated>2015-02-18T16:32:31-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.16.0">ADAM 0.16.0</a> is now available.</p>
+
+<p>This release improves the performance of Base Quality Score Recalibration (BQSR) by 3.5x, adds support for multiline FASTQ input, visualization of variants when given VCF input, includes a new RegionJoin implementation that is shuffle-based, and adds new methods for region coverage calculations.</p>
+
+<p>Drop into our Gitter channel to talk with us about this release</p>
+
+<p><a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a></p>
+
+<!-- more -->
+
+
+<p>Complete list of changes for ADAM <code>0.16.0</code>:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/570">570</a>: A few small conversion fixes</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/579">579</a>: [ADAM-578] Update end of read when trimming.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/564">564</a>: [ADAM-563] Add warning message when saving Parquet files with incorrect extension</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/576">576</a>: Changed hashCode implementations to improve performance of BQSR</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/569">569</a>: Typo in the narrowPeak parser</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/568">568</a>: Moved the Timers object from bdg-utils back to ADAM</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/478">478</a>: Move non-genomics code</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/550">550</a>: [ADAM-549] Added documentation for testing and CI for ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/555">555</a>: Makes maybeLoadVCF private.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/558">558</a>: Makes Features2ADAMSuite use SparkFunSuite</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/557">557</a>: Randomize ports and turn off Spark UI to reduce bind exceptions in tests</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/552">552</a>: Create test suite for FlagStat</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/554">554</a>: privatize ADAMContext.maybeLoad{Bam,Fastq}</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/551">551</a>: [ADAM-386] Multiline FASTQ input</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/542">542</a>: Variants Visualization</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/545">545</a>: [ADAM-543][ADAM-544] Fix issues with ADAM scripts and classpath</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/535">535</a>: [ADAM-441] put a check in for Nothing. Throws an IAE if no return type is provided</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/546">546</a>: [ADAM-532] Fix wigFix intermittent test failure</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/534">534</a>: [ADAM-528][ADAM-533] Adds new RegionJoin impl that is shuffle-based</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/531">531</a>: [ADAM-529] Attaching scaladoc to released distribution.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/413">413</a>: [ADAM-409][ADAM-520] Added local wigfix2bed tool</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/527">527</a>: [ADAM-526] <code>VcfAnnotation2ADAM</code> only counts once</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/523">523</a>: don&rsquo;t open non-.adam-extension files as ADAM files</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/521">521</a>: quieting wget output</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/482">482</a>: [ADAM-462] Coverage region calculation</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/515">515</a>: [ADAM-510] fix for bash syntax error; add ADDL_JARS check to adam-submit</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Scalable genomes clustering with ADAM and Spark]]></title>
-    <link href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
     <updated>2015-02-02T13:49:48-08:00</updated>
-    <id>http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
+    <id>http://bigdatagenomics.github.io/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
     <content type="html"><![CDATA[<p>In this post, we will detail how to perform simple scalable population stratification analysis, leveraging ADAM and Spark MLlib, as previously presented at <a href="http://www.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala">scala.io</a>.</p>
 
 <p>The data source is the set of genotypes from the <a href="http://1000genomes.org">1000genomes</a> project, resulting from whole genomes sequencing run on samples taken from about 1000 individuals with a known geographic and ethnic origin.</p>
@@ -424,9 +474,9 @@ Predict (collect):                                   25 sec
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.15.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
     <updated>2014-11-26T10:27:00-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
     <content type="html"><![CDATA[<p>We&rsquo;re proud to announce the <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.15.0">release of ADAM 0.15.0</a>!</p>
 
 <p>This release includes important memory and performance improvements, better documentation, new features and many bug fixes.</p>
@@ -502,9 +552,9 @@ Predict (collect):                                   25 sec
   
   <entry>
     <title type="html"><![CDATA[Lightning Fast Genomics]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics/"/>
     <updated>2014-11-03T08:24:15-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
 
 <blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
@@ -513,18 +563,18 @@ Predict (collect):                                   25 sec
 
 <p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
 
-<iframe src="http://bdgenomics.org//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="http://bigdatagenomics.github.io//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
 
-<p> <div style="margin-bottom:5px"> <strong> <a href="http://bdgenomics.org//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bdgenomics.org//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
+<p> <div style="margin-bottom:5px"> <strong> <a href="http://bigdatagenomics.github.io//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bigdatagenomics.github.io//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.14.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
     <updated>2014-09-17T14:33:35-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
     <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
 
 <p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
@@ -556,80 +606,6 @@ Predict (collect):                                   25 sec
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/363">363</a>: Adding maven assembly plugin configuration to create tarballs</li>
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/364">364</a>: [ADAM-364] Fixing remaining cs.berkeley.edu URLs.</li>
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/362">362</a>: Remove mention of uberjar from README</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ADAM 0.13.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released/"/>
-    <updated>2014-08-20T14:04:41-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released</id>
-    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.13.0">0.13.0</a> is now available!</p>
-
-<p>This release includes <a href="https://github.com/bigdatagenomics/adam/pull/346">genome visualization</a> to view aligned reads and coverage
-information over a reference region. You simply run e.g. <code>adam viz myreads.adam chr1</code> from the ADAM source directory and open
-your favorite web browser to <a href="http://localhost:8080/">http://localhost:8080/</a> to view your data.</p>
-
-<p>This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1.</p>
-
-<!-- more -->
-
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/343">343</a>: Allow retrying on failure for HTTPRangedByteAccess</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/349">349</a>: Fix for a NullPointerException when hostname is null in Task Metrics</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/347">347</a>: Bug fix for genome browser</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/346">346</a>: Genome visualization</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/342">342</a>: [ADAM-309] Update to bdg-formats 0.2.0</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/333">333</a>: [ADAM-332] Upgrades ADAM to Spark 1.0.1.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/341">341</a>: [ADAM-340] Adding the TrackedLayout trait and implementation.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/337">337</a>: [ADAM-335] Updated README.md to reflect migration to appassembler.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/311">311</a>: Adding several simple normalizations.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/330">330</a>: Make mismatch and deletes positions accessible</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/334">334</a>: Moving code coverage into a profile</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/329">329</a>: Add count of mismatches to mdtag</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/328">328</a>: [ADAM-326] Adding a 5-second retry on the HttpRangedByteAccess test.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/325">325</a>: Adding documentation for commit/issue nomenclature and rebasing</li>
-</ul>
-
-
-<p>This summer, we also quietly pushed out a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.12.1">0.12.1</a> release
-that included a number of features (e.g. Parquet and indexed Parquet Spark RDDs, k-mer/q-mer counting, fixed depth prefix tries) and bug fixes:</p>
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/308">308</a>: Fixing the &lsquo;index 0&rsquo; bug in features2adam</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/306">306</a>: Adding code for lifting over between sequences and the reference genome.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/320">320</a>: Remove extraneous implicit methods in ReferenceMappingContext</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/314">314</a>: Updates to indel realigner to improve performance and accuracy.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/319">319</a>: Adding scripts for publishing scaladoc.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/315">315</a>: Added table of (wall-clock) stage durations when print_metrics is used</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/312">312</a>: Fixing sources jar</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/313">313</a>: Making the CredentialsProperties file optional</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/267">267</a>: Parquet and indexed Parquet RDD implementations, and indices.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/301">301</a>: Add Beacon&rsquo;s AlleleCount</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/293">293</a>: Add aggregation and display of metrics obtained from Spark</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/295">295</a>: Fix broken link to ADAM specification for storing reads.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/292">292</a>: Cleaning up scaladoc generation warnings.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/289">289</a>: Modifying interleaved fastq format to be hadoop version independent.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/288">288</a>: Add ADAMFeature to Kryo registrator</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/286">286</a>: Removing some debug printout that was left in.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/287">287</a>: Cleaning hadoop dependencies</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/285">285</a>: Refactoring read groups to increase the amount of data stored.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/284">284</a>: Cleaning up build warnings.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/280">280</a>: Move to bdg-formats</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/283">283</a>: Fix reference name comment</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/282">282</a>: Minor cleanup on interleaved FASTQ input format.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/277">277</a>: Implemented HTTPRangedByteAccess.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/274">274</a>: Added clarifying note to <code>ADAMVariantContext</code></li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/279">279</a>: Simplify format-source</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/278">278</a>: Use maven license plugin to ensure source has correct license</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/268">268</a>: Adding fixed depth prefix trie implementation</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/273">273</a>: Fixes issue in reference models where strings are not sanitized on collection from avro.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/272">272</a>: Created command categories</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/269">269</a>: Adding k-mer and q-mer counting.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/271">271</a>: Consolidate Parquet logging configuration</li>
 </ul>
 
 ]]></content>
