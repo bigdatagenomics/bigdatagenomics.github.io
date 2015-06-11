@@ -4,7 +4,7 @@
   <title><![CDATA[Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2015-03-10T18:04:49-07:00</updated>
+  <updated>2015-06-11T11:50:51-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.17.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released/"/>
+    <updated>2015-06-04T10:49:26-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released</id>
+    <content type="html"><![CDATA[<p>The 0.17.0 release of ADAM includes a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.17.0">release for Scala 2.10</a> and a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.17.0">release for Scala 2.11</a>. We&rsquo;ve been working to cleanup APIs and simplify ADAM for developers. Code that isn&rsquo;t useful has been removed. Code that belongs in other downstream or upstream projects has been moved. Parquet and HTSJDK has been upgraded.</p>
+
+<p>There are also some new features, e.g. you can now now <code>transform</code> all the SAM/BAM files in a directory by specifying the directory and there&rsquo;s a new <code>flatten</code> command that allows you to flatten the schema of ADAM data to process in Impala, Hive, SparkSQL, etc; there are also many bug fixes.</p>
+
+<!-- more -->
+
+
+<p>For more details, see the following pull requests:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/691">691</a>: fix BAM/SAM header setting when writing on cluster</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/688">688</a>: make adamLoad public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/694">694</a>: Fix parent reference in distribution module</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/684">684</a>: a few region-join nits</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/682">682</a>: [ADAM-681] Remove menacing error message about reqd .adam extension</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/680">680</a>: [ADAM-674] Delete Bam2ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/678">678</a>: upgrade to bdg utils 0.2.1</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/668">668</a>: [ADAM-597] Move correction out of ADAM and into a downstream project.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/671">671</a>: Bug fix in ReferenceUtils.unionReferenceSet</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/667">667</a>: [ADAM-666] Clean up key not found error in partitioner code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/656">656</a>: Update Vcf2ADAM.scala</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/652">652</a>: added filterByOverlappingRegion in GeneFeatureRDDFunctions</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/650">650</a>: [ADAM-649] Support transform of all BAM/SAM files in a directory.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/647">647</a>: [ADAM-646] Special case reads with &lsquo;*&rsquo; quality during BQSR.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/645">645</a>: [ADAM-634] Create a local ParquetLister for testing purposes.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/633">633</a>: [Adam] Tests for SAMRecordConverter.scala</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/641">641</a>: [ADAM-640] Fix incorrect exclusion for org.seqdoop.htsjdk.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/632">632</a>: [ADAM-631] Allow VCF conversion to sort on output after coalescing.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/628">628</a>: [ADAM-627] Makes ReferenceFile trait extend Serializable.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/637">637</a>: check for mac brew alternate spark install structure</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/624">624</a>: Conceptual fix for duplicate marking and sorting stragglers</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/629">629</a>: [ADAM-604] Remove normalization code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/630">630</a>: Add flatten command.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/619">619</a>: [ADAM-540] Move to new HTSJDK release; should support Java 8.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/626">626</a>: [ADAM-625] Enable globbing for BAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/621">621</a>: Removes the predicates package.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/620">620</a>: [ADAM-600] Adding RegionJoin trait.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/616">616</a>: [ADAM-565] Upgrade to Parquet filter2 API.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/613">613</a>: [ADAM-612] Point to proper k-mer counters.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/588">588</a>: [ADAM-587] Clean up loading checks.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/592">592</a>: [ADAM-513] Remove ReferenceMappable trait.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/606">606</a>: [ADAM-605] Remove visualization code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/596">596</a>: [ADAM-595] Delete the &lsquo;comparisons&rsquo; code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/590">590</a>: [ADAM-589] Removed pileup code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/586">586</a>: [ADAM-452] Fixes SM attribute on ADAM to BAM conversion.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/584">584</a>: [ADAM-583] Add k-mer counting functionality for nucleotide contig fragments</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.16.0 Released]]></title>

@@ -123,6 +123,50 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-04T10:49:26-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2015</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>The 0.17.0 release of ADAM includes a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.17.0">release for Scala 2.10</a> and a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.17.0">release for Scala 2.11</a>. We&rsquo;ve been working to cleanup APIs and simplify ADAM for developers. Code that isn&rsquo;t useful has been removed. Code that belongs in other downstream or upstream projects has been moved. Parquet and HTSJDK has been upgraded.</p>
+
+<p>There are also some new features, e.g. you can now now <code>transform</code> all the SAM/BAM files in a directory by specifying the directory and there&rsquo;s a new <code>flatten</code> command that allows you to flatten the schema of ADAM data to process in Impala, Hive, SparkSQL, etc; there are also many bug fixes.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-18T16:32:31-08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2015</time>
         
       </p>
@@ -573,70 +617,6 @@ and prepare ADAMGenotype for incorporating reference model information, and fixe
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-15T10:00:00-07:00" pubdate data-updated="true">May 15<span>th</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/15/up-and-running-with-big-data-genomics/">Developing Big Data Genomics: A Screencast</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/BCoIXqUfFkU?autoplay=0&origin=http://bdgenomics.org" frameborder="0"></iframe>
-
-
-
-
-<br/><br/>
-
-
-<p>This short screencast is meant to get someone new to Scala, IntelliJ, and the Big Data Genomics stack up and running with a configured development environment suitable for working with or on projects like ADAM and Avocado.</p>
-
-<p>We&rsquo;ll walk you through downloading the appropriate JDK, IntelliJ IDE, and plugings. Then we will set up the project (using ADAM as the example), generating sources, packaging the application, and building the project. Finally, we cover running tests, as well as some basic exploration and code navigation using the IDE.</p>
-
-<hr />
-
-<p>Note, if you have trouble using <code>mvn package</code> in the command line, you may want to add the following to your <code>.bashrc</code>, or at least export these environment variables before running <code>mvn package</code>:</p>
-
-<pre><code>export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128M"
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-</code></pre>
-
-<h3>Links</h3>
-
-<ul>
-<li>00:00:14  <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Oracle JDK 7</a></li>
-<li>00:00:28  <a href="http://www.jetbrains.com/idea/download/">IntelliJ IDE</a></li>
-<li>00:00:43  <a href="https://github.com/bigdatagenomics/adam">ADAM Github Repository</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -716,6 +696,8 @@ This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Can
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a>
     
     <a class="list-group-item " href="/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a>
@@ -723,8 +705,6 @@ This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Can
     <a class="list-group-item " href="/blog/2014/11/26/adam-0-dot-15-dot-0-released/">ADAM 0.15.0 Released</a>
     
     <a class="list-group-item " href="/blog/2014/11/03/lightning-fast-genomics/">Lightning Fast Genomics</a>
-    
-    <a class="list-group-item " href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a>
     
   </div>
 </section>
