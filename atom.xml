@@ -4,7 +4,7 @@
   <title><![CDATA[Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2015-06-11T11:50:51-07:00</updated>
+  <updated>2015-07-10T10:47:15-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -12,6 +12,348 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Genomic Analysis Using ADAM, Spark and Deep Learning]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/07/10/genomic-analysis-using-adam/"/>
+    <updated>2015-07-10T10:19:45-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/07/10/genomic-analysis-using-adam</id>
+    <content type="html"><![CDATA[<p>Can we use deep learning to predict which population group you belong to, based solely on your genome?</p>
+
+<p>Yes, we can &ndash; and in this post, we will show you exactly how to do this in a scalable way, using Apache Spark. We will explain how to apply <a href="https://en.wikipedia.org/wiki/Deep_learning">deep learning</a> using <a href="https://en.wikipedia.org/wiki/Artificial_neural_network">artifical neural networks</a> to predict which population group an individual belongs to &ndash; based entirely on his or her genomic data.</p>
+
+<p>This is a follow-up to an earlier post: <a href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a> and attempts to replicate the results of that post. However, we will use a different machine learning technique.  Where the original post used <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means clustering</a>, we will use deep learning.</p>
+
+<p>We will use <a href="https://github.com/bigdatagenomics/adam">ADAM</a> and <a href="https://spark.apache.org/">Apache Spark</a> in combination with <a href="http://0xdata.com/product/">H2O</a>, an open source predictive analytics platform, and <a href="http://0xdata.com/product/sparkling-water/">Sparking Water</a>, which integrates H2O with Spark.</p>
+
+<!-- more -->
+
+
+<h2>Code</h2>
+
+<p>In this section, we&rsquo;ll dive straight into the code. If you&rsquo;d rather get something working before looking at the code you can skip to the &ldquo;Building and Running&rdquo; section.</p>
+
+<p>The complete Scala code for this example can be found in <a href="https://github.com/nfergu/popstrat/blob/master/src/main/scala/com/neilferguson/PopStrat.scala">the PopStrat.scala class on GitHub</a> and we&rsquo;ll refer to sections of the code here. Basic familiarity with Scala and <a href="https://spark.apache.org/">Apache Spark</a> is assumed.</p>
+
+<h3>Setting-up</h3>
+
+<p>The first thing we need to do is to read the names of the Genotype and Panel files that are passed into our program.  The Genotype file contains data about a set of individuals (referred to here as &ldquo;samples&rdquo;) and their genetic variation. The Panel file lists the population group (or &ldquo;region&rdquo;) for each sample in the Genotype file; this is what we will try to predict.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">genotypeFile</span> <span class="k">=</span> <span class="n">args</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">panelFile</span> <span class="k">=</span> <span class="n">args</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we set-up our Spark Context. Our program permits the Spark master to be specified as one of its arguments. This is useful when running from an IDE, but is omitted when running from the <code>spark-submit</code> script (see below).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">master</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">)</span> <span class="nc">Some</span><span class="o">(</span><span class="n">args</span><span class="o">(</span><span class="mi">2</span><span class="o">))</span> <span class="k">else</span> <span class="nc">None</span>
+</span><span class='line'><span class="k">val</span> <span class="n">conf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkConf</span><span class="o">().</span><span class="n">setAppName</span><span class="o">(</span><span class="s">&quot;PopStrat&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">master</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">conf</span><span class="o">.</span><span class="n">setMaster</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">sc</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkContext</span><span class="o">(</span><span class="n">conf</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we declare a set called <code>populations</code> which contains all of the population groups that we&rsquo;re interested
+in predicting. We then read the Panel file into a Map, filtering it based on the population groups in the
+<code>populations</code> set. The format of the panel file is described <a href="http://www.1000genomes.org/faq/what-panel-file">here</a>.
+Luckily it&rsquo;s very simple, containing the sample ID in the first column and the population group in the second.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">populations</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&quot;GBR&quot;</span><span class="o">,</span> <span class="s">&quot;ASW&quot;</span><span class="o">,</span> <span class="s">&quot;CHB&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="k">def</span> <span class="n">extract</span><span class="o">(</span><span class="n">file</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">filter</span><span class="k">:</span> <span class="o">(</span><span class="kt">String</span><span class="o">,</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="n">file</span><span class="o">).</span><span class="n">getLines</span><span class="o">().</span><span class="n">map</span><span class="o">(</span><span class="n">line</span> <span class="k">=&gt;</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">tokens</span> <span class="k">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\t&quot;</span><span class="o">).</span><span class="n">toList</span>
+</span><span class='line'>    <span class="n">tokens</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">tokens</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>  <span class="o">}).</span><span class="n">toMap</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">tuple</span> <span class="k">=&gt;</span> <span class="n">filter</span><span class="o">(</span><span class="n">tuple</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">tuple</span><span class="o">.</span><span class="n">_2</span><span class="o">))</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">val</span> <span class="n">panel</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>,<span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="n">extract</span><span class="o">(</span><span class="n">panelFile</span><span class="o">,</span> <span class="o">(</span><span class="n">sampleID</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">pop</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">populations</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="n">pop</span><span class="o">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Preparing the Genomics Data</h3>
+
+<p>Next, we use <a href="https://github.com/bigdatagenomics/adam">ADAM</a> to read our genotype data into a Spark RDD. Since we&rsquo;ve imported <code>ADAMContext._</code> at the top of our class, this is simply a matter of calling <code>loadGenotypes</code> on the Spark Context. Then, we filter the genotype data to contain only samples that are in the population groups which we&rsquo;re interested in.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">allGenotypes</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">Genotype</span><span class="o">]</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">loadGenotypes</span><span class="o">(</span><span class="n">genotypeFile</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">genotypes</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">Genotype</span><span class="o">]</span> <span class="k">=</span> <span class="n">allGenotypes</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">genotype</span> <span class="k">=&gt;</span> <span class="o">{</span><span class="n">panel</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="n">genotype</span><span class="o">.</span><span class="n">getSampleId</span><span class="o">)})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we convert the ADAM <code>Genotype</code> objects into our own <code>SampleVariant</code> objects. These objects contain just the data we need for further processing: the sample ID (which uniquely identifies a particular sample), a variant ID (which uniquely identifies a particular genetic variant) and a count of alternate <a href="http://www.snpedia.com/index.php/Allele">alleles</a>, where the sample differs from the reference genome. These variations will help us to classify individuals according to their population group.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">SampleVariant</span><span class="o">(</span><span class="n">sampleId</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">variantId</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">alternateCount</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span>
+</span><span class='line'><span class="k">def</span> <span class="n">variantId</span><span class="o">(</span><span class="n">genotype</span><span class="k">:</span> <span class="kt">Genotype</span><span class="o">)</span><span class="k">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">getVariant</span><span class="o">.</span><span class="n">getContig</span><span class="o">.</span><span class="n">getContigName</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">start</span> <span class="k">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">getVariant</span><span class="o">.</span><span class="n">getStart</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">end</span> <span class="k">=</span> <span class="n">genotype</span><span class="o">.</span><span class="n">getVariant</span><span class="o">.</span><span class="n">getEnd</span>
+</span><span class='line'>  <span class="n">s</span><span class="s">&quot;$name:$start:$end&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">def</span> <span class="n">alternateCount</span><span class="o">(</span><span class="n">genotype</span><span class="k">:</span> <span class="kt">Genotype</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">genotype</span><span class="o">.</span><span class="n">getAlleles</span><span class="o">.</span><span class="n">asScala</span><span class="o">.</span><span class="n">count</span><span class="o">(</span><span class="k">_</span> <span class="o">!=</span> <span class="nc">GenotypeAllele</span><span class="o">.</span><span class="nc">Ref</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">def</span> <span class="n">toVariant</span><span class="o">(</span><span class="n">genotype</span><span class="k">:</span> <span class="kt">Genotype</span><span class="o">)</span><span class="k">:</span> <span class="kt">SampleVariant</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// Intern sample IDs as they will be repeated a lot</span>
+</span><span class='line'>  <span class="k">new</span> <span class="nc">SampleVariant</span><span class="o">(</span><span class="n">genotype</span><span class="o">.</span><span class="n">getSampleId</span><span class="o">.</span><span class="n">intern</span><span class="o">(),</span> <span class="n">variantId</span><span class="o">(</span><span class="n">genotype</span><span class="o">).</span><span class="n">hashCode</span><span class="o">(),</span> <span class="n">alternateCount</span><span class="o">(</span><span class="n">genotype</span><span class="o">))</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">val</span> <span class="n">variantsRDD</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">SampleVariant</span><span class="o">]</span> <span class="k">=</span> <span class="n">genotypes</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">toVariant</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we count the total number of samples (individuals) in the data. We then group the data by variant ID and filter out those variants which do not appear in all of the samples. The aim of this is to simplify the processing of the data and, since we have a very large number of variants in the data (up to 30 million, depending on the exact data set), filtering out a small number will not make a significant difference to the results. In fact, in the next step we&rsquo;ll reduce the number of variants even further.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">variantsBySampleId</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Iterable</span><span class="o">[</span><span class="kt">SampleVariant</span><span class="o">])]</span> <span class="k">=</span> <span class="n">variantsRDD</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sampleId</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">sampleCount</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="n">variantsBySampleId</span><span class="o">.</span><span class="n">count</span><span class="o">()</span>
+</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="n">sampleCount</span> <span class="o">+</span> <span class="s">&quot; samples&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">variantsByVariantId</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">Iterable</span><span class="o">[</span><span class="kt">SampleVariant</span><span class="o">])]</span> <span class="k">=</span> <span class="n">variantsRDD</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">variantId</span><span class="o">).</span><span class="n">filter</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="o">(</span><span class="k">_</span><span class="o">,</span> <span class="n">sampleVariants</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">sampleVariants</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">sampleCount</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When we train our machine learning model, each variant will be treated as a &ldquo;<a href="https://en.wikipedia.org/wiki/Feature_(machine_learning">feature</a>)&rdquo; that is used to train the model.  Since it can be difficult to train machine learning models with very large numbers of features in the data (particularly if the number of samples is relatively small), we first need to try and reduce the number of variants in the data.</p>
+
+<p>To do this, we first compute the frequency with which alternate alleles have occurred for each variant. We then filter the variants down to just those that appear within a certain frequency range. In this case, we&rsquo;ve chosen a fairly arbitrary frequency of 11. This was chosen through experimentation as a value that leaves around 3,000 variants in the data set we are using.</p>
+
+<p>There are more structured approaches to <a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">dimensionality reduction</a>, which we perhaps could have
+employed, but this technique seems to work well enough for this example.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">variantFrequencies</span><span class="k">:</span> <span class="kt">collection.Map</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">variantsByVariantId</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="o">(</span><span class="n">variantId</span><span class="o">,</span> <span class="n">sampleVariants</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">variantId</span><span class="o">,</span> <span class="n">sampleVariants</span><span class="o">.</span><span class="n">count</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">alternateCount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">))</span>
+</span><span class='line'><span class="o">}.</span><span class="n">collectAsMap</span><span class="o">()</span>
+</span><span class='line'><span class="k">val</span> <span class="n">permittedRange</span> <span class="k">=</span> <span class="n">inclusive</span><span class="o">(</span><span class="mi">11</span><span class="o">,</span> <span class="mi">11</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">filteredVariantsBySampleId</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Iterable</span><span class="o">[</span><span class="kt">SampleVariant</span><span class="o">])]</span> <span class="k">=</span> <span class="n">variantsBySampleId</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="o">(</span><span class="n">sampleId</span><span class="o">,</span> <span class="n">sampleVariants</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">filteredSampleVariants</span> <span class="k">=</span> <span class="n">sampleVariants</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">variant</span> <span class="k">=&gt;</span> <span class="n">permittedRange</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span>
+</span><span class='line'>      <span class="n">variantFrequencies</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="n">variant</span><span class="o">.</span><span class="n">variantId</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">)))</span>
+</span><span class='line'>    <span class="o">(</span><span class="n">sampleId</span><span class="o">,</span> <span class="n">filteredSampleVariants</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Creating the Training Data</h3>
+
+<p>To train our model, we need our data to be in tabular form where each row represents a single sample, and each column represents a specific variant. The table also contains a column for the population group or &ldquo;Region&rdquo;, which is what we are trying to predict.</p>
+
+<p>Ultimately, in order for our data to be consumed by H2O we need it to end up in an H2O <code>DataFrame</code> object. Currently, the best way to do this in Spark seems to be to convert our data to an RDD of Spark SQL <a href="http://spark.apache.org/docs/1.4.0/api/scala/index.html#org.apache.spark.sql.Row">Row</a> objects, and then this can automatically be converted to an H2O DataFrame.</p>
+
+<p>To achieve this, we first need to group the data by sample ID, and then sort the variants for each sample in a consistent manner (by variant ID). We can then create a header row for our table, containing the Region column, the sample ID and all of the variants. We then create an RDD of type <code>Row</code> for each sample.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">sortedVariantsBySampleId</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Array</span><span class="o">[</span><span class="kt">SampleVariant</span><span class="o">])]</span> <span class="k">=</span> <span class="n">filteredVariantsBySampleId</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="o">(</span><span class="n">sampleId</span><span class="o">,</span> <span class="n">variants</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>    <span class="o">(</span><span class="n">sampleId</span><span class="o">,</span> <span class="n">variants</span><span class="o">.</span><span class="n">toArray</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">variantId</span><span class="o">))</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">val</span> <span class="n">header</span> <span class="k">=</span> <span class="nc">StructType</span><span class="o">(</span><span class="nc">Array</span><span class="o">(</span><span class="nc">StructField</span><span class="o">(</span><span class="s">&quot;Region&quot;</span><span class="o">,</span> <span class="nc">StringType</span><span class="o">))</span> <span class="o">++</span>
+</span><span class='line'>  <span class="n">sortedVariantsBySampleId</span><span class="o">.</span><span class="n">first</span><span class="o">().</span><span class="n">_2</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">variant</span> <span class="k">=&gt;</span> <span class="o">{</span><span class="nc">StructField</span><span class="o">(</span><span class="n">variant</span><span class="o">.</span><span class="n">variantId</span><span class="o">.</span><span class="n">toString</span><span class="o">,</span> <span class="nc">IntegerType</span><span class="o">)}))</span>
+</span><span class='line'><span class="k">val</span> <span class="n">rowRDD</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">Row</span><span class="o">]</span> <span class="k">=</span> <span class="n">sortedVariantsBySampleId</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="o">(</span><span class="n">sampleId</span><span class="o">,</span> <span class="n">sortedVariants</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">region</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="n">panel</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="n">sampleId</span><span class="o">,</span> <span class="s">&quot;Unknown&quot;</span><span class="o">))</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">alternateCounts</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">sortedVariants</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">alternateCount</span><span class="o">)</span>
+</span><span class='line'>    <span class="nc">Row</span><span class="o">.</span><span class="n">fromSeq</span><span class="o">(</span><span class="n">region</span> <span class="o">++</span> <span class="n">alternateCounts</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As mentioned above, once we have our RDD of <code>Row</code> objects we can then convert these automatically to an H2O DataFrame using Sparking Water (H2O&rsquo;s Spark integration).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">sqlContext</span> <span class="k">=</span> <span class="k">new</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="nc">SQLContext</span><span class="o">(</span><span class="n">sc</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">schemaRDD</span> <span class="k">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">applySchema</span><span class="o">(</span><span class="n">rowRDD</span><span class="o">,</span> <span class="n">header</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">h2oContext</span> <span class="k">=</span> <span class="k">new</span> <span class="n">H2OContext</span><span class="o">(</span><span class="n">sc</span><span class="o">).</span><span class="n">start</span><span class="o">()</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">h2oContext._</span>
+</span><span class='line'><span class="k">val</span> <span class="n">dataFrame</span> <span class="k">=</span> <span class="n">h2oContext</span><span class="o">.</span><span class="n">toDataFrame</span><span class="o">(</span><span class="n">schemaRDD</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now that we have a DataFrame, we want to split it into the training data (which we&rsquo;ll use to train our model), and a <a href="https://en.wikipedia.org/wiki/Test_set">test set</a> (which we&rsquo;ll use to ensure that <a href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a> has not occurred).</p>
+
+<p>We will also create a &ldquo;validation&rdquo; set, which performs a similar purpose to the test set &ndash; in that it will be used to validate the strength of our model as it is being built, while avoiding overfitting. However, when training a neural network, we typically keep the validation set distinct from the test set, to enable us to learn <a href="http://colinraffel.com/wiki/neural_network_hyperparameters">hyper-parameters</a> for the model. See <a href="http://neuralnetworksanddeeplearning.com/chap3.html">chapter 3 of Michael Nielsen&rsquo;s &ldquo;Neural Networks and Deep Learning&rdquo;</a>
+for more details on this.</p>
+
+<p>H2O comes with a class called <code>FrameSplitter</code>, so splitting the data is simply a matter of calling creating one of those and letting it split the data set.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">frameSplitter</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FrameSplitter</span><span class="o">(</span><span class="n">dataFrame</span><span class="o">,</span> <span class="nc">Array</span><span class="o">(.</span><span class="mi">5</span><span class="o">,</span> <span class="o">.</span><span class="mi">3</span><span class="o">),</span> <span class="nc">Array</span><span class="o">(</span><span class="s">&quot;training&quot;</span><span class="o">,</span> <span class="s">&quot;test&quot;</span><span class="o">,</span> <span class="s">&quot;validation&quot;</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="nc">Key</span><span class="o">.</span><span class="n">make</span><span class="o">),</span> <span class="kc">null</span><span class="o">)</span>
+</span><span class='line'><span class="n">water</span><span class="o">.</span><span class="n">H2O</span><span class="o">.</span><span class="n">submitTask</span><span class="o">(</span><span class="n">frameSplitter</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">splits</span> <span class="k">=</span> <span class="n">frameSplitter</span><span class="o">.</span><span class="n">getResult</span>
+</span><span class='line'><span class="k">val</span> <span class="n">training</span> <span class="k">=</span> <span class="n">splits</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">validation</span> <span class="k">=</span> <span class="n">splits</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Training the Model</h3>
+
+<p>Next, we need to set the parameters for our deep learning model. We specify the training and validation data sets, as well as the column in the data which contains the item we are trying to predict (in this case, the Region).  We also set some <a href="http://colinraffel.com/wiki/neural_network_hyperparameters">hyper-parameters</a> which affect the way the model learns. We won&rsquo;t go into detail about these here, but you can read more in the <a href="http://docs.h2o.ai/h2oclassic/datascience/deeplearning.html">H2O documentation</a>. These parameters have been chosen through experimentation &ndash; however, H2O provides methods for <a href="http://learn.h2o.ai/content/hands-on_training/deep_learning.html">automatically tuning hyper-parameters</a> so it may be possible to achieve better results by employing one of these methods.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">deepLearningParameters</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">DeepLearningParameters</span><span class="o">()</span>
+</span><span class='line'><span class="n">deepLearningParameters</span><span class="o">.</span><span class="nc">_train</span> <span class="k">=</span> <span class="n">training</span>
+</span><span class='line'><span class="n">deepLearningParameters</span><span class="o">.</span><span class="nc">_valid</span> <span class="k">=</span> <span class="n">validation</span>
+</span><span class='line'><span class="n">deepLearningParameters</span><span class="o">.</span><span class="nc">_response_column</span> <span class="k">=</span> <span class="s">&quot;Region&quot;</span>
+</span><span class='line'><span class="n">deepLearningParameters</span><span class="o">.</span><span class="nc">_epochs</span> <span class="k">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="n">deepLearningParameters</span><span class="o">.</span><span class="nc">_activation</span> <span class="k">=</span> <span class="nc">Activation</span><span class="o">.</span><span class="nc">RectifierWithDropout</span>
+</span><span class='line'><span class="n">deepLearningParameters</span><span class="o">.</span><span class="nc">_hidden</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="mi">100</span><span class="o">,</span><span class="mi">100</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, we&rsquo;re ready to train our deep learning model! Now that we&rsquo;ve set everything up this is easy:
+we simply create a H2O <code>DeepLearning</code> object and call <code>trainModel</code> on it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">deepLearning</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">DeepLearning</span><span class="o">(</span><span class="n">deepLearningParameters</span><span class="o">)</span>
+</span><span class='line'><span class="k">val</span> <span class="n">deepLearningModel</span> <span class="k">=</span> <span class="n">deepLearning</span><span class="o">.</span><span class="n">trainModel</span><span class="o">.</span><span class="n">get</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Having trained our model in the previous step, we now need to check how well it predicts the population groups in our data set. To do this we &ldquo;score&rdquo; our entire data set (including training, test, and validation data) against our model:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">deepLearningModel</span><span class="o">.</span><span class="n">score</span><span class="o">(</span><span class="n">dataFrame</span><span class="o">)(</span><span class="-Symbol">&#39;predict</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This final step will print a <a href="https://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> which shows how well our model predicts our population groups. All being well, the confusion matrix should look something like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="nc">Confusion</span> <span class="nc">Matrix</span> <span class="o">(</span><span class="n">vertical</span><span class="k">:</span> <span class="kt">actual</span><span class="o">;</span> <span class="n">across</span><span class="k">:</span> <span class="kt">predicted</span><span class="o">)</span><span class="k">:</span>
+</span><span class='line'><span class="kt">ASW</span>    <span class="kt">CHB</span> <span class="kt">GBR</span>  <span class="kt">Error</span>      <span class="kt">Rate</span>
+</span><span class='line'><span class="nc">ASW</span>     <span class="mi">60</span>   <span class="mi">1</span>   <span class="mi">0</span> <span class="mf">0.0164</span> <span class="k">=</span> <span class="mi">1</span> <span class="o">/</span>  <span class="mi">61</span>
+</span><span class='line'><span class="nc">CHB</span>      <span class="mi">0</span> <span class="mi">103</span>   <span class="mi">0</span> <span class="mf">0.0000</span> <span class="k">=</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">103</span>
+</span><span class='line'><span class="nc">GBR</span>      <span class="mi">0</span>   <span class="mi">1</span>  <span class="mi">90</span> <span class="mf">0.0110</span> <span class="k">=</span> <span class="mi">1</span> <span class="o">/</span>  <span class="mi">91</span>
+</span><span class='line'><span class="nc">Totals</span>  <span class="mi">60</span> <span class="mi">105</span>  <span class="mi">90</span> <span class="mf">0.0078</span> <span class="k">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">255</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This tells us that the model has correctly predicted 253 out of 255 population groups correctly (an accuracy of more than 99%). Nice!</p>
+
+<h2>Building and Running</h2>
+
+<h3>Prerequisites</h3>
+
+<p>Before building and running the example, please ensure you have version 7 or later of the
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK</a> installed.</p>
+
+<h3>Building</h3>
+
+<p>To build the example, first clone the GitHub repo at <a href="https://github.com/nfergu/popstrat">https://github.com/nfergu/popstrat</a>.</p>
+
+<p>Then <a href="http://maven.apache.org/download.cgi">download and install Maven</a>. Then, at the command line, type:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">mvn</span> <span class="n">clean</span> <span class="k">package</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will build a JAR (<code>target/uber-popstrat-0.1-SNAPSHOT.jar</code>), containing the <code>PopStrat</code> class,
+as well as all of its dependencies.</p>
+
+<h3>Running</h3>
+
+<p>First, <a href="http://spark.apache.org/downloads.html">download Spark version 1.2.0</a> and unpack it on your machine.</p>
+
+<p>Next you&rsquo;ll need to get some genomics data. Go to your <a href="http://www.1000genomes.org/data#DataAccess">nearest mirror of the 1000 genomes FTP site</a>.  From the <code>release/20130502/</code> directory download the <code>ALL.chr22.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz</code> file and the <code>integrated_call_samples_v3.20130502.ALL.panel</code> file. The first file file is the genotype data for chromosome 22, and the second file is the panel file, which describes the population group for each sample in the genotype data.</p>
+
+<p>Unzip the genotype data before continuing. This will require around 10GB of disk space.</p>
+
+<p>To speed up execution and save disk space, you can convert the genotype VCF file to <a href="https://github.com/bigdatagenomics/adam">ADAM</a> format (using the ADAM <code>transform</code> command) if you wish. However, this will take some time up-front. Both ADAM and VCF formats are supported.</p>
+
+<p>Next, run the following command:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>YOUR_SPARK_HOME/bin/spark-submit --class <span class="s2">&quot;com.neilferguson.PopStrat&quot;</span> --master <span class="nb">local</span><span class="o">[</span>6<span class="o">]</span> --driver-memory 6G target/uber-popstrat-0.1-SNAPSHOT.jar &lt;genotypesfile&gt; &lt;panelfile&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Replacing &lt;genotypesfile&gt; with the path to your genotype data file (ADAM or VCF), and &lt;panelfile&gt; with the panel file from 1000 genomes.</p>
+
+<p>This runs the example using a local (in-process) Spark master with 6 cores and 6GB of RAM. You can run against a different Spark cluster by modifying the options in the above command line. See the <a href="https://spark.apache.org/docs/1.2.0/submitting-applications.html">Spark documentation</a> for further details.</p>
+
+<p>Using the above data, the example may take up to 2-3 hours to run, depending on hardware. When it is finished, you should see a <a href="http://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> which shows the predicted versus the actual populations. If all has gone well, this should show an accuracy of more than 99%. See the &ldquo;Code&rdquo; section above for more details on what exactly you should expect to see.</p>
+
+<h2>Conclusion</h2>
+
+<p>In this post, we have shown how to combine ADAM and Apache Spark with H2O&rsquo;s deep learning capabilities to predict an individual&rsquo;s population group based on his or her genomic data. Our results demonstrate that we can predict these very well, with more than 99% accuracy. Our choice of technologies makes for a relatively straightforward implementation, and we expect it to be very scalable.</p>
+
+<p>Future work could involve validating the scalability of our solution on more hardware, trying to predict a wider range of population groups (currently we only predict 3 groups), and tuning the deep learning hyper-parameters to achieve even better accuracy.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.17.0 Released]]></title>

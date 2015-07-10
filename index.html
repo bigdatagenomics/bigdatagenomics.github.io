@@ -123,6 +123,54 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-10T10:19:45-07:00" pubdate data-updated="true">Jul 10<span>th</span>, 2015</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Can we use deep learning to predict which population group you belong to, based solely on your genome?</p>
+
+<p>Yes, we can &ndash; and in this post, we will show you exactly how to do this in a scalable way, using Apache Spark. We will explain how to apply <a href="https://en.wikipedia.org/wiki/Deep_learning">deep learning</a> using <a href="https://en.wikipedia.org/wiki/Artificial_neural_network">artifical neural networks</a> to predict which population group an individual belongs to &ndash; based entirely on his or her genomic data.</p>
+
+<p>This is a follow-up to an earlier post: <a href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a> and attempts to replicate the results of that post. However, we will use a different machine learning technique.  Where the original post used <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means clustering</a>, we will use deep learning.</p>
+
+<p>We will use <a href="https://github.com/bigdatagenomics/adam">ADAM</a> and <a href="https://spark.apache.org/">Apache Spark</a> in combination with <a href="http://0xdata.com/product/">H2O</a>, an open source predictive analytics platform, and <a href="http://0xdata.com/product/sparkling-water/">Sparking Water</a>, which integrates H2O with Spark.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2015/07/10/genomic-analysis-using-adam/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-04T10:49:26-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2015</time>
         
       </p>
@@ -561,62 +609,6 @@ ADAM to Spark 1.0 and provides new schema definitions, bug fixes and features:</
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-06-02T16:48:42-07:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/02/adam-0-dot-11-dot-0-released/">ADAM 0.11.0 Released</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.11.0">0.11.0</a> is now available.</p>
-
-<p>This release allows you not just read but also write to SAM/BAM files, adds utilities for trimming reads,
-implements contig-to-RefSeq translation, refactors SequenceDictionary to include RefSeq information (and without numeric IDs)
-and prepare ADAMGenotype for incorporating reference model information, and fixes a bug in FASTA fragments.</p>
-
-<p>For details see the following issues&hellip;</p>
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/250">250</a>: Adding ADAM to SAM conversion.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/248">248</a>: Adding utilities for read trimming.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/252">252</a>: Added a note about rebasing-off-master to CONTRIBUTING.md</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/249">249</a>: Cosmetic changes to FastaConverter and FastaConverterSuite.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/251">251</a>: CHANGES.md is updated at release instead of per pull request</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/247">247</a>: For #244, Fragments were incorrect order and incomplete</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/246">246</a>: Making sample ID field in genotype nullable.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/245">245</a>: Adding ADAMContig back to ADAMVariant.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/243">243</a>: Rebase PR#238 onto master</li>
-</ul>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -696,6 +688,8 @@ This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Can
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
+    
     <a class="list-group-item " href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a>
     
     <a class="list-group-item " href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a>
@@ -703,8 +697,6 @@ This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Can
     <a class="list-group-item " href="/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a>
     
     <a class="list-group-item " href="/blog/2014/11/26/adam-0-dot-15-dot-0-released/">ADAM 0.15.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2014/11/03/lightning-fast-genomics/">Lightning Fast Genomics</a>
     
   </div>
 </section>
