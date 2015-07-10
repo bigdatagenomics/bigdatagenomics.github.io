@@ -9,6 +9,8 @@ categories:
 - Deep Learning
 ---
 
+> Special thanks to [Neil Ferguson](https://github.com/nfergu) for this blog post on genomic analysis using ADAM, Spark and Deep Learning
+
 Can we use deep learning to predict which population group you belong to, based solely on your genome?
 
 Yes, we can - and in this post, we will show you exactly how to do this in a scalable way, using Apache Spark. We will explain how to apply [deep learning](https://en.wikipedia.org/wiki/Deep_learning) using [artifical neural networks](https://en.wikipedia.org/wiki/Artificial_neural_network) to predict which population group an individual belongs to - based entirely on his or her genomic data.
