@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Big Data Genomics &en; ADAM"
+title: "Big Data Genomics: ADAM"
 date: 2014-03-04 19:46
 comments: true
 sharing: true
