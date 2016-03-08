@@ -123,6 +123,54 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-02-25T11:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2016</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM version 0.19.0 has been <a href="https://github.com/bigdatagenomics/adam/releases">released</a>, built for both <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.19.0">Scala 2.10</a> and <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.19.0">Scala 2.11</a>.</p>
+
+<p>The 0.19.0 release contains various concordance fixes and performance improvements for accessing read metadata.  Schema changes, including a bump to version 0.7.0 of the Big Data Genomics <a href="https://github.com/bigdatagenomics/bdg-formats/releases/tag/bdg-formats-0.7.0">Avro data formats</a>, were made to support the read metadata performance improvements.  Additionally, the performance of exporting a single BAM file was improved, and this was made to be guaranteed correct for sorted data.</p>
+
+<p>ADAM now targets Apache Spark 1.5.2 and Apache Hadoop 2.6.0 as the default build environment.  ADAM and applications built on ADAM should run on a wide range of Apache Spark (1.3.1 up to and including the most recent, 1.6.0) and Apache Hadoop (currently 2.3.0 and 2.6.0) versions.  A compatibility matrix of Spark, Hadoop, and Scala version builds in our <a href="https://amplab.cs.berkeley.edu/jenkins/view/Big%20Data%20Genomics/">continuous integration system</a> verifies this.  Please note, as of this release, support for Apache Spark 1.2.x and Apache Hadoop 1.0.x <a href="https://github.com/bigdatagenomics/adam/issues/958">has been dropped</a>.</p>
+
+<p>The full list of changes since version 0.18.2 is below.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-11T11:00:00-08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2015</time>
         
       </p>
@@ -562,50 +610,6 @@ your favorite web browser to <a href="http://localhost:8080/">http://localhost:8
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-07-02T00:31:44-07:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/02/spark-summit-talk-on-adam/">Talk on ADAM at the Spark Summit</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><a href="http://www.fnothaft.net">Frank Austin Nothaft</a> gave a talk on ADAM at the <a href="http://www.spark-summit.org">Spark Summit</a> in San Francisco.</p>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/36516706" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/fnothaft/adamspark-summit-2014" title="ADAM—Spark Summit, 2014" target="_blank">ADAM—Spark Summit, 2014</a> </strong> from <strong><a href="http://www.slideshare.net/fnothaft" target="_blank">fnothaft</a></strong> </div></p>
-
-<p>The Spark Summit organizers will make a video of the talk available soon; we will post a link to the talk as soon as it is available.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -685,6 +689,8 @@ This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Can
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2015/11/11/adam-0-dot-18-dot-2-released/">ADAM 0.18.2 Released</a>
     
     <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
@@ -692,8 +698,6 @@ This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Can
     <a class="list-group-item " href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a>
     
     <a class="list-group-item " href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a>
     
   </div>
 </section>
@@ -715,7 +719,7 @@ Java and .NET applications. Take a look at YourKit&#8217;s leading software prod
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2015 - Big Data Genomics<br>
+  Copyright &copy; 2016 - Big Data Genomics<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
