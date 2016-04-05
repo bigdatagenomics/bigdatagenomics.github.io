@@ -63,14 +63,14 @@ default_asides: [asides/about.html, asides/github.html, asides/twitter.html, asi
 # ----------------------- #
 
 # Github repositories
-github_user: bigdatagenomics
-github_repo_count: 0
-github_show_profile_link: true
-github_skip_forks: true
+#github_user: bigdatagenomics
+#github_repo_count: 0
+#github_show_profile_link: true
+#github_skip_forks: true
 
 # Twitter
-twitter_user: bigdatagenomics
-twitter_tweet_button: true
+#twitter_user: bigdatagenomics
+#twitter_tweet_button: true
 
 # Google +1
 google_plus_one: false
