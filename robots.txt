@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://bigdatagenomics.github.io/sitemap.xml 
+Sitemap: http://bdgenomics.org/sitemap.xml 
