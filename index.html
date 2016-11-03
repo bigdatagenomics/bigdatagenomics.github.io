@@ -124,6 +124,74 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-19T12:00:00-07:00" pubdate data-updated="true">Oct 19<span>th</span>, 2016</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM version 0.20.0 has been <a href="https://github.com/bigdatagenomics/adam/releases">released</a>!</p>
+
+<p>Due to major changes between Spark versions 1.6 and 2.0, we now build for combinations of Apache Spark and Scala versions:
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.20.0">Spark 1.x and Scala 2.10</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.20.0">Spark 1.x and Scala 2.11</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.10-0.20.0">Spark 2.x and Scala 2.10</a>, and
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.11-0.20.0">Spark 2.x and Scala 2.11</a>.</p>
+
+<p>Since the last release, version 0.19.0, we have closed more than 180 issues and merged more than 120 pull requests.</p>
+
+<p>We added a new pipe API, allowing for streaming alignment and variant records out to external applications and streaming back
+in the results. Several new region join implementations are now public API, including a broadcast inner join, broadcast right
+outer join, sort-merge inner join, sort-merge right outer join, sort-merge left outer join, sort-merge full outer join,
+sort-merge inner join followed by a group by, and a sort-merge right outer join followed by a group by.</p>
+
+<p>Alignment records can now be read from and written to CRAM format. We updated upstream dependencies on Hadoop-BAM and htsjdk to
+fix various alignment record header bugs and to add support for gzip and BGZF compressed VCF.</p>
+
+<p>Our sequence feature schema now more closely follow the GFF3 specification, while still supporting BED, GFF2/GTF, IntervalList,
+and NarrowPeak formats. We also added a new sample schema for e.g. SRA sample metadata.</p>
+
+<p>With this version the core ADAM APIs are undergoing a major refactoring. We changed many method names on ADAMContext to make
+the API more consistent. We also added RDD wrapper classes to increase performance by serializing metadata (such as record groups,
+samples, and sequence dictionaries) to disk separate from primary data in Parquet. API incompatibilities between ADAM releases
+will settle down by the 1.0 release, currently targeted for early 2017.</p>
+
+<p>The full list of changes since version 0.19.0 is below.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-02-25T11:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2016</time>
         
       </p>
@@ -563,54 +631,6 @@ Based on the data we have, we can for example:</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-08-20T14:04:41-07:00" pubdate data-updated="true">Aug 20<span>th</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">ADAM 0.13.0 Released</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.13.0">0.13.0</a> is now available!</p>
-
-<p>This release includes <a href="https://github.com/bigdatagenomics/adam/pull/346">genome visualization</a> to view aligned reads and coverage
-information over a reference region. You simply run e.g. <code>adam viz myreads.adam chr1</code> from the ADAM source directory and open
-your favorite web browser to <a href="http://localhost:8080/">http://localhost:8080/</a> to view your data.</p>
-
-<p>This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1.</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="btn btn-default" rel="full-article" href="/blog/2014/08/20/adam-0-dot-13-dot-0-released/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -654,6 +674,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
     
     <a class="list-group-item " href="/blog/2015/11/11/adam-0-dot-18-dot-2-released/">ADAM 0.18.2 Released</a>
@@ -661,8 +683,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
     
     <a class="list-group-item " href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a>
     
   </div>
 </section>
