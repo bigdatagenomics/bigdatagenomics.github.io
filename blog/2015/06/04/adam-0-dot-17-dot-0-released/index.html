@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ADAM 0.17.0 Released - Big Data Genomics</title>
+  <meta name="author" content="Big Data Genomics">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-49914824-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Big Data Genomics</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/projects">Projects</a>
+                </li>
+                <li >
+                    <a href="/mail">Mailing List</a>
+                </li>
+                <li >
+                    <a href="/cla">CLAs</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:bigdatagenomics.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+	       <img src="/images/github.png" /><a href="https://github.com/bigdatagenomics/">https://github.com/bigdatagenomics/</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/twitter.png"/><a href="https://twitter.com/bigdatagenomics">https://twitter.com/bigdatagenomics/</a><br/>
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-04T10:49:26-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2015</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        ADAM 0.17.0 Released
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p>The 0.17.0 release of ADAM includes a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.17.0">release for Scala 2.10</a> and a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.17.0">release for Scala 2.11</a>. We&rsquo;ve been working to cleanup APIs and simplify ADAM for developers. Code that isn&rsquo;t useful has been removed. Code that belongs in other downstream or upstream projects has been moved. Parquet and HTSJDK has been upgraded.</p>
+
+<p>There are also some new features, e.g. you can now now <code>transform</code> all the SAM/BAM files in a directory by specifying the directory and there&rsquo;s a new <code>flatten</code> command that allows you to flatten the schema of ADAM data to process in Impala, Hive, SparkSQL, etc; there are also many bug fixes.</p>
+
+<!-- more -->
+
+
+<p>For more details, see the following pull requests:</p>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/691">691</a>: fix BAM/SAM header setting when writing on cluster</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/688">688</a>: make adamLoad public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/694">694</a>: Fix parent reference in distribution module</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/684">684</a>: a few region-join nits</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/682">682</a>: [ADAM-681] Remove menacing error message about reqd .adam extension</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/680">680</a>: [ADAM-674] Delete Bam2ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/678">678</a>: upgrade to bdg utils 0.2.1</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/668">668</a>: [ADAM-597] Move correction out of ADAM and into a downstream project.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/671">671</a>: Bug fix in ReferenceUtils.unionReferenceSet</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/667">667</a>: [ADAM-666] Clean up key not found error in partitioner code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/656">656</a>: Update Vcf2ADAM.scala</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/652">652</a>: added filterByOverlappingRegion in GeneFeatureRDDFunctions</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/650">650</a>: [ADAM-649] Support transform of all BAM/SAM files in a directory.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/647">647</a>: [ADAM-646] Special case reads with &lsquo;*&rsquo; quality during BQSR.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/645">645</a>: [ADAM-634] Create a local ParquetLister for testing purposes.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/633">633</a>: [Adam] Tests for SAMRecordConverter.scala</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/641">641</a>: [ADAM-640] Fix incorrect exclusion for org.seqdoop.htsjdk.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/632">632</a>: [ADAM-631] Allow VCF conversion to sort on output after coalescing.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/628">628</a>: [ADAM-627] Makes ReferenceFile trait extend Serializable.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/637">637</a>: check for mac brew alternate spark install structure</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/624">624</a>: Conceptual fix for duplicate marking and sorting stragglers</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/629">629</a>: [ADAM-604] Remove normalization code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/630">630</a>: Add flatten command.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/619">619</a>: [ADAM-540] Move to new HTSJDK release; should support Java 8.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/626">626</a>: [ADAM-625] Enable globbing for BAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/621">621</a>: Removes the predicates package.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/620">620</a>: [ADAM-600] Adding RegionJoin trait.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/616">616</a>: [ADAM-565] Upgrade to Parquet filter2 API.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/613">613</a>: [ADAM-612] Point to proper k-mer counters.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/588">588</a>: [ADAM-587] Clean up loading checks.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/592">592</a>: [ADAM-513] Remove ReferenceMappable trait.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/606">606</a>: [ADAM-605] Remove visualization code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/596">596</a>: [ADAM-595] Delete the &lsquo;comparisons&rsquo; code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/590">590</a>: [ADAM-589] Removed pileup code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/586">586</a>: [ADAM-452] Fixes SM attribute on ADAM to BAM conversion.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/584">584</a>: [ADAM-583] Add k-mer counting functionality for nucleotide contig fragments</li>
+</ul>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Big Data Genomics</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-04T10:49:26-07:00" pubdate data-updated="true">Jun 4<span>th</span>, 2015</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/adam/'>ADAM</a>, <a class='category' href='/blog/categories/releases/'>releases</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/" title="Previous Post: ADAM 0.16.0 Released">&laquo; ADAM 0.16.0 Released</a></li>
+            
+            
+            <li class="next"><a href="/blog/2015/07/10/genomic-analysis-using-adam/" title="Next Post: Genomic Analysis Using ADAM, Spark and Deep Learning">Genomic Analysis Using ADAM, Spark and Deep Learning &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <a href="/">
+<img src="http://gravatar.com/avatar/0bff5079826d1ecfd663cbcb743a9a25?s=256" height="256" width="256"/>
+</a>
+
+<hr size="1"/>
+<p><font size="+1">About us...</font></p>
+<p><em>
+This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Cancer Cloud Pilot Award HHSN261201400006C with collaborators from the <a href="https://amplab.cs.berkeley.edu/">AMPLab</a> at UC Berkeley, <a href="https://genomics.soe.ucsc.edu/haussler/cancer_genomics">Genome Informatics Lab</a> at UC Santa Cruz, <a href="http://icahn.mssm.edu/">Icahn School of Medicine</a> at Mount Sinai, <a href="http://research.microsoft.com/">Microsoft Research</a>, <a href="http://www.cloudera.com/">Cloudera</a>, and the <a href="https://www.broadinstitute.org/">Broad Institute</a>.</em></p>
+
+<hr size="1"/>
+<p>
+<em>Chat with us...</em>
+<a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a>
+</p>
+<p>
+If you're interested in contributing, take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">"pick me up!" issues</a>.
+</p>
+<hr size="1"/>
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2015/11/11/adam-0-dot-18-dot-2-released/">ADAM 0.18.2 Released</a>
+    
+    <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
+    
+    <a class="list-group-item active" href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a>
+    
+  </div>
+</section>
+<font size="-1">
+YourKit is supporting the Big Data Genomics open source project with its full-featured Java Profiler.
+YourKit, LLC is the creator of innovative and intelligent tools for profiling
+Java and .NET applications. Take a look at YourKit's leading software products:
+<a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
+<a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.
+</font>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Big Data Genomics<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'bigdatagenomics';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released/';
+        var disqus_url = 'http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: talks | Big Data Genomics]]></title>
-  <link href="http://bdgenomics.org/blog/categories/talks/atom.xml" rel="self"/>
-  <link href="http://bdgenomics.org/"/>
-  <updated>2015-02-10T08:50:10-08:00</updated>
-  <id>http://bdgenomics.org/</id>
+  <link href="http://bigdatagenomics.github.io/blog/categories/talks/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2016-04-05T16:39:42-07:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Scalable genomes clustering with ADAM and Spark]]></title>
-    <link href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
     <updated>2015-02-02T13:49:48-08:00</updated>
-    <id>http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
+    <id>http://bigdatagenomics.github.io/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
     <content type="html"><![CDATA[<p>In this post, we will detail how to perform simple scalable population stratification analysis, leveraging ADAM and Spark MLlib, as previously presented at <a href="http://www.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala">scala.io</a>.</p>
 
 <p>The data source is the set of genotypes from the <a href="http://1000genomes.org">1000genomes</a> project, resulting from whole genomes sequencing run on samples taken from about 1000 individuals with a known geographic and ethnic origin.</p>
@@ -424,9 +424,9 @@ Predict (collect):                                   25 sec
   
   <entry>
     <title type="html"><![CDATA[Lightning Fast Genomics]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics/"/>
+    <link href="http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics/"/>
     <updated>2014-11-03T08:24:15-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics</id>
+    <id>http://bigdatagenomics.github.io/blog/2014/11/03/lightning-fast-genomics</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
 
 <blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
@@ -435,10 +435,10 @@ Predict (collect):                                   25 sec
 
 <p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
 
-<iframe src="http://bdgenomics.org//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="http://bigdatagenomics.github.io//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
 
-<p> <div style="margin-bottom:5px"> <strong> <a href="http://bdgenomics.org//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bdgenomics.org//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
+<p> <div style="margin-bottom:5px"> <strong> <a href="http://bigdatagenomics.github.io//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bigdatagenomics.github.io//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
 ]]></content>
   </entry>
   

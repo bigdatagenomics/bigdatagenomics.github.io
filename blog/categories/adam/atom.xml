@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ADAM | Big Data Genomics]]></title>
-  <link href="http://bdgenomics.org/blog/categories/adam/atom.xml" rel="self"/>
-  <link href="http://bdgenomics.org/"/>
-  <updated>2015-02-10T08:50:10-08:00</updated>
-  <id>http://bdgenomics.org/</id>
+  <link href="http://bigdatagenomics.github.io/blog/categories/adam/atom.xml" rel="self"/>
+  <link href="http://bigdatagenomics.github.io/"/>
+  <updated>2016-04-05T16:39:42-07:00</updated>
+  <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
     
@@ -14,622 +14,570 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Scalable genomes clustering with ADAM and Spark]]></title>
-    <link href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/"/>
-    <updated>2015-02-02T13:49:48-08:00</updated>
-    <id>http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark</id>
-    <content type="html"><![CDATA[<p>In this post, we will detail how to perform simple scalable population stratification analysis, leveraging ADAM and Spark MLlib, as previously presented at <a href="http://www.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala">scala.io</a>.</p>
+    <title type="html"><![CDATA[ADAM 0.19.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2016/02/25/adam-0-dot-19-dot-0-release/"/>
+    <updated>2016-02-25T11:00:00-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2016/02/25/adam-0-dot-19-dot-0-release</id>
+    <content type="html"><![CDATA[<p>ADAM version 0.19.0 has been <a href="https://github.com/bigdatagenomics/adam/releases">released</a>, built for both <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.19.0">Scala 2.10</a> and <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.19.0">Scala 2.11</a>.</p>
 
-<p>The data source is the set of genotypes from the <a href="http://1000genomes.org">1000genomes</a> project, resulting from whole genomes sequencing run on samples taken from about 1000 individuals with a known geographic and ethnic origin.</p>
+<p>The 0.19.0 release contains various concordance fixes and performance improvements for accessing read metadata.  Schema changes, including a bump to version 0.7.0 of the Big Data Genomics <a href="https://github.com/bigdatagenomics/bdg-formats/releases/tag/bdg-formats-0.7.0">Avro data formats</a>, were made to support the read metadata performance improvements.  Additionally, the performance of exporting a single BAM file was improved, and this was made to be guaranteed correct for sorted data.</p>
 
-<p>This dataset is rather large and allows us to test scalability of the methods we present here and gives us the possibility to do interesting machine learning.
-Based on the data we have, we can for example:</p>
+<p>ADAM now targets Apache Spark 1.5.2 and Apache Hadoop 2.6.0 as the default build environment.  ADAM and applications built on ADAM should run on a wide range of Apache Spark (1.3.1 up to and including the most recent, 1.6.0) and Apache Hadoop (currently 2.3.0 and 2.6.0) versions.  A compatibility matrix of Spark, Hadoop, and Scala version builds in our <a href="https://amplab.cs.berkeley.edu/jenkins/view/Big%20Data%20Genomics/">continuous integration system</a> verifies this.  Please note, as of this release, support for Apache Spark 1.2.x and Apache Hadoop 1.0.x <a href="https://github.com/bigdatagenomics/adam/issues/958">has been dropped</a>.</p>
 
-<ul>
-<li>build models to classify genomes by population</li>
-<li>run unsupervised learning (clustering) to see if populations are reconstructed in the model.</li>
-<li>build models to infer missing genotypes</li>
-</ul>
-
-
-<p>We&rsquo;ve gone the second way (clustering), the line-up being the following:</p>
-
-<ul>
-<li>Setup the environment</li>
-<li>Collection and extraction of the original data</li>
-<li>Distribute the original data and convert it to the ADAM model</li>
-<li>Collect metadata (samples labels and completeness)</li>
-<li>Filter the data to match our cluster capacity (number of nodes, cpus and mem and wall clock time&hellip;)</li>
-<li>Read and prepare the ADAM formatted and distributed genotypes to have them into a separable high-dimensional space (need a metric)</li>
-<li>Apply the KMeans (train/predict)</li>
-<li>Assess performance</li>
-</ul>
-
+<p>The full list of changes since version 0.18.2 is below.</p>
 
 <!-- more -->
 
 
-<h2>Environment setup</h2>
-
-<h3>Cluster</h3>
-
-<p>One of the easiest way to setup an environment with flexibility on deployed resources is EC2. Especially because Spark is distributed with scripts to spawn clusters preconfigured on EC2 (see <a href="http://spark.apache.org/docs/1.2.0/ec2-scripts.html">http://spark.apache.org/docs/1.2.0/ec2-scripts.html</a>).</p>
-
-<p>For the case we&rsquo;re discussing here, there are several points worth considering:</p>
+<p><strong>Closed issues:</strong></p>
 
 <ul>
-<li>instances flavor: we opted for <code>m3.xlarge</code> to give us more memory</li>
-<li>the region: we used <code>eu-west-1</code>. Based in Europe, we&rsquo;d like to have the results nearby</li>
-<li>hadoop 2: this was necessary to deal with the VCFs (use the <code>--hadoop-major-version="2"</code> argument)</li>
-<li><strong>EBS</strong>: since we&rsquo;ll use the result often, we created ESB to have the data persistent even after cluster is stopped (use the <code>--ebs-vol-size="100"</code> for <code>100G</code> per instance).</li>
+<li>Update bdg-utils dependency version to 0.2.4 <a href="https://github.com/bigdatagenomics/adam/issues/960">#960</a></li>
+<li>Drop support for Spark version 1.2.1, Hadoop version 1.0.x <a href="https://github.com/bigdatagenomics/adam/issues/958">#958</a></li>
+<li>Exception occurs when running tests on master <a href="https://github.com/bigdatagenomics/adam/issues/956">#956</a></li>
+<li>Flagstat results still don&rsquo;t match samtools flagstat <a href="https://github.com/bigdatagenomics/adam/issues/946">#946</a></li>
+<li>readInFragment value is not properly read from parquet file into RDD[AlignmentRecord] <a href="https://github.com/bigdatagenomics/adam/issues/942">#942</a></li>
+<li>adam2vcf -sort_on_save flag broken <a href="https://github.com/bigdatagenomics/adam/issues/940">#940</a></li>
+<li>Transform -limit_projection requires .sam.seqdict file <a href="https://github.com/bigdatagenomics/adam/issues/937">#937</a></li>
+<li>MarkDuplicates fails if library name is not set <a href="https://github.com/bigdatagenomics/adam/issues/934">#934</a></li>
+<li>fastqtobam or sam <a href="https://github.com/bigdatagenomics/adam/issues/928">#928</a></li>
+<li>Vcf2Adam uses SB field instead of FS field for fisher exact test for strand bias <a href="https://github.com/bigdatagenomics/adam/issues/923">#923</a></li>
+<li>Add back limit_projection on Transform <a href="https://github.com/bigdatagenomics/adam/issues/920">#920</a></li>
+<li>BAM header is not getting set on partition 0 with headerless BAM output format <a href="https://github.com/bigdatagenomics/adam/issues/916">#916</a></li>
+<li>Add numParts apply method to GenomicRegionPartitioner <a href="https://github.com/bigdatagenomics/adam/issues/914">#914</a></li>
+<li>Add Spark version 1.6.x to Jenkins build matrix <a href="https://github.com/bigdatagenomics/adam/issues/913">#913</a></li>
+<li>Target Spark 1.5.2 as default Spark version <a href="https://github.com/bigdatagenomics/adam/issues/911">#911</a></li>
+<li>Move to bdg-formats 0.7.0 <a href="https://github.com/bigdatagenomics/adam/issues/905">#905</a></li>
+<li>secondOfPair and firstOfPair flag is missing in the newest 0.18 adam transformed results from BAM <a href="https://github.com/bigdatagenomics/adam/issues/903">#903</a></li>
+<li>Future pull request <a href="https://github.com/bigdatagenomics/adam/issues/900">#900</a></li>
+<li>error in vcf2adam <a href="https://github.com/bigdatagenomics/adam/issues/899">#899</a></li>
+<li>Importing directory of VCFs seems to fail <a href="https://github.com/bigdatagenomics/adam/issues/898">#898</a></li>
+<li>How to filter genotypeRDD on sample names? org.apache.spark.SparkException: Task not serializable? <a href="https://github.com/bigdatagenomics/adam/issues/891">#891</a></li>
+<li>Add Spark version 1.5.x to Jenkins build matrix <a href="https://github.com/bigdatagenomics/adam/issues/889">#889</a></li>
+<li>Transform DAG causes stages to recompute <a href="https://github.com/bigdatagenomics/adam/issues/883">#883</a></li>
+<li>adam-submit buildinfo is confused <a href="https://github.com/bigdatagenomics/adam/issues/880">#880</a></li>
+<li>move_to_scala_2.11 and maven-javadoc-plugin <a href="https://github.com/bigdatagenomics/adam/issues/863">#863</a></li>
+<li>NativeCodeLoader: Unable to load native-hadoop library for your platform&hellip; using builtin-java classes where applicable <a href="https://github.com/bigdatagenomics/adam/issues/837">#837</a></li>
+<li>Fix record oriented shuffle <a href="https://github.com/bigdatagenomics/adam/issues/599">#599</a></li>
+<li>Avro.GenericData error with ADAM 0.12.0 on reading from ADAM file <a href="https://github.com/bigdatagenomics/adam/issues/290">#290</a></li>
 </ul>
 
 
-<p>A cluster with 4 slaves and 1 master will take about 20 minutes to spawn. When the cluster is stopped, the data in the persistent hdfs (ESB) remains and will be readily available after the following start. They&rsquo;ll be lost only if the cluster is explicitely destroyed.</p>
-
-<p><em>Remark</em>: the spark ec2 scripts install two instances of hdfs, ephemeral and persistent, however only the ephemeral is started. So, you&rsquo;ll need to start the persistent one yourself using:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/root/persistent-hdfs/sbin/start-dfs.sh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>It can also be insteresting to shutdown the ephemeral (to save some memory for instance).</p>
-
-<h3>s3cmd</h3>
-
-<p>Since the data we use is available on S3, a client is required, it is worthwhile to install <code>s3cmd</code> if some data management is done from the shell.</p>
-
-<p>Luckily, it&rsquo;s very simple, and everything is explained <a href="http://s3tools.org/s3cmd">here</a>.</p>
-
-<h3>Spark Notebook</h3>
-
-<p>For the operational part, we use the <a href="http://github.com/andypetrella/spark-notebook">Spark Notebook</a>. It is our favorite choice because we need something that can rerun our tasks and accomodate easily for changes, in an interactive way.</p>
-
-<p>The easiest is to download the distribution that <strong>matches</strong> both the spark and hadoop versions installed on the cluster. The distributions are available on <a href="https://s3.eu-central-1.amazonaws.com/spark-notebook/index.html">s3</a> or <a href="https://registry.hub.docker.com/u/andypetrella/spark-notebook/">docker</a>, here is the <a href="https://s3.eu-central-1.amazonaws.com/spark-notebook/zip/spark-notebook-0.2.1-spark-1.2.0-hadoop-2.0.0-cdh4.2.0.zip">zip</a> for spark 1.2.0 and hadoop 2.0.0 cdh4.2.0.</p>
-
-<p>Before starting the notebook, you have to make sure to load the spark environment variables (<code>/root/spark/conf/spark-env.sh</code>). And to use s3, the <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code> environment variables must be set as well.</p>
-
-<p>The spark-notebook server can then be launched from the root of its installation, using for example port 8999 (because the default port 9000 is used by hadoop):</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bin/spark-notebook -Dhttp.port<span class="o">=</span>8999
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>You can access the UI in your browser on localhost:8999 by opening an ssh tunnel, for exemple from you local machine issuing:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ssh -L 8999:localhost:8999 &amp;lt;spark-master&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>It might also be required to open the 8999 port on the ec2 console.</p>
-
-<p>In the distribution, a notebook called <code>Clustering Genomes using Adam and MLLib</code> contains the code this blog post is illustrating.</p>
-
-<h2>Data collection</h2>
-
-<p>The 1000 genomes project genotypes are available in VCF format from <a href="http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase1/analysis_results/integrated_call_sets/">ftp servers</a> (ncbi and ebi) and also in <a href="http://aws.amazon.com/1000genomes/">s3</a>.</p>
-
-<p>While repositories with such datasets converted in ADAM format are under development (f.i. <a href="https://github.com/bigdatagenomics/eggo">eggo</a>), most datasets have to be collected from traditional (e.g ftp servers) sources and distributed/converted for scalable processing.</p>
-
-<p>The master node EBS disk is used as a buffer space to get the gzipped vcf files (one per chromosome), decompress them and send them to hdfs. Below, you&rsquo;ll find the flow for chomosome 1.</p>
-
-<h3>Get the VCF for chromosome 1</h3>
-
-<p>With the EBS disk mounted on <code>/vol0</code>:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /vol0/data
-</span><span class='line'>s3cmd get s3://1000genomes/phase1/analysis_results/integrated_call_sets/ALL.chr1.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.vcf.gz
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h3>Decompress</h3>
-
-<p>As seen above, the files are gizzed, hence we need to decompress them. However, it takes quite a while, so launch the following command and grab a beer!</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gunzip ALL.chr1.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.vcf.gz
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>This task takes around <strong>one hour</strong>, as we&rsquo;ll see later on, it explains why ADAM is so important when dealing with such data.</p>
-
-<h3>Put VCF in persistent HDFS</h3>
-
-<p>The unzipped vcf file then has to be copied to hdfs in order to be readable with ADAM. This is optional but then, the convertion has to be done from the driver (where the VCF resides) rather than on the cluster.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/root/persistent-hdfs/bin/hadoop fs -put ALL.chr1.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.vcf /data/ALL.chr1.vcf
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h3>Free some space on disk</h3>
-
-<p>Delete VCF from disk! Along the same line, after having converted the VCF in ADAM and saved either on the hdfs or in s3, it can be good to remove the VCF from hdfs and save space.</p>
-
-<h2>Notebook</h2>
-
-<p>In the next section we&rsquo;ll cover the nitty gritty details of our exploration and results.</p>
-
-<p>Although some code excerpts are presented, yet seeing them running can improve satisfaction or reduce perplexity.</p>
-
-<p>That&rsquo;s why we created some notebooks for you!
-To use them, launch the Spark Notebook as descrived above, you&rsquo;ll see them in the default list:</p>
+<p><strong>Merged and closed pull requests:</strong></p>
 
 <ul>
-<li>Convert ADAM</li>
-<li>Read 1000Genomes dataset (chr-N)</li>
-<li>Clustering Genomics Data using Adam and MLLib</li>
+<li>[ADAM-960] Updating bdg-utils dependency version to 0.2.4 <a href="https://github.com/bigdatagenomics/adam/pull/961">#961</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-946] Fixes to FlagStat for Samtools concordance issue <a href="https://github.com/bigdatagenomics/adam/pull/954">#954</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>Fix for travis build, replace reads2ref with reads2fragments <a href="https://github.com/bigdatagenomics/adam/pull/950">#950</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-940] Fix adam2vcf -sort_on_save flag <a href="https://github.com/bigdatagenomics/adam/pull/949">#949</a> (<a href="https://github.com/massie">massie</a>)</li>
+<li>Remove BuildInformation and extraneous git-commit-id-plugin configuration <a href="https://github.com/bigdatagenomics/adam/pull/948">#948</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Update readme for spark 1.5.2 and hadoop 2.6.0 <a href="https://github.com/bigdatagenomics/adam/pull/944">#944</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-942] Replace first/secondInRead with readInFragment <a href="https://github.com/bigdatagenomics/adam/pull/943">#943</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-937] Adding check for aligned read predicate or limit projection flags and non-parquet input path <a href="https://github.com/bigdatagenomics/adam/pull/938">#938</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-934] Properly handle unset library name during duplicate marking <a href="https://github.com/bigdatagenomics/adam/pull/935">#935</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-911] Move to Spark 1.5.2 and Hadoop 2.6.0 as default versions. <a href="https://github.com/bigdatagenomics/adam/pull/932">#932</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>added start and end values to Interval Trait. Used for IntervalRDD <a href="https://github.com/bigdatagenomics/adam/pull/931">#931</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>Removing buildinfo command <a href="https://github.com/bigdatagenomics/adam/pull/929">#929</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Removing symbolic test resource links, read from test classpath instead <a href="https://github.com/bigdatagenomics/adam/pull/927">#927</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Changed fisher strand bias field for VCF2Adam from SB to FS <a href="https://github.com/bigdatagenomics/adam/pull/924">#924</a> (<a href="https://github.com/andrewmchen">andrewmchen</a>)</li>
+<li>[ADAM-920] Limit tag/orig qual flags in Transform. <a href="https://github.com/bigdatagenomics/adam/pull/921">#921</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Change the README to use adam-shell -i instead of pasting <a href="https://github.com/bigdatagenomics/adam/pull/919">#919</a> (<a href="https://github.com/andrewmchen">andrewmchen</a>)</li>
+<li>[ADAM-916] New strategy for writing header. <a href="https://github.com/bigdatagenomics/adam/pull/917">#917</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-914] Create a GenomicRegionPartitioner given a partition count. <a href="https://github.com/bigdatagenomics/adam/pull/915">#915</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Squashed #907 and ran format-sources <a href="https://github.com/bigdatagenomics/adam/pull/908">#908</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Various small fixes <a href="https://github.com/bigdatagenomics/adam/pull/908">#907</a> (<a href="https://github.com/huitseeker">huitseeker</a>)</li>
+<li>ADAM-599, 905: Move to bdg-formats:0.7.0 and migrate metadata <a href="https://github.com/bigdatagenomics/adam/pull/906">#906</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Rewrote the getType method to handle all ploidy levels <a href="https://github.com/bigdatagenomics/adam/pull/904">#904</a> (<a href="https://github.com/NeillGibson">NeillGibson</a>)</li>
+<li>Single file save from #733, rebased <a href="https://github.com/bigdatagenomics/adam/pull/901">#901</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Added is* genotype methods from HTS-JDK Genotype to RichGenotype <a href="https://github.com/bigdatagenomics/adam/pull/895">#895</a> (<a href="https://github.com/NeillGibson">NeillGibson</a>)</li>
+<li>[ADAM-891] Mark SparkContext as @transient. <a href="https://github.com/bigdatagenomics/adam/pull/894">#894</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Update README URLs based on HTTP redirects <a href="https://github.com/bigdatagenomics/adam/pull/892">#892</a> (<a href="https://github.com/ReadmeCritic">ReadmeCritic</a>)</li>
+<li>adding &mdash;version command line option <a href="https://github.com/bigdatagenomics/adam/pull/888">#888</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Add exception in move_to_scala_2.11.sh for maven-javadoc-plugin <a href="https://github.com/bigdatagenomics/adam/pull/887">#887</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Fix tightlist bug in Pandoc <a href="https://github.com/bigdatagenomics/adam/pull/885">#885</a> (<a href="https://github.com/massie">massie</a>)</li>
+<li>[ADAM-883] Add caching to Transform pipeline. <a href="https://github.com/bigdatagenomics/adam/pull/884">#884</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.18.2 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/11/11/adam-0-dot-18-dot-2-released/"/>
+    <updated>2015-11-11T11:00:00-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/11/11/adam-0-dot-18-dot-2-released</id>
+    <content type="html"><![CDATA[<p>A few ADAM releases have been made since the last announcement; we&rsquo;ll attempt to catch up here.</p>
+
+<p>The most recent is a version <a href="https://github.com/bigdatagenomics/adam/releases">0.18.2 bugfix release</a>, built for both <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.18.2">Scala 2.10</a> and <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.18.2">Scala 2.11</a>.  It fixes <a href="https://github.com/bigdatagenomics/adam/pull/873">a minor issue</a> with the binary distribution artifact from version 0.18.1.</p>
+
+<p>Prior to version 0.18.2, we made significant changes to support version 0.6.0 of the Big Data Genomics <a href="https://github.com/bigdatagenomics/bdg-formats/releases/tag/bdg-formats-0.6.0">Avro data formats</a>.  We also improved performance on core transforms (markdups, indel realignment, bqsr) by using finer grained projection.  Some issues in 2bitfile when dealing with gaps and masked regions were fixed.  Round-trip transformations from native formats (e.g., FASTA, FASTQ, SAM, BAM) to ADAM and back have been improved.  We made extending ADAM more straightforward.</p>
+
+<p>ADAM now runs on a wide range of Apache Spark (1.2.1 up to and including the most recent, 1.5.1) and Apache Hadoop (currently 1.0.4, 2.3.0 and 2.6.0) versions.  This is verified by a compatibility matrix of Spark, Hadoop, and Scala version builds in our <a href="https://amplab.cs.berkeley.edu/jenkins/view/Big%20Data%20Genomics/">continuous integration system</a>.</p>
+
+<p>The full list of changes since version 0.17.0 is below.</p>
+
+<!-- more -->
+
+
+<h3>Version 0.18.2</h3>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/877">877</a>: Minor fix to commit script to support https.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/876">876</a>: Separate command line argument words by underscores</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/875">875</a>: P Operator parsing for MDTag</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/873">873</a>: [ADAM-872] Modify regex to capture release and SNAPSHOT jars but not javadoc or sources jars</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/866">866</a>: [ADAM-864] Don&rsquo;t force shuffle if reducing partition count.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/856">856</a>: export valid fastq</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/847">847</a>: Updating build dependency versions to latest minor versions</li>
 </ul>
 
 
-<p>Here is a screenshot of the clustering analysis notebook:</p>
+<h3>Version 0.18.1</h3>
 
-<p><img class="center" src="/images/1k-genomes-stratification.png"></p>
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/870">870</a>: [ADAM-867] add pull requests missing from 0.18.0 release to CHANGES.md</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/869">869</a>: [ADAM-868] make release branch and tag names consistent</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/862">862</a>: [ADAM-861] use -d to check for repo assembly dir</li>
+</ul>
 
-<h2>Data Analysis</h2>
 
-<h3>Data preparation (Convert VCF to ADAM)</h3>
+<h3>Version 0.18.0</h3>
 
-<p>Now that the VCF file is in HDFS, we can use ADAM and our cluster to convert it to the ADAM format, which undr the hood is a parquet (optimized) version based on the <a href="https://github.com/bigdatagenomics/bdg-formats">bdg-formats</a> schema (in avro). The resulting data consists of partitions saved as gz files (each of size 7MB), either on the cluster hdfs or on s3. In our case, we saved on both, a local copy for performance and a s3 copy reusable on other clusters.</p>
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/860">860</a>: New release and pr-commit scripts</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/859">859</a>: [ADAM-857] Corrected handling of env vars in bin scripts</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/854">854</a>: [ADAM-853] allow main class in adam-submit to be specified</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/852">852</a>: [ADAM-851] Slienced Parquet logging.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/850">850</a>: [ADAM-848] TwoBitFile now support nBlocks and maskBlocks</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/846">846</a>: Updating maven build plugin dependency versions</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/845">845</a>: [ADAM-780] Make DecadentRead package private.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/844">844</a>: [ADAM-843] Aggressively project out metadata fields.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/840">840</a>: fix flagstat output file encoding</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/839">839</a>: let flagstat write to file</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/831">831</a>: Support loading paired fastqs</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/830">830</a>: better validation when saving paired fastqs</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/829">829</a>: fix <code>Long != null</code> warnings</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/819">819</a>: Implement custom ReferenceRegion hashcode</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/816">816</a>: [ADAM-793] adding command to convert ADAM nucleotide contig fragments to FASTA files</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/815">815</a>: Upgrade to bdg-formats:0.6.0, add Fragment datatype converters</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/814">814</a>: [ADAM-812] fix for javadoc errors on JDK8</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/813">813</a>: [ADAM-808] build an assembly cli jar with maven shade plugin</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/810">810</a>: [ADAM-807] workaround for ktoso/maven-git-commit-id-plugin#61</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/809">809</a>: [ADAM-785] Add support for all numeric array (TYPE=B) tags</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/806">806</a>: [ADAM-755] updating utils dependency version to 0.2.3</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/805">805</a>: Better transform error when file doesn&rsquo;t exist</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/803">803</a>: fix unmapped-read sorting</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/802">802</a>: stop writing contig names as md5 sums</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/798">798</a>: fix SAM-attr conversion bug; int[]&rsquo;s not byte[]&rsquo;s</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/790">790</a>: optionally add MDTags to reads with <code>transform</code></li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/782">782</a>: Fix SAM Attribute parser for numeric array tags</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/773">773</a>: [ADAM-772] fix some bash var quoting</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/765">765</a>: [ADAM-752] Build for many combos of Spark/Hadoop versions.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/764">764</a>: More involved README restructuring</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/762">762</a>: [ADAM-132] allowing list of commands to be injected into adam-cli ADAMMain</li>
+</ul>
 
-<p>The code to do this is pretty trivial:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="c1">// UTIL FUNCTION TO MAKE HDFS URLS</span>
-</span><span class='line'><span class="k">def</span> <span class="n">hu</span><span class="o">(</span><span class="n">s</span><span class="k">:</span><span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="n">s</span><span class="s">&quot;hdfs://$master:9010/data/$s&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="nc">INPUT</span> <span class="nc">AND</span> <span class="nc">OUTPUT</span> <span class="nc">FILES</span> <span class="nc">ON</span> <span class="nc">HDFS</span>
-</span><span class='line'><span class="k">val</span> <span class="n">vcfFile</span> <span class="k">=</span> <span class="n">hu</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;/</span><span class="n">data</span><span class="o">/</span><span class="nc">ALL</span><span class="o">.</span><span class="n">chr1</span><span class="o">.</span><span class="n">vcf</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">outputFile</span> <span class="k">=</span> <span class="n">vcfFile</span><span class="o">+&amp;</span><span class="n">ldquo</span><span class="o">;.</span><span class="n">adam</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="nc">READ</span><span class="o">-</span><span class="nc">CONVERT</span><span class="o">-</span><span class="nc">SAVE</span>
-</span><span class='line'><span class="k">val</span> <span class="n">variantContext</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[</span><span class="kt">VariantContext</span><span class="o">]</span> <span class="k">=</span> <span class="n">sparkContext</span><span class="o">.</span><span class="n">adamVCFLoad</span><span class="o">(</span><span class="n">vcfFile</span><span class="o">,</span> <span class="n">dict</span> <span class="k">=</span> <span class="nc">None</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">genotypes</span> <span class="k">=</span> <span class="n">variantContext</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">genotypes</span><span class="o">)</span>
-</span><span class='line'><span class="n">gts</span><span class="o">.</span><span class="n">adamParquetSave</span><span class="o">(</span><span class="n">outputFile</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3>Samples: location filter and population labels</h3>
+<h3>Version 0.17.1</h3>
 
-<p>For practical reasons (available resources), we will not train the k-means model on all variants. We select a pretty arbitrary slice of a chromosome to limit ourselves to a dataset size that is processed in a few minutes.</p>
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/784">784</a>: [ADAM-783] Write @SQ header lines in sorted order.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/792">792</a>: [ADAM-791] Add repartition parameter to Fasta2ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/781">781</a>: [ADAM-777] Add validation stringency flag for BQSR.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/757">757</a>: We should print a warning message if the user has ADAM_OPTS set.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/770">770</a>: [ADAM-769] Fix serialization issue in known indel consensus model.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/763">763</a>: Clean up README links, other nits</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/749">749</a>: Remove adam-cli jar from classpath during adam-submit</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/754">754</a>: Bump ADAM to Spark 1.4</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/753">753</a>: Bump Spark to 1.4</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/748">748</a>: Fix for mdtag issues with insertions</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/746">746</a>: Upgrade to Parquet 1.8.1.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/744">744</a>: [ADAM-743] exclude conflicting jackson dependencies</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/737">737</a>: Reverse complement negative strand reads in fastq output</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/731">731</a>: Fixed bug preventing use of TLEN attribute</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/730">730</a>: [ADAM-729] Stuff TLEN into attributes.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/728">728</a>: [ADAM-709] Remove FeatureHierarchy and FeatureHierarchySuite</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/719">719</a>: [ADAM-718] Use filesystem path to get underlying file system.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/712">712</a>: unify header-setting between BAM/SAM and VCF</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/696">696</a>: include SequenceRecords from second-in-pair reads</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/698">698</a>: class-ify ShuffleRegionJoin, force setting seqdict</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/706">706</a>: restore clause guarding pruneCache check</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/705">705</a>: GeneFeatureRDDFunctions → FeatureRDDFunctions</li>
+</ul>
 
-<p>For example, selecting genotypes for variants located on chromosome1 between position 1 and 1,000,000 is done with a simple filter:</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Genomic Analysis Using ADAM, Spark and Deep Learning]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/07/10/genomic-analysis-using-adam/"/>
+    <updated>2015-07-10T10:19:45-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/07/10/genomic-analysis-using-adam</id>
+    <content type="html"><![CDATA[<blockquote><p>Special thanks to <a href="https://github.com/nfergu">Neil Ferguson</a> for this blog post on genomic analysis using ADAM, Spark and Deep Learning</p></blockquote>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">start</span> <span class="k">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="k">val</span> <span class="n">end</span> <span class="k">=</span> <span class="mi">1000000</span>
-</span><span class='line'><span class="k">val</span> <span class="n">sampledGts</span> <span class="k">=</span> <span class="n">genotypes</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">g</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="n">getVariant</span><span class="o">.</span><span class="n">getStart</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="o">&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="n">g</span><span class="o">.</span><span class="n">getVariant</span><span class="o">.</span><span class="n">getEnd</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;</span><span class="k">=</span> <span class="n">end</span><span class="o">)</span> <span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>Can we use deep learning to predict which population group you belong to, based solely on your genome?</p>
 
-<p>Our protocol consists in measuring how the processing a fixed sample will scale with the cluster size. We also check how performance scales with dataset size by varying the number of variants.</p>
+<p>Yes, we can &ndash; and in this post, we will show you exactly how to do this in a scalable way, using Apache Spark. We will explain how to apply <a href="https://en.wikipedia.org/wiki/Deep_learning">deep learning</a> using <a href="https://en.wikipedia.org/wiki/Artificial_neural_network">artifical neural networks</a> to predict which population group an individual belongs to &ndash; based entirely on his or her genomic data.</p>
 
-<p>Also, we do not include all populations, the reason is that populations relationships are best represented by hierarchical clustering, using simple K-means will not work well if we do not flatten the structure. So we select only 3 populations and train the K-means with 3 clusters. This really aims at targeting the purpose of evaluating the technologies, not discovering something original in the data.</p>
+<p>This is a follow-up to an earlier post: <a href="http://bdgenomics.org/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a> and attempts to replicate the results of that post. However, we will use a different machine learning technique.  Where the original post used <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means clustering</a>, we will use deep learning.</p>
 
-<p>The samples populations are available from the 1000genomes data repository and are converted into a map with samples IDs as keys and populations labels as value. This map is then broadcasted in the cluster to avoid shipping it in every closure:</p>
+<p>We will use <a href="https://github.com/bigdatagenomics/adam">ADAM</a> and <a href="https://spark.apache.org/">Apache Spark</a> in combination with <a href="http://0xdata.com/product/">H2O</a>, an open source predictive analytics platform, and <a href="http://0xdata.com/product/sparkling-water/">Sparking Water</a>, which integrates H2O with Spark.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;IN THE SHELL&amp;hellip;&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;wget &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/integrated_call_samples_v3.20130502.ALL.panel&quot;</span>&gt;ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/integrated_call_samples_v3.20130502.ALL.panel&lt;/a&gt; -O /vol0/data/ALL.panel
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<!-- more -->
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="c1">// IN THE NOTEBOOK</span>
-</span><span class='line'><span class="k">val</span> <span class="n">panelFile</span> <span class="k">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;/</span><span class="n">vol0</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="nc">ALL</span><span class="o">.</span><span class="n">panel</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="n">populations</span> <span class="n">to</span> <span class="n">select</span>
-</span><span class='line'><span class="k">val</span> <span class="n">pops</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="nc">GBR</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="nc">ASW</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="nc">CHB</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="nc">TRANSFORM</span> <span class="nc">THE</span> <span class="n">panelFile</span> <span class="nc">Content</span> <span class="n">in</span> <span class="n">the</span> <span class="n">sampleID</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="o">;&gt;</span> <span class="n">population</span> <span class="n">map</span>
-</span><span class='line'><span class="c1">// containing the populations of interest (pops)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">panel</span><span class="k">:</span> <span class="kt">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="o">&amp;</span><span class="n">hellip</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="n">broadcast</span> <span class="n">the</span> <span class="n">panel</span>
-</span><span class='line'><span class="k">val</span> <span class="n">bPanel</span> <span class="k">=</span> <span class="n">sparkContext</span><span class="o">.</span><span class="n">broadcast</span><span class="o">(</span><span class="n">panel</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>And we can filter the genotypes for hte selected populations:</p>
+<h2>Code</h2>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">genotypes</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">g</span> <span class="k">=&gt;</span>  <span class="n">bPanel</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="n">getSampleId</span><span class="o">))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>In this section, we&rsquo;ll dive straight into the code. If you&rsquo;d rather get something working before looking at the code you can skip to the &ldquo;Building and Running&rdquo; section.</p>
 
-<p>To understand if the k-means extracted population structure, we will compare the clusters assignments with the populations labels of the samples, i.e. in a confusion matrix.</p>
+<p>The complete Scala code for this example can be found in <a href="https://github.com/nfergu/popstrat/blob/master/src/main/scala/com/neilferguson/PopStrat.scala">the PopStrat.scala class on GitHub</a> and we&rsquo;ll refer to sections of the code here. Basic familiarity with Scala and <a href="https://spark.apache.org/">Apache Spark</a> is assumed.</p>
 
-<h3>Missing data</h3>
+<h3>Setting-up</h3>
 
-<p>Some data is missing, a few genotypes are not present in the Sample x Variant matrix. As we have plenty of variants to play with (up to ~ 30,000,000), removing the ones for which some genotypes are missing across the 1000 samples does not hurt.</p>
+<p>The first thing we need to do is to read the names of the Genotype and Panel files that are passed into our program.  The Genotype file contains data about a set of individuals (referred to here as &ldquo;samples&rdquo;) and their genetic variation. The Panel file lists the population group (or &ldquo;region&rdquo;) for each sample in the Genotype file; this is what we will try to predict.</p>
 
-<p>First, we must identify all such incomplete variants and optionally save the list on disk, this can come handy for the prediction phase. For convenience (later runs), the list of complete list of variants is saved as well:</p>
+<p><code>scala
+val genotypeFile = args(0)
+val panelFile = args(1)
+</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="c1">// NUMBER OF SAMPLES</span>
-</span><span class='line'><span class="k">val</span> <span class="n">sampleCount</span> <span class="k">=</span> <span class="n">genotypes</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">getSampleId</span><span class="o">.</span><span class="n">toString</span><span class="o">.</span><span class="n">hashCode</span><span class="o">).</span><span class="n">distinct</span><span class="o">.</span><span class="n">count</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="n">A</span> <span class="nc">VARIANT</span> <span class="nc">SHOULD</span> <span class="nc">HAVE</span> <span class="n">sampleCount</span> <span class="nc">GENOTYPES</span>
-</span><span class='line'><span class="c1">// variantId returns string identifier for a variant (see notebook ref&amp;hellip;)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">variantsById</span> <span class="k">=</span> <span class="n">gts</span><span class="o">.</span><span class="n">keyBy</span><span class="o">(</span><span class="n">g</span> <span class="k">=&gt;</span> <span class="n">variantId</span><span class="o">(</span><span class="n">g</span><span class="o">).</span><span class="n">hashCode</span><span class="o">).</span><span class="n">groupByKey</span>
-</span><span class='line'><span class="k">val</span> <span class="n">missingVariantsRDD</span> <span class="k">=</span> <span class="n">variantsById</span><span class="o">.</span><span class="n">filter</span> <span class="o">{</span> <span class="k">case</span> <span class="o">(</span><span class="n">k</span><span class="o">,</span> <span class="n">it</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">it</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">sampleCount</span> <span class="o">}.</span><span class="n">keys</span>
-</span><span class='line'><span class="n">missingVariantsRDD</span><span class="o">.</span><span class="n">saveAsObjectFile</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;/</span><span class="n">tmp</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">missing</span><span class="o">-</span><span class="n">variants</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;//</span> <span class="n">could</span> <span class="n">be</span> <span class="n">broadcased</span> <span class="n">as</span> <span class="n">well</span><span class="o">&amp;</span><span class="n">hellip</span><span class="o">;</span>
-</span><span class='line'><span class="k">val</span> <span class="n">missingVariants</span> <span class="k">=</span> <span class="n">missingVariantsRDD</span><span class="o">.</span><span class="n">collect</span><span class="o">().</span><span class="n">toSet</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>Next, we set-up our Spark Context. Our program permits the Spark master to be specified as one of its arguments. This is useful when running from an IDE, but is omitted when running from the <code>spark-submit</code> script (see below).</p>
 
-<p>Then, we remove all these incomplete variants from the dataset:</p>
+<p><code>scala
+val master = if (args.length &gt; 2) Some(args(2)) else None
+val conf = new SparkConf().setAppName("PopStrat")
+master.foreach(conf.setMaster)
+val sc = new SparkContext(conf)
+</code></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">genotypes</span><span class="o">.</span><span class="n">filter</span> <span class="o">{</span> <span class="n">g</span> <span class="k">=&gt;</span> <span class="o">!</span> <span class="o">(</span><span class="n">missingVariants</span> <span class="n">contains</span> <span class="n">variantId</span><span class="o">(</span><span class="n">g</span><span class="o">).</span><span class="n">hashCode</span><span class="o">)</span> <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>Next, we declare a set called <code>populations</code> which contains all of the population groups that we&rsquo;re interested
+in predicting. We then read the Panel file into a Map, filtering it based on the population groups in the
+<code>populations</code> set. The format of the panel file is described <a href="http://www.1000genomes.org/faq/what-panel-file">here</a>.
+Luckily it&rsquo;s very simple, containing the sample ID in the first column and the population group in the second.</p>
 
-<h3>Features extraction</h3>
+<p>```scala
+val populations = Set(&ldquo;GBR&rdquo;, &ldquo;ASW&rdquo;, &ldquo;CHB&rdquo;)
+def extract(file: String, filter: (String, String) => Boolean): Map[String,String] = {
+  Source.fromFile(file).getLines().map(line => {</p>
 
-<p>Before running the clustering algorithm (K-Means), we need to transform the data from a flat representation (RDD of genotypes) to a more structured one, matching the input requirements of MLLib training methods.</p>
-
-<p>Each sample must be represented by a vector of features in a space with a defined metric. MLLib relies on the breeze library for linear algebra and the euclidian metric is the one provided.</p>
-
-<p>Usually a Mahanatan distance is used in genetics, with genotypes encoded as 0, 1 or 2 (1 being the heterozygote). We have used this encoding albeit with breeze provides only the euclidian distance. A <code>asDouble(Genotype)</code> function does the genotype encoding.</p>
-
-<p>The rdd tranformations to obtain encoded genotypes, grouped by sampleId are:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">sampleToData</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[(</span><span class="kt">String</span>, <span class="o">(</span><span class="kt">Double</span>, <span class="kt">Int</span><span class="o">))]</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">genotypes</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">g</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="o">(</span><span class="n">g</span><span class="o">.</span><span class="n">getSampleId</span><span class="o">.</span><span class="n">toString</span><span class="o">,</span> <span class="o">(</span><span class="n">asDouble</span><span class="o">(</span><span class="n">g</span><span class="o">),</span> <span class="n">variantId</span><span class="o">(</span><span class="n">g</span><span class="o">).</span><span class="n">hashCode</span><span class="o">))</span> <span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">groupedSampleToData</span> <span class="k">=</span> <span class="n">sampleToData</span><span class="o">.</span><span class="n">groupByKey</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>And for each sample, we sort the genotypes by variant (i.e. variant name hash) so that each sample vector has its features consistently ordered (Vector is the MLLib Vector class):</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">makeSortedVector</span><span class="o">(</span><span class="n">gts</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[(</span><span class="kt">Double</span>, <span class="kt">Int</span><span class="o">)])</span><span class="k">:</span> <span class="kt">Vector</span> <span class="o">=</span> <span class="nc">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="o">(</span> <span class="n">gts</span><span class="o">.</span><span class="n">toArray</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(&lt;</span><span class="n">em</span><span class="o">&gt;.&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">).</span><span class="n">map</span><span class="o">(&lt;</span><span class="n">em</span><span class="o">&gt;.&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">)</span> <span class="o">)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">dataPerSampleId</span><span class="k">:</span><span class="kt">RDD</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">MLVector</span><span class="o">)]</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">groupedSampleToData</span><span class="o">.</span><span class="n">mapValues</span> <span class="o">{</span> <span class="n">it</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="n">makeSortedVector</span><span class="o">(</span><span class="n">it</span><span class="o">)</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">dataFrame</span><span class="k">:</span><span class="kt">RDD</span><span class="o">[</span><span class="kt">MLVector</span><span class="o">]</span> <span class="k">=</span> <span class="n">dataPerSampleId</span><span class="o">.</span><span class="n">values</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>At this stage, we have a dataset ready for training with MLLib!</p>
-
-<h3>Training and Predictions with K-Means</h3>
-
-<p>Training the model is achieved very easily, in this case with 3 clusters and 10 iterations&hellip;
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">model</span><span class="k">:</span> <span class="kt">KMeansModel</span> <span class="o">=</span> <span class="nc">KMeans</span><span class="o">.</span><span class="n">train</span><span class="o">(</span><span class="n">dataFrame</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">10</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>In order to check whether the samples clusters match the samples populations, we used the model to predict the cluster of each sample and compared these with the population label of the sample.</p>
-
-<p>There is one prediction for each sample (the key of the predictions RDD), as value we keep the predicted class (the cluster number as Int) and the population label:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">val</span> <span class="n">predictions</span><span class="k">:</span> <span class="kt">RDD</span><span class="o">[(</span><span class="kt">String</span>, <span class="o">(</span><span class="kt">Int</span>, <span class="kt">String</span><span class="o">))]</span> <span class="k">=</span> <span class="n">dataPerSampleId</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">elt</span> <span class="k">=&gt;</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;(</span><span class="n">elt</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="o">(</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="o">(</span><span class="n">elt</span><span class="o">.</span><span class="n">_2</span><span class="o">),</span> <span class="n">bPanel</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="n">elt</span><span class="o">.</span><span class="n">_1</span><span class="o">)))</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;})</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>We can extract and display the confusion matrix, clearly showing that the clustering actually matches pretty well the population:</p>
-
-<pre><code>    #0   #1   #2
-GBR  0    0   89
-ASW 54    0    7
-CHB  0   97    0
+<pre><code>val tokens = line.split("\t").toList
+tokens(0) -&gt; tokens(1)
 </code></pre>
 
-<h3>Performance</h3>
+<p>  }).toMap.filter(tuple => filter(tuple.<em>1, tuple.</em>2))
+}
+val panel: Map[String,String] = extract(panelFile, (sampleID: String, pop: String) => populations.contains(pop))
+```</p>
 
-<p>We have taken a few metrics to get an idea of how the ADAM and MLLib scale with available resources and dataset size. We ran the notebook on 2 clusters (2 and 20 slaves).
-We processed 3 datasets, one is a very limited sample (2,168 variants) the next is a medium one (121,023 variants). We also processed the entire chromosome 22 but only on the 20 nodes cluster (491,222 variants).</p>
+<h3>Preparing the Genomics Data</h3>
 
-<p>Note that we processed 114 partitions, which in the case of the 20 nodes (80 cores) cluster leads to a penalty because on average, 114/80 tasks are assigned to a core while 2 to 3 minimum are required to evenly distribute cores utilization.
-We systematically lose a factor 1.5 in performance on the 20 nodes cluster.</p>
+<p>Next, we use <a href="https://github.com/bigdatagenomics/adam">ADAM</a> to read our genotype data into a Spark RDD. Since we&rsquo;ve imported <code>ADAMContext._</code> at the top of our class, this is simply a matter of calling <code>loadGenotypes</code> on the Spark Context. Then, we filter the genotype data to contain only samples that are in the population groups which we&rsquo;re interested in.</p>
 
-<pre><code>                                     2 NODES       20 NODES
+<p><code>scala
+val allGenotypes: RDD[Genotype] = sc.loadGenotypes(genotypeFile)
+val genotypes: RDD[Genotype] = allGenotypes.filter(genotype =&gt; {panel.contains(genotype.getSampleId)})
+</code></p>
 
-Cluster launch:                       10 min         30 min 
+<p>Next, we convert the ADAM <code>Genotype</code> objects into our own <code>SampleVariant</code> objects. These objects contain just the data we need for further processing: the sample ID (which uniquely identifies a particular sample), a variant ID (which uniquely identifies a particular genetic variant) and a count of alternate <a href="http://www.snpedia.com/index.php/Allele">alleles</a>, where the sample differs from the reference genome. These variations will help us to classify individuals according to their population group.</p>
 
-Count chr22 genotypes (from S3):       6 min        1.1 min 
-Save chr22 from s3 to HDFS:           26 min        3.5 min 
-Count chr22 genotypes (from HDFS):    10 min        1.4 min 
+<p><code>scala
+case class SampleVariant(sampleId: String, variantId: Int, alternateCount: Int)
+def variantId(genotype: Genotype): String = {
+  val name = genotype.getVariant.getContig.getContigName
+  val start = genotype.getVariant.getStart
+  val end = genotype.getVariant.getEnd
+  s"$name:$start:$end"
+}
+def alternateCount(genotype: Genotype): Int = {
+  genotype.getAlleles.asScala.count(_ != GenotypeAllele.Ref)
+}
+def toVariant(genotype: Genotype): SampleVariant = {
+  // Intern sample IDs as they will be repeated a lot
+  new SampleVariant(genotype.getSampleId.intern(), variantId(genotype).hashCode(), alternateCount(genotype))
+}
+val variantsRDD: RDD[SampleVariant] = genotypes.map(toVariant)
+</code></p>
 
-2168 Variants
-Missing data (collect):                7 sec          3 sec
-Train (10 iterations):                20 sec         30 sec
-Predict (collect):                   0.5 sec        0.3 sec
+<p>Next, we count the total number of samples (individuals) in the data. We then group the data by variant ID and filter out those variants which do not appear in all of the samples. The aim of this is to simplify the processing of the data and, since we have a very large number of variants in the data (up to 30 million, depending on the exact data set), filtering out a small number will not make a significant difference to the results. In fact, in the next step we&rsquo;ll reduce the number of variants even further.</p>
 
-121,023 Variants
-Missing data (collect):              7.8 min         33 sec
-Train (10 iterations):               2.1 min         28 sec
-Predict (collect):                     8 sec          2 sec
+<p><code>scala
+val variantsBySampleId: RDD[(String, Iterable[SampleVariant])] = variantsRDD.groupBy(_.sampleId)
+val sampleCount: Long = variantsBySampleId.count()
+println("Found " + sampleCount + " samples")
+val variantsByVariantId: RDD[(Int, Iterable[SampleVariant])] = variantsRDD.groupBy(_.variantId).filter {
+  case (_, sampleVariants) =&gt; sampleVariants.size == sampleCount
+}
+</code></p>
 
-491,222 Variants
-Missing data (collect):                             3.7 min
-Train (10 iterations):                              1.6 min
-Predict (collect):                                   25 sec
+<p>When we train our machine learning model, each variant will be treated as a &ldquo;<a href="https://en.wikipedia.org/wiki/Feature_(machine_learning">feature</a>)&rdquo; that is used to train the model.  Since it can be difficult to train machine learning models with very large numbers of features in the data (particularly if the number of samples is relatively small), we first need to try and reduce the number of variants in the data.</p>
+
+<p>To do this, we first compute the frequency with which alternate alleles have occurred for each variant. We then filter the variants down to just those that appear within a certain frequency range. In this case, we&rsquo;ve chosen a fairly arbitrary frequency of 11. This was chosen through experimentation as a value that leaves around 3,000 variants in the data set we are using.</p>
+
+<p>There are more structured approaches to <a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">dimensionality reduction</a>, which we perhaps could have
+employed, but this technique seems to work well enough for this example.</p>
+
+<p>```scala
+val variantFrequencies: collection.Map[Int, Int] = variantsByVariantId.map {
+  case (variantId, sampleVariants) => (variantId, sampleVariants.count(_.alternateCount > 0))
+}.collectAsMap()
+val permittedRange = inclusive(11, 11)
+val filteredVariantsBySampleId: RDD[(String, Iterable[SampleVariant])] = variantsBySampleId.map {
+  case (sampleId, sampleVariants) =></p>
+
+<pre><code>val filteredSampleVariants = sampleVariants.filter(variant =&gt; permittedRange.contains(
+  variantFrequencies.getOrElse(variant.variantId, -1)))
+(sampleId, filteredSampleVariants)
 </code></pre>
 
-<p>We have not gathered here other metrics like memory utilization, amount of data shuffled etc, but this gives already a good idea on the scalability of the processing with ADAM and MLLib.</p>
+<p>}
+```</p>
 
-<h3>Conclusions</h3>
+<h3>Creating the Training Data</h3>
 
-<p>We have shown a flow to manipulate genetic data at scale with ADAM and MLLib. With the help of the spark notebook, it is pretty easy to develop such scalable genomes processing on top of ADAM and Spark. The cluster size is very transparent for the development phase, and the system proves to scale well with dataset size and number of node.</p>
+<p>To train our model, we need our data to be in tabular form where each row represents a single sample, and each column represents a specific variant. The table also contains a column for the population group or &ldquo;Region&rdquo;, which is what we are trying to predict.</p>
 
-<p>All in all, it becomes really fun and efficient to engage into distributed computing with such good APIs (ADAM, Spark), underlying data formats (parquet, avro), infrastructure (EC2 and the like), machine learning implementations (MLLib) and interactive development/execution environments (Spark-notebook).</p>
+<p>Ultimately, in order for our data to be consumed by H2O we need it to end up in an H2O <code>DataFrame</code> object. Currently, the best way to do this in Spark seems to be to convert our data to an RDD of Spark SQL <a href="http://spark.apache.org/docs/1.4.0/api/scala/index.html#org.apache.spark.sql.Row">Row</a> objects, and then this can automatically be converted to an H2O DataFrame.</p>
+
+<p>To achieve this, we first need to group the data by sample ID, and then sort the variants for each sample in a consistent manner (by variant ID). We can then create a header row for our table, containing the Region column, the sample ID and all of the variants. We then create an RDD of type <code>Row</code> for each sample.</p>
+
+<p>```scala
+val sortedVariantsBySampleId: RDD[(String, Array[SampleVariant])] = filteredVariantsBySampleId.map {
+  case (sampleId, variants) =></p>
+
+<pre><code>(sampleId, variants.toArray.sortBy(_.variantId))
+</code></pre>
+
+<p>}
+val header = StructType(Array(StructField(&ldquo;Region&rdquo;, StringType)) ++
+  sortedVariantsBySampleId.first()._2.map(variant => {StructField(variant.variantId.toString, IntegerType)}))
+val rowRDD: RDD[Row] = sortedVariantsBySampleId.map {
+  case (sampleId, sortedVariants) =></p>
+
+<pre><code>val region: Array[String] = Array(panel.getOrElse(sampleId, "Unknown"))
+val alternateCounts: Array[Int] = sortedVariants.map(_.alternateCount)
+Row.fromSeq(region ++ alternateCounts)
+</code></pre>
+
+<p>}
+```</p>
+
+<p>As mentioned above, once we have our RDD of <code>Row</code> objects we can then convert these automatically to an H2O DataFrame using Sparking Water (H2O&rsquo;s Spark integration).</p>
+
+<p><code>scala
+val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+val schemaRDD = sqlContext.applySchema(rowRDD, header)
+val h2oContext = new H2OContext(sc).start()
+import h2oContext._
+val dataFrame = h2oContext.toDataFrame(schemaRDD)
+</code></p>
+
+<p>Now that we have a DataFrame, we want to split it into the training data (which we&rsquo;ll use to train our model), and a <a href="https://en.wikipedia.org/wiki/Test_set">test set</a> (which we&rsquo;ll use to ensure that <a href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a> has not occurred).</p>
+
+<p>We will also create a &ldquo;validation&rdquo; set, which performs a similar purpose to the test set &ndash; in that it will be used to validate the strength of our model as it is being built, while avoiding overfitting. However, when training a neural network, we typically keep the validation set distinct from the test set, to enable us to learn <a href="http://colinraffel.com/wiki/neural_network_hyperparameters">hyper-parameters</a> for the model. See <a href="http://neuralnetworksanddeeplearning.com/chap3.html">chapter 3 of Michael Nielsen&rsquo;s &ldquo;Neural Networks and Deep Learning&rdquo;</a>
+for more details on this.</p>
+
+<p>H2O comes with a class called <code>FrameSplitter</code>, so splitting the data is simply a matter of calling creating one of those and letting it split the data set.</p>
+
+<p><code>scala
+val frameSplitter = new FrameSplitter(dataFrame, Array(.5, .3), Array("training", "test", "validation").map(Key.make), null)
+water.H2O.submitTask(frameSplitter)
+val splits = frameSplitter.getResult
+val training = splits(0)
+val validation = splits(2)
+</code></p>
+
+<h3>Training the Model</h3>
+
+<p>Next, we need to set the parameters for our deep learning model. We specify the training and validation data sets, as well as the column in the data which contains the item we are trying to predict (in this case, the Region).  We also set some <a href="http://colinraffel.com/wiki/neural_network_hyperparameters">hyper-parameters</a> which affect the way the model learns. We won&rsquo;t go into detail about these here, but you can read more in the <a href="http://docs.h2o.ai/h2oclassic/datascience/deeplearning.html">H2O documentation</a>. These parameters have been chosen through experimentation &ndash; however, H2O provides methods for <a href="http://learn.h2o.ai/content/hands-on_training/deep_learning.html">automatically tuning hyper-parameters</a> so it may be possible to achieve better results by employing one of these methods.</p>
+
+<p><code>scala
+val deepLearningParameters = new DeepLearningParameters()
+deepLearningParameters._train = training
+deepLearningParameters._valid = validation
+deepLearningParameters._response_column = "Region"
+deepLearningParameters._epochs = 10
+deepLearningParameters._activation = Activation.RectifierWithDropout
+deepLearningParameters._hidden = Array[Int](100,100)
+</code></p>
+
+<p>Finally, we&rsquo;re ready to train our deep learning model! Now that we&rsquo;ve set everything up this is easy:
+we simply create a H2O <code>DeepLearning</code> object and call <code>trainModel</code> on it.</p>
+
+<p><code>scala
+val deepLearning = new DeepLearning(deepLearningParameters)
+val deepLearningModel = deepLearning.trainModel.get
+</code></p>
+
+<p>Having trained our model in the previous step, we now need to check how well it predicts the population groups in our data set. To do this we &ldquo;score&rdquo; our entire data set (including training, test, and validation data) against our model:</p>
+
+<p><code>scala
+deepLearningModel.score(dataFrame)('predict)
+</code></p>
+
+<p>This final step will print a <a href="https://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> which shows how well our model predicts our population groups. All being well, the confusion matrix should look something like this:</p>
+
+<p><code>
+Confusion Matrix (vertical: actual; across: predicted):
+ASW    CHB GBR  Error      Rate
+ASW     60   1   0 0.0164 = 1 /  61
+CHB      0 103   0 0.0000 = 0 / 103
+GBR      0   1  90 0.0110 = 1 /  91
+Totals  60 105  90 0.0078 = 2 / 255
+</code></p>
+
+<p>This tells us that the model has correctly predicted 253 out of 255 population groups correctly (an accuracy of more than 99%). Nice!</p>
+
+<h2>Building and Running</h2>
+
+<h3>Prerequisites</h3>
+
+<p>Before building and running the example, please ensure you have version 7 or later of the
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK</a> installed.</p>
+
+<h3>Building</h3>
+
+<p>To build the example, first clone the GitHub repo at <a href="https://github.com/nfergu/popstrat">https://github.com/nfergu/popstrat</a>.</p>
+
+<p>Then <a href="http://maven.apache.org/download.cgi">download and install Maven</a>. Then, at the command line, type:</p>
+
+<p><code>
+mvn clean package
+</code></p>
+
+<p>This will build a JAR (<code>target/uber-popstrat-0.1-SNAPSHOT.jar</code>), containing the <code>PopStrat</code> class,
+as well as all of its dependencies.</p>
+
+<h3>Running</h3>
+
+<p>First, <a href="http://spark.apache.org/downloads.html">download Spark version 1.2.0</a> and unpack it on your machine.</p>
+
+<p>Next you&rsquo;ll need to get some genomics data. Go to your <a href="http://www.1000genomes.org/data#DataAccess">nearest mirror of the 1000 genomes FTP site</a>.  From the <code>release/20130502/</code> directory download the <code>ALL.chr22.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz</code> file and the <code>integrated_call_samples_v3.20130502.ALL.panel</code> file. The first file file is the genotype data for chromosome 22, and the second file is the panel file, which describes the population group for each sample in the genotype data.</p>
+
+<p>Unzip the genotype data before continuing. This will require around 10GB of disk space.</p>
+
+<p>To speed up execution and save disk space, you can convert the genotype VCF file to <a href="https://github.com/bigdatagenomics/adam">ADAM</a> format (using the ADAM <code>transform</code> command) if you wish. However, this will take some time up-front. Both ADAM and VCF formats are supported.</p>
+
+<p>Next, run the following command:</p>
+
+<p><code>bash
+$ YOUR_SPARK_HOME/bin/spark-submit --class "com.neilferguson.PopStrat" --master local[6] --driver-memory 6G target/uber-popstrat-0.1-SNAPSHOT.jar &lt;genotypesfile&gt; &lt;panelfile&gt;
+</code></p>
+
+<p>Replacing &lt;genotypesfile&gt; with the path to your genotype data file (ADAM or VCF), and &lt;panelfile&gt; with the panel file from 1000 genomes.</p>
+
+<p>This runs the example using a local (in-process) Spark master with 6 cores and 6GB of RAM. You can run against a different Spark cluster by modifying the options in the above command line. See the <a href="https://spark.apache.org/docs/1.2.0/submitting-applications.html">Spark documentation</a> for further details.</p>
+
+<p>Using the above data, the example may take up to 2-3 hours to run, depending on hardware. When it is finished, you should see a <a href="http://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a> which shows the predicted versus the actual populations. If all has gone well, this should show an accuracy of more than 99%. See the &ldquo;Code&rdquo; section above for more details on what exactly you should expect to see.</p>
+
+<h2>Conclusion</h2>
+
+<p>In this post, we have shown how to combine ADAM and Apache Spark with H2O&rsquo;s deep learning capabilities to predict an individual&rsquo;s population group based on his or her genomic data. Our results demonstrate that we can predict these very well, with more than 99% accuracy. Our choice of technologies makes for a relatively straightforward implementation, and we expect it to be very scalable.</p>
+
+<p>Future work could involve validating the scalability of our solution on more hardware, trying to predict a wider range of population groups (currently we only predict 3 groups), and tuning the deep learning hyper-parameters to achieve even better accuracy.</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[ADAM 0.15.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released/"/>
-    <updated>2014-11-26T10:27:00-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/26/adam-0-dot-15-dot-0-released</id>
-    <content type="html"><![CDATA[<p>We&rsquo;re proud to announce the <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.15.0">release of ADAM 0.15.0</a>!</p>
+    <title type="html"><![CDATA[ADAM 0.17.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released/"/>
+    <updated>2015-06-04T10:49:26-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/06/04/adam-0-dot-17-dot-0-released</id>
+    <content type="html"><![CDATA[<p>The 0.17.0 release of ADAM includes a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.17.0">release for Scala 2.10</a> and a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.17.0">release for Scala 2.11</a>. We&rsquo;ve been working to cleanup APIs and simplify ADAM for developers. Code that isn&rsquo;t useful has been removed. Code that belongs in other downstream or upstream projects has been moved. Parquet and HTSJDK has been upgraded.</p>
 
-<p>This release includes important memory and performance improvements, better documentation, new features and many bug fixes.</p>
-
-<p>We have upgraded from Parquet <code>1.4.3</code> to <code>1.6.0</code> in order to dramatically reduce our memory footprint. For string columns with dictionary encoding, the amount of memory used will now be proportional to the number of dictionary entries instead of the number of records materialized. Parquet 1.6.0 also provides improved column statistics and the ability to store custom metadata. We will use these features in subsequent ADAM releases to improve random access performance. Note that ADAM <code>0.14.0</code> had a serious memory regression so upgrading to <code>0.15.0</code> as soon as possible is recommended.</p>
-
-<p>We are unhappy with the quality of the documentation we have been providing ADAM users and are working to improve it. With this release, all documentation has been centralized into the <code>./docs</code> directory and we&rsquo;re using <code>pandoc</code> to convert the Markdown source into both PDF and HTML formats. We are committed to improving the content of the docs over time and welcome your pull requests!</p>
-
-<p>This release includes <a href="https://repo1.maven.org/maven2/org/bdgenomics/adam/adam-distribution/0.15.0/">binary distributions</a> to make it easier for you to get up and running with ADAM. We do not include any Spark or Hadoop artifacts in order to prevent versioning conflicts. For application developers, we have also changed our Spark and Hadoop dependencies to <code>provided</code>. This means that you can more easily running on ADAM using your preferred Spark and Hadoop version and configuration. We want to make deployment as easy as possible.</p>
-
-<p>This release includes numerous features and bug fixes that are detailed below:</p>
+<p>There are also some new features, e.g. you can now now <code>transform</code> all the SAM/BAM files in a directory by specifying the directory and there&rsquo;s a new <code>flatten</code> command that allows you to flatten the schema of ADAM data to process in Impala, Hive, SparkSQL, etc; there are also many bug fixes.</p>
 
 <!-- more -->
 
 
+<p>For more details, see the following pull requests:</p>
+
 <ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/509">509</a>: Add a &lsquo;distribution&rsquo; module to create assemblies</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/508">508</a>: Upgrade from Parquet 1.4.3 to 1.6.0rc4</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/498">498</a>: [ADAM-496] Changes VCF to flat ADAM command name and usage</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/500">500</a>: [ADAM-495] Require SPARK_HOME for adam-submit</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/501">501</a>: [ADAM-499] Add -onlyvariants option to vcf2adam</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/507">507</a>: [ADAM-505] Removed <code>adam-local</code> from docs</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/504">504</a>: [ADAM-502] Add missing Long implicit to ColumnReaderInput</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/503">503</a>: [ADAM-473] Make RecordCondition and FieldCondition public</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/494">494</a>: Fix foreach block for vcf ingest</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/492">492</a>: Documentation cleanup and style improvements</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/481">481</a>: [ADAM-480] Switch assembly to single goal.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/487">487</a>: [ADAM-486] Add port option to viz command.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/469">469</a>: [ADAM-461] Fix ReferenceRegion and ReferencePosition impl</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/440">440</a>: [ADAM-439] Fix ADAM to account for BDG-FORMATS-35: Avro uses Strings</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/470">470</a>: added ReferenceMapping for Genotype, filterByOverlappingRegion for GenotypeRDDFunctions</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/468">468</a>: refactor RDD loading; explicitly load alignments</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/474">474</a>: Consolidate documentation into a single location in source.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/471">471</a>: Fixed typo on MAVEN_OPTS quotation mark</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/467">467</a>: [ADAM-436] Optionally output original qualities to fastq</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/451">451</a>: add <code>adam view</code> command, analogous to <code>samtools view</code></li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/466">466</a>: working examples on .sam included in repo</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/458">458</a>: Remove unused val from Reads2Ref</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/438">438</a>: Add ability to save paired-FASTQ files</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/457">457</a>: A few random Predicate-related cleanups</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/459">459</a>: a few tweaks to scripts/jenkins-test</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/460">460</a>: Project only the sequence when kmer/qmer counting</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/450">450</a>: Refactor some file writing and reading logic</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/455">455</a>: [ADAM-454] Add serializers for Avro objects which don&rsquo;t have serializers</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/447">447</a>: Update the contribution guidelines</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/453">453</a>: Better null handling for isSameContig utility</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/417">417</a>: Stores original position and original cigar during realignment.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/449">449</a>: read “OQ” attr from structured SAMRecord field</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/446">446</a>: Revert &ldquo;[ADAM-237] Migrate to Chill serialization libraries.&rdquo;</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/437">437</a>: random nits</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/434">434</a>: Few transform tweaks</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/435">435</a>: [ADAM-403] Remove seqDict from RegionJoin</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/431">431</a>: A few tweaks, typo corrections, and random cleanups</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/430">430</a>: [ADAM-429] adam-submit now handles args correctly.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/427">427</a>: Fixes for indel realigner issues</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/418">418</a>: [ADAM-416] Removing &lsquo;ADAM&rsquo; prefix</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/404">404</a>: [ADAM-327] Adding gene, transcript, and exon models.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/414">414</a>: Fix error in <code>adam-local</code> alias</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/415">415</a>: Update README.md to reflect Spark 1.1</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/412">412</a>: [ADAM-411] Updated usage aliases in README. Fixes #411.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/408">408</a>: [ADAM-405] Add FASTQ output.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/385">385</a>: [ADAM-384] Adds import from FASTQ.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/400">400</a>: [ADAM-399] Fix link to schemas.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/396">396</a>: [ADAM-388] Sets Kryo serialization with &mdash;conf args</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/394">394</a>: [ADAM-393] Adds knobs to SparkContext creation in SparkFunSuite</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/391">391</a>: [ADAM-237] Migrate to Chill serialization libraries.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/380">380</a>: Rewrite of MarkDuplicates which seems to improve performance</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/387">387</a>: fix some deprecation warnings</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/691">691</a>: fix BAM/SAM header setting when writing on cluster</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/688">688</a>: make adamLoad public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/694">694</a>: Fix parent reference in distribution module</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/684">684</a>: a few region-join nits</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/682">682</a>: [ADAM-681] Remove menacing error message about reqd .adam extension</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/680">680</a>: [ADAM-674] Delete Bam2ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/678">678</a>: upgrade to bdg utils 0.2.1</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/668">668</a>: [ADAM-597] Move correction out of ADAM and into a downstream project.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/671">671</a>: Bug fix in ReferenceUtils.unionReferenceSet</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/667">667</a>: [ADAM-666] Clean up key not found error in partitioner code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/656">656</a>: Update Vcf2ADAM.scala</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/652">652</a>: added filterByOverlappingRegion in GeneFeatureRDDFunctions</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/650">650</a>: [ADAM-649] Support transform of all BAM/SAM files in a directory.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/647">647</a>: [ADAM-646] Special case reads with &lsquo;*&rsquo; quality during BQSR.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/645">645</a>: [ADAM-634] Create a local ParquetLister for testing purposes.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/633">633</a>: [Adam] Tests for SAMRecordConverter.scala</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/641">641</a>: [ADAM-640] Fix incorrect exclusion for org.seqdoop.htsjdk.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/632">632</a>: [ADAM-631] Allow VCF conversion to sort on output after coalescing.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/628">628</a>: [ADAM-627] Makes ReferenceFile trait extend Serializable.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/637">637</a>: check for mac brew alternate spark install structure</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/624">624</a>: Conceptual fix for duplicate marking and sorting stragglers</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/629">629</a>: [ADAM-604] Remove normalization code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/630">630</a>: Add flatten command.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/619">619</a>: [ADAM-540] Move to new HTSJDK release; should support Java 8.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/626">626</a>: [ADAM-625] Enable globbing for BAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/621">621</a>: Removes the predicates package.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/620">620</a>: [ADAM-600] Adding RegionJoin trait.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/616">616</a>: [ADAM-565] Upgrade to Parquet filter2 API.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/613">613</a>: [ADAM-612] Point to proper k-mer counters.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/588">588</a>: [ADAM-587] Clean up loading checks.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/592">592</a>: [ADAM-513] Remove ReferenceMappable trait.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/606">606</a>: [ADAM-605] Remove visualization code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/596">596</a>: [ADAM-595] Delete the &lsquo;comparisons&rsquo; code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/590">590</a>: [ADAM-589] Removed pileup code.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/586">586</a>: [ADAM-452] Fixes SM attribute on ADAM to BAM conversion.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/584">584</a>: [ADAM-583] Add k-mer counting functionality for nucleotide contig fragments</li>
 </ul>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Lightning Fast Genomics]]></title>
-    <link href="http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics/"/>
-    <updated>2014-11-03T08:24:15-08:00</updated>
-    <id>http://bdgenomics.org/blog/2014/11/03/lightning-fast-genomics</id>
-    <content type="html"><![CDATA[<p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
+    <title type="html"><![CDATA[ADAM 0.16.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released/"/>
+    <updated>2015-02-18T16:32:31-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.16.0">ADAM 0.16.0</a> is now available.</p>
 
-<blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
+<p>This release improves the performance of Base Quality Score Recalibration (BQSR) by 3.5x, adds support for multiline FASTQ input, visualization of variants when given VCF input, includes a new RegionJoin implementation that is shuffle-based, and adds new methods for region coverage calculations.</p>
 
-<p>Andy and Xavier&rsquo;s talk included a demo: using Spark&rsquo;s MLlib to do population stratification across 1000 Genomes in just a few minutes in the cloud using Amazon Web Services (AWS). Their talk highlights the advantages of building on open-source technologies, like Apache <a href="http://spark.apache.org">Spark</a> and <a href="http://parquet.io">Parquet</a>, designed for performance and scale.</p>
+<p>Drop into our Gitter channel to talk with us about this release</p>
 
-<p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
-
-<iframe src="http://bdgenomics.org//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="http://bdgenomics.org//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="http://bdgenomics.org//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ADAM 0.14.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released/"/>
-    <updated>2014-09-17T14:33:35-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/09/17/adam-0-dot-14-dot-0-released</id>
-    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
-
-<p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
-
-<p>The <a href="http://sourceforge.net/projects/hadoop-bam/">Hadoop-BAM</a> team is now publishing <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.seqdoop%22">their artifacts to Maven Central</a> (yea!) so we no longer rely on snapshot releases. ADAM <code>0.14.0</code> uses the <code>7.0.0</code> release of Hadoop-BAM.</p>
-
-<p>This release also adds a new Java plugin interface, improves MD tag processing as well as fixes numerous bugs.</p>
-
-<p>We hope that you enjoy this release. Drop by <code>#adamdev</code> on freenode.net, <a href="https://twitter.com/bigdatagenomics">follow us on Twitter</a> or <a href="http://bdgenomics.org/mail/">subscribe to our mailing list</a> to stay in touch.</p>
+<p><a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a></p>
 
 <!-- more -->
 
 
-<p>For more details, see the changelog below:</p>
+<p>Complete list of changes for ADAM <code>0.16.0</code>:</p>
 
 <ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/376">376</a>: [ADAM-375] Upgrade to Hadoop-BAM 7.0.0.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/378">378</a>: [ADAM-360] Upgrade to Spark 1.1.0.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/379">379</a>: Fix the position of the jar path in the submit.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/383">383</a>: Make Mdtags handle &lsquo;=&rsquo; and &lsquo;X&rsquo; cigar operators</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/369">369</a>: [ADAM-369] Improve debug output for indel realigner</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/377">377</a>: [ADAM-377] Update to Jenkins scripts and README.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/374">374</a>: [ADAM-372][ADAM-371][ADAM-365] Refactoring CLI to simplify and integrate with Spark model better</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/370">370</a>: [ADAM-367] Updated alias in README.md</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/368">368</a>: erasure, nonexhaustive-match, deprecation warnings</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/354">354</a>: [ADAM-353] Fixing issue with SAM/BAM/VCF header attachment when running distributed</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/357">357</a>: [ADAM-357] Added Java Plugin hook for ADAM.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/352">352</a>: Fix failing MD tag</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/363">363</a>: Adding maven assembly plugin configuration to create tarballs</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/364">364</a>: [ADAM-364] Fixing remaining cs.berkeley.edu URLs.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/362">362</a>: Remove mention of uberjar from README</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ADAM 0.13.0 Released]]></title>
-    <link href="http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released/"/>
-    <updated>2014-08-20T14:04:41-07:00</updated>
-    <id>http://bdgenomics.org/blog/2014/08/20/adam-0-dot-13-dot-0-released</id>
-    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.13.0">0.13.0</a> is now available!</p>
-
-<p>This release includes <a href="https://github.com/bigdatagenomics/adam/pull/346">genome visualization</a> to view aligned reads and coverage
-information over a reference region. You simply run e.g. <code>adam viz myreads.adam chr1</code> from the ADAM source directory and open
-your favorite web browser to <a href="http://localhost:8080/">http://localhost:8080/</a> to view your data.</p>
-
-<p>This release also includes a number of features and bug fixes including upgrading to Spark 1.0.1.</p>
-
-<!-- more -->
-
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/343">343</a>: Allow retrying on failure for HTTPRangedByteAccess</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/349">349</a>: Fix for a NullPointerException when hostname is null in Task Metrics</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/347">347</a>: Bug fix for genome browser</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/346">346</a>: Genome visualization</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/342">342</a>: [ADAM-309] Update to bdg-formats 0.2.0</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/333">333</a>: [ADAM-332] Upgrades ADAM to Spark 1.0.1.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/341">341</a>: [ADAM-340] Adding the TrackedLayout trait and implementation.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/337">337</a>: [ADAM-335] Updated README.md to reflect migration to appassembler.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/311">311</a>: Adding several simple normalizations.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/330">330</a>: Make mismatch and deletes positions accessible</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/334">334</a>: Moving code coverage into a profile</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/329">329</a>: Add count of mismatches to mdtag</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/328">328</a>: [ADAM-326] Adding a 5-second retry on the HttpRangedByteAccess test.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/325">325</a>: Adding documentation for commit/issue nomenclature and rebasing</li>
-</ul>
-
-
-<p>This summer, we also quietly pushed out a <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.12.1">0.12.1</a> release
-that included a number of features (e.g. Parquet and indexed Parquet Spark RDDs, k-mer/q-mer counting, fixed depth prefix tries) and bug fixes:</p>
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/308">308</a>: Fixing the &lsquo;index 0&rsquo; bug in features2adam</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/306">306</a>: Adding code for lifting over between sequences and the reference genome.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/320">320</a>: Remove extraneous implicit methods in ReferenceMappingContext</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/314">314</a>: Updates to indel realigner to improve performance and accuracy.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/319">319</a>: Adding scripts for publishing scaladoc.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/315">315</a>: Added table of (wall-clock) stage durations when print_metrics is used</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/312">312</a>: Fixing sources jar</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/313">313</a>: Making the CredentialsProperties file optional</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/267">267</a>: Parquet and indexed Parquet RDD implementations, and indices.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/301">301</a>: Add Beacon&rsquo;s AlleleCount</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/293">293</a>: Add aggregation and display of metrics obtained from Spark</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/295">295</a>: Fix broken link to ADAM specification for storing reads.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/292">292</a>: Cleaning up scaladoc generation warnings.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/289">289</a>: Modifying interleaved fastq format to be hadoop version independent.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/288">288</a>: Add ADAMFeature to Kryo registrator</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/286">286</a>: Removing some debug printout that was left in.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/287">287</a>: Cleaning hadoop dependencies</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/285">285</a>: Refactoring read groups to increase the amount of data stored.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/284">284</a>: Cleaning up build warnings.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/280">280</a>: Move to bdg-formats</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/283">283</a>: Fix reference name comment</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/282">282</a>: Minor cleanup on interleaved FASTQ input format.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/277">277</a>: Implemented HTTPRangedByteAccess.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/274">274</a>: Added clarifying note to <code>ADAMVariantContext</code></li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/279">279</a>: Simplify format-source</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/278">278</a>: Use maven license plugin to ensure source has correct license</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/268">268</a>: Adding fixed depth prefix trie implementation</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/273">273</a>: Fixes issue in reference models where strings are not sanitized on collection from avro.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/272">272</a>: Created command categories</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/269">269</a>: Adding k-mer and q-mer counting.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/271">271</a>: Consolidate Parquet logging configuration</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/570">570</a>: A few small conversion fixes</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/579">579</a>: [ADAM-578] Update end of read when trimming.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/564">564</a>: [ADAM-563] Add warning message when saving Parquet files with incorrect extension</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/576">576</a>: Changed hashCode implementations to improve performance of BQSR</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/569">569</a>: Typo in the narrowPeak parser</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/568">568</a>: Moved the Timers object from bdg-utils back to ADAM</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/478">478</a>: Move non-genomics code</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/550">550</a>: [ADAM-549] Added documentation for testing and CI for ADAM.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/555">555</a>: Makes maybeLoadVCF private.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/558">558</a>: Makes Features2ADAMSuite use SparkFunSuite</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/557">557</a>: Randomize ports and turn off Spark UI to reduce bind exceptions in tests</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/552">552</a>: Create test suite for FlagStat</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/554">554</a>: privatize ADAMContext.maybeLoad{Bam,Fastq}</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/551">551</a>: [ADAM-386] Multiline FASTQ input</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/542">542</a>: Variants Visualization</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/545">545</a>: [ADAM-543][ADAM-544] Fix issues with ADAM scripts and classpath</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/535">535</a>: [ADAM-441] put a check in for Nothing. Throws an IAE if no return type is provided</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/546">546</a>: [ADAM-532] Fix wigFix intermittent test failure</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/534">534</a>: [ADAM-528][ADAM-533] Adds new RegionJoin impl that is shuffle-based</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/531">531</a>: [ADAM-529] Attaching scaladoc to released distribution.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/413">413</a>: [ADAM-409][ADAM-520] Added local wigfix2bed tool</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/527">527</a>: [ADAM-526] <code>VcfAnnotation2ADAM</code> only counts once</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/523">523</a>: don&rsquo;t open non-.adam-extension files as ADAM files</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/521">521</a>: quieting wget output</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/482">482</a>: [ADAM-462] Coverage region calculation</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/515">515</a>: [ADAM-510] fix for bash syntax error; add ADDL_JARS check to adam-submit</li>
 </ul>
 
 ]]></content>
