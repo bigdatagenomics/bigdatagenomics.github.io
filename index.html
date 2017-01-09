@@ -124,6 +124,66 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-01-06T11:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2017</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM version 0.21.0 has been <a href="https://github.com/bigdatagenomics/adam/releases">released</a>!</p>
+
+<p>Due to major changes between Spark versions 1.6 and 2.0, we now build for combinations of Apache Spark and Scala versions:
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.21.0">Spark 1.x and Scala 2.10</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.21.0">Spark 1.x and Scala 2.11</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.10-0.21.0">Spark 2.x and Scala 2.10</a>, and
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.11-0.21.0">Spark 2.x and Scala 2.11</a>.
+The Spark 2.x build-time dependency will be bumped to version 2.1.0 in the next release of ADAM, see issue <a href="https://github.com/bigdatagenomics/adam/issues/1330">#1330</a>.</p>
+
+<p>One focus of this release was documentation, both at the developer API level, including extensive javadoc and scaladoc
+source code comments, and at the user level (e.g. <a href="https://github.com/bigdatagenomics/adam/tree/master/docs/source">https://github.com/bigdatagenomics/adam/tree/master/docs/source</a>). The
+user docs can be compiled to PDF or HTML with pandoc, but to be honest they look better rendered as Markdown on Github.</p>
+
+<p>Another focus was to more closely follow the VCF specification(s) when reading from and writing to VCF.
+For this we made significant changes to our variant and variant annotation schema and added support
+for version 1.0 of the <a href="http://snpeff.sourceforge.net/VCFannotationformat_v1.0.pdf">VCF INFO &lsquo;ANN&rsquo; key specification</a>.
+This work will continue for our genotype and genotype annotation schema in the next version of ADAM.</p>
+
+<p>The full list of changes since version 0.20.0 is below.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-10-19T12:00:00-07:00" pubdate data-updated="true">Oct 19<span>th</span>, 2016</time>
         
       </p>
@@ -581,56 +641,6 @@ Based on the data we have, we can for example:</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-09-17T14:33:35-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">ADAM 0.14.0 Released</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.14.0">0.14.0</a> is now available. Special thanks to Arun Ahuja, Timothy Danford, Michael L Heuer, Uri Laserson, Frank Nothaft, Andy Petrella and Ryan Williams for their contributions to this release!</p>
-
-<p>This release uses the <a href="https://spark.apache.org/releases/spark-release-1-1-0.html">newly-released Apache Spark 1.1.0</a> which brings operational and performance improvements in Spark core. Two new scripts, <code>adam-shell</code> and <code>adam-submit</code>, allow you to use ADAM via the Spark shell or the Spark submit script in addition to the ADAM CLI.</p>
-
-<p>The <a href="http://sourceforge.net/projects/hadoop-bam/">Hadoop-BAM</a> team is now publishing <a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.seqdoop%22">their artifacts to Maven Central</a> (yea!) so we no longer rely on snapshot releases. ADAM <code>0.14.0</code> uses the <code>7.0.0</code> release of Hadoop-BAM.</p>
-
-<p>This release also adds a new Java plugin interface, improves MD tag processing as well as fixes numerous bugs.</p>
-
-<p>We hope that you enjoy this release. Drop by <code>#adamdev</code> on freenode.net, <a href="https://twitter.com/bigdatagenomics">follow us on Twitter</a> or <a href="http://bdgenomics.org/mail/">subscribe to our mailing list</a> to stay in touch.</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="btn btn-default" rel="full-article" href="/blog/2014/09/17/adam-0-dot-14-dot-0-released/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -674,6 +684,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
     
     <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
@@ -681,8 +693,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2015/11/11/adam-0-dot-18-dot-2-released/">ADAM 0.18.2 Released</a>
     
     <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
-    
-    <a class="list-group-item " href="/blog/2015/06/04/adam-0-dot-17-dot-0-released/">ADAM 0.17.0 Released</a>
     
   </div>
 </section>
@@ -704,7 +714,7 @@ Java and .NET applications. Take a look at YourKit&#8217;s leading software prod
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2016 - Big Data Genomics<br>
+  Copyright &copy; 2017 - Big Data Genomics<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

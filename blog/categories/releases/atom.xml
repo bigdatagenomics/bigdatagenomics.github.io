@@ -4,7 +4,7 @@
   <title><![CDATA[Category: releases | Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/blog/categories/releases/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2016-11-03T09:14:35-07:00</updated>
+  <updated>2017-01-09T10:37:42-08:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -12,6 +12,172 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.21.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2017/01/06/adam-0-dot-21-dot-0-release/"/>
+    <updated>2017-01-06T11:00:00-08:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2017/01/06/adam-0-dot-21-dot-0-release</id>
+    <content type="html"><![CDATA[<p>ADAM version 0.21.0 has been <a href="https://github.com/bigdatagenomics/adam/releases">released</a>!</p>
+
+<p>Due to major changes between Spark versions 1.6 and 2.0, we now build for combinations of Apache Spark and Scala versions:
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.21.0">Spark 1.x and Scala 2.10</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.21.0">Spark 1.x and Scala 2.11</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.10-0.21.0">Spark 2.x and Scala 2.10</a>, and
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.11-0.21.0">Spark 2.x and Scala 2.11</a>.
+The Spark 2.x build-time dependency will be bumped to version 2.1.0 in the next release of ADAM, see issue <a href="https://github.com/bigdatagenomics/adam/issues/1330">#1330</a>.</p>
+
+<p>One focus of this release was documentation, both at the developer API level, including extensive javadoc and scaladoc
+source code comments, and at the user level (e.g. <a href="https://github.com/bigdatagenomics/adam/tree/master/docs/source">https://github.com/bigdatagenomics/adam/tree/master/docs/source</a>). The
+user docs can be compiled to PDF or HTML with pandoc, but to be honest they look better rendered as Markdown on Github.</p>
+
+<p>Another focus was to more closely follow the VCF specification(s) when reading from and writing to VCF.
+For this we made significant changes to our variant and variant annotation schema and added support
+for version 1.0 of the <a href="http://snpeff.sourceforge.net/VCFannotationformat_v1.0.pdf">VCF INFO &lsquo;ANN&rsquo; key specification</a>.
+This work will continue for our genotype and genotype annotation schema in the next version of ADAM.</p>
+
+<p>The full list of changes since version 0.20.0 is below.</p>
+
+<!-- more -->
+
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Update Markdown docs with ValidationStringency in VCF&lt;&ndash;>ADAM CLI <a href="https://github.com/bigdatagenomics/adam/issues/1342">#1342</a></li>
+<li>Variant VCFHeaderLine metadata does not handle wildcards properly <a href="https://github.com/bigdatagenomics/adam/issues/1339">#1339</a></li>
+<li>Close called multiple times on VCF header stream <a href="https://github.com/bigdatagenomics/adam/issues/1337">#1337</a></li>
+<li>BroadcastRegionJoin has serialization failures <a href="https://github.com/bigdatagenomics/adam/issues/1334">#1334</a></li>
+<li>adam-cli uses git-commit-id-plugin which breaks release? <a href="https://github.com/bigdatagenomics/adam/issues/1322">#1322</a></li>
+<li>move_to_xyz scripts should have interlocks&hellip; <a href="https://github.com/bigdatagenomics/adam/issues/1317">#1317</a></li>
+<li>Lineage for partitionAndJoin in ShuffleRegionJoin causes StackOverflow Errors <a href="https://github.com/bigdatagenomics/adam/issues/1308">#1308</a></li>
+<li>Add move_to_spark_1.sh script and update README to mention <a href="https://github.com/bigdatagenomics/adam/issues/1307">#1307</a></li>
+<li>adam-submit transform fails with Exception in thread &ldquo;main&rdquo; java.lang.IncompatibleClassChangeError: Implementing class <a href="https://github.com/bigdatagenomics/adam/issues/1306">#1306</a></li>
+<li>private ADAMContext constructor? <a href="https://github.com/bigdatagenomics/adam/issues/1296">#1296</a></li>
+<li>AlignmentRecord.mateAlignmentEnd never set <a href="https://github.com/bigdatagenomics/adam/issues/1290">#1290</a></li>
+<li>how to submit my own driver class via adam-submit? <a href="https://github.com/bigdatagenomics/adam/issues/1289">#1289</a></li>
+<li>ReferenceRegion on Genotype seems busted? <a href="https://github.com/bigdatagenomics/adam/issues/1286">#1286</a></li>
+<li>Clarify strandedness in ReferenceRegion apply methods <a href="https://github.com/bigdatagenomics/adam/issues/1285">#1285</a></li>
+<li>Parquet and CRAM debug logging during unit tests <a href="https://github.com/bigdatagenomics/adam/issues/1280">#1280</a></li>
+<li>Add more ANN field parsing unit tests <a href="https://github.com/bigdatagenomics/adam/issues/1273">#1273</a></li>
+<li>loadVariantAnnotations returns empty RDD <a href="https://github.com/bigdatagenomics/adam/issues/1271">#1271</a></li>
+<li>Implement joinVariantAnnotations with region join <a href="https://github.com/bigdatagenomics/adam/issues/1259">#1259</a></li>
+<li>Count how many chromosome in the range of the kmer <a href="https://github.com/bigdatagenomics/adam/issues/1249">#1249</a></li>
+<li>ADAM minor release to support htsjdk 2.7.0? <a href="https://github.com/bigdatagenomics/adam/issues/1248">#1248</a></li>
+<li>how to config kryo.registrator programmatically <a href="https://github.com/bigdatagenomics/adam/issues/1245">#1245</a></li>
+<li>Does the nested record Flattener drop Maps/Arrays? <a href="https://github.com/bigdatagenomics/adam/issues/1244">#1244</a></li>
+<li>Dead-ish code cleanup in <code>org.bdgenomics.adam.utils</code> <a href="https://github.com/bigdatagenomics/adam/issues/1242">#1242</a></li>
+<li>java.io.FileNotFoundException for old adam file after upgrade to adam0.20 <a href="https://github.com/bigdatagenomics/adam/issues/1240">#1240</a></li>
+<li>please add maven-source-plugin into the pom file <a href="https://github.com/bigdatagenomics/adam/issues/1239">#1239</a></li>
+<li>Assembly jar doesn&rsquo;t get rebuilt on CLI changes <a href="https://github.com/bigdatagenomics/adam/issues/1238">#1238</a></li>
+<li>how to compare with the last the column for the same chromosome name? <a href="https://github.com/bigdatagenomics/adam/issues/1237">#1237</a></li>
+<li>Need a way for users to add VCF header lines <a href="https://github.com/bigdatagenomics/adam/issues/1233">#1233</a></li>
+<li>Enhancements to VCF save <a href="https://github.com/bigdatagenomics/adam/issues/1232">#1232</a></li>
+<li>Must we split multi-allelic sites in our Genotype model? <a href="https://github.com/bigdatagenomics/adam/issues/1231">#1231</a></li>
+<li>Can&rsquo;t override default -collapse in reads2coverage <a href="https://github.com/bigdatagenomics/adam/issues/1228">#1228</a></li>
+<li>Reads2coverage NPEs on unmapped reads <a href="https://github.com/bigdatagenomics/adam/issues/1227">#1227</a></li>
+<li>Strand bias doesn&rsquo;t get exported <a href="https://github.com/bigdatagenomics/adam/issues/1226">#1226</a></li>
+<li>Move ADAMFunSuite helper functions upstream to SparkFunSuite <a href="https://github.com/bigdatagenomics/adam/issues/1225">#1225</a></li>
+<li>broadcast join using interval tree <a href="https://github.com/bigdatagenomics/adam/issues/1224">#1224</a></li>
+<li>Instrumentation is lost in ShuffleRegionJoin <a href="https://github.com/bigdatagenomics/adam/issues/1222">#1222</a></li>
+<li>Bump Spark, Scala, Hadoop dependency versions <a href="https://github.com/bigdatagenomics/adam/issues/1221">#1221</a></li>
+<li>GenomicRDD shuffle region join passes partition count to partition size <a href="https://github.com/bigdatagenomics/adam/issues/1220">#1220</a></li>
+<li>Scala compile errors downstream of Spark 2 Scala 2.11 artifacts <a href="https://github.com/bigdatagenomics/adam/issues/1218">#1218</a></li>
+<li>Javac error: incompatible types: SparkContext cannot be converted to ADAMContext <a href="https://github.com/bigdatagenomics/adam/issues/1217">#1217</a></li>
+<li>Release 0.20.0 artifacts failed Sonatype Nexus validation <a href="https://github.com/bigdatagenomics/adam/issues/1212">#1212</a></li>
+<li>Release script failed for 0.20.0 release <a href="https://github.com/bigdatagenomics/adam/issues/1211">#1211</a></li>
+<li>gVCF &ndash; can&rsquo;t load multi-allelic sites <a href="https://github.com/bigdatagenomics/adam/issues/1202">#1202</a></li>
+<li>Allow open-ended intervals in loadIndexedBam <a href="https://github.com/bigdatagenomics/adam/issues/1196">#1196</a></li>
+<li>Interval tree join in ADAM <a href="https://github.com/bigdatagenomics/adam/issues/1171">#1171</a></li>
+<li>spark-submit throw exception in spark-standalone using .adam which transformed from .vcf <a href="https://github.com/bigdatagenomics/adam/issues/1121">#1121</a></li>
+<li>BroadcastRegionJoin is not a broadcast join <a href="https://github.com/bigdatagenomics/adam/issues/1110">#1110</a></li>
+<li>Improve test coverage of VariantContextConverter <a href="https://github.com/bigdatagenomics/adam/issues/1107">#1107</a></li>
+<li>Variant dbsnp rs id tracking in vcf2adam and ADAM2Vcf <a href="https://github.com/bigdatagenomics/adam/issues/1103">#1103</a></li>
+<li>Document core ADAM transform methods <a href="https://github.com/bigdatagenomics/adam/issues/1085">#1085</a></li>
+<li>Document deploying ADAM on Toil <a href="https://github.com/bigdatagenomics/adam/issues/1084">#1084</a></li>
+<li>Clean up packages <a href="https://github.com/bigdatagenomics/adam/issues/1083">#1083</a></li>
+<li>VariantCallingAnnotations is getting populated with INFO fields <a href="https://github.com/bigdatagenomics/adam/issues/1063">#1063</a></li>
+<li>How to load DatabaseVariantAnnotation information ? <a href="https://github.com/bigdatagenomics/adam/issues/1049">#1049</a></li>
+<li>Release ADAM version 0.20.0 <a href="https://github.com/bigdatagenomics/adam/issues/1048">#1048</a></li>
+<li>Support VCF annotation ANN field in vcf2adam and adam2vcf <a href="https://github.com/bigdatagenomics/adam/issues/1044">#1044</a></li>
+<li>How to create a rich(er) VariantContext RDD? Reconstruct VCF INFO fields. <a href="https://github.com/bigdatagenomics/adam/issues/878">#878</a></li>
+<li>Add biologist targeted section to the README <a href="https://github.com/bigdatagenomics/adam/issues/497">#497</a></li>
+<li>Update usage docs running for EC2 and CDH <a href="https://github.com/bigdatagenomics/adam/issues/493">#493</a></li>
+<li>Add docs about building downstream apps on top of ADAM <a href="https://github.com/bigdatagenomics/adam/issues/291">#291</a></li>
+<li>Variant filter representation <a href="https://github.com/bigdatagenomics/adam/issues/194">#194</a></li>
+</ul>
+
+
+<p><strong>Merged and closed pull requests:</strong></p>
+
+<ul>
+<li>[ADAM-1342] Update CLI docs after #1288 merged. <a href="https://github.com/bigdatagenomics/adam/pull/1343">#1343</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1339] Use glob-safe method to load VCF header metadata for Parquet <a href="https://github.com/bigdatagenomics/adam/pull/1340">#1340</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1337] Remove os.{flush,close} calls after writing VCF header. <a href="https://github.com/bigdatagenomics/adam/pull/1338">#1338</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1334] Clean up serialization issues in Broadcast region join. <a href="https://github.com/bigdatagenomics/adam/pull/1336">#1336</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1307] move_to_spark_2 fails after moving to scala 2.11. <a href="https://github.com/bigdatagenomics/adam/pull/1329">#1329</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>unroll/optimize some JavaConversions <a href="https://github.com/bigdatagenomics/adam/pull/1326">#1326</a> (<a href="https://github.com/ryan-williams">ryan-williams</a>)</li>
+<li>clean up *Join type-params/scaldocs <a href="https://github.com/bigdatagenomics/adam/pull/1325">#1325</a> (<a href="https://github.com/ryan-williams">ryan-williams</a>)</li>
+<li>[ADAM-1322] Skip git commit plugin if .git is missing. <a href="https://github.com/bigdatagenomics/adam/pull/1323">#1323</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Supports access to indexed fa and fasta files <a href="https://github.com/bigdatagenomics/adam/pull/1320">#1320</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>Add interlocks for move_to_xyz scripts. <a href="https://github.com/bigdatagenomics/adam/pull/1319">#1319</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1307] Add script for moving to Spark 1. <a href="https://github.com/bigdatagenomics/adam/pull/1318">#1318</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Update move_to_spark_2.sh <a href="https://github.com/bigdatagenomics/adam/pull/1316">#1316</a> (<a href="https://github.com/creggian">creggian</a>)</li>
+<li>[ADAM-1308] Fix stack overflow in join with custom iterator impl. <a href="https://github.com/bigdatagenomics/adam/pull/1315">#1315</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Why Adam? section added to README.md <a href="https://github.com/bigdatagenomics/adam/pull/1310">#1310</a> (<a href="https://github.com/tverbeiren">tverbeiren</a>)</li>
+<li>Add docs about using ADAM&rsquo;s Kryo registrator from another Kryo registrator. <a href="https://github.com/bigdatagenomics/adam/pull/1305">#1305</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Add docs about building downstream applications <a href="https://github.com/bigdatagenomics/adam/pull/1304">#1304</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-493] Add ADAM-on-Spark-on-YARN docs. <a href="https://github.com/bigdatagenomics/adam/pull/1301">#1301</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Code style fixes <a href="https://github.com/bigdatagenomics/adam/pull/1299">#1299</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Make ADAMContext and JavaADAMContext constructors public <a href="https://github.com/bigdatagenomics/adam/pull/1298">#1298</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Remove back reference between VariantAnnotation and Variant <a href="https://github.com/bigdatagenomics/adam/pull/1297">#1297</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1280] Silence CRAM logging in tests. <a href="https://github.com/bigdatagenomics/adam/pull/1294">#1294</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>HBase as a separate repo <a href="https://github.com/bigdatagenomics/adam/pull/1293">#1293</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>Reference region cleanup <a href="https://github.com/bigdatagenomics/adam/pull/1291">#1291</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Clean rewrite of VariantContextConverter <a href="https://github.com/bigdatagenomics/adam/pull/1288">#1288</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>add function:filterByOverlappingRegions <a href="https://github.com/bigdatagenomics/adam/pull/1287">#1287</a> (<a href="https://github.com/liamlee">liamlee</a>)</li>
+<li>Populate fields on VariantAnnotation <a href="https://github.com/bigdatagenomics/adam/pull/1283">#1283</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Add VCF headers for fields in Variant and VariantAnnotation records <a href="https://github.com/bigdatagenomics/adam/pull/1281">#1281</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>CGCloud deploy docs <a href="https://github.com/bigdatagenomics/adam/pull/1279">#1279</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>some style nits <a href="https://github.com/bigdatagenomics/adam/pull/1278">#1278</a> (<a href="https://github.com/ryan-williams">ryan-williams</a>)</li>
+<li>use ParsedLoci in loadIndexedBam <a href="https://github.com/bigdatagenomics/adam/pull/1277">#1277</a> (<a href="https://github.com/ryan-williams">ryan-williams</a>)</li>
+<li>Increasing unit test coverage for VariantContextConverter <a href="https://github.com/bigdatagenomics/adam/pull/1276">#1276</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Expose FeatureRDD to public <a href="https://github.com/bigdatagenomics/adam/pull/1275">#1275</a> (<a href="https://github.com/Georgehe4">Georgehe4</a>)</li>
+<li>Clean up CLI operation categories and names, and add documentation for CLI <a href="https://github.com/bigdatagenomics/adam/pull/1274">#1274</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Rename org.bdgenomics.adam.rdd.variation package to o.b.a.rdd.variant <a href="https://github.com/bigdatagenomics/adam/pull/1270">#1270</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>use testFile in some tests <a href="https://github.com/bigdatagenomics/adam/pull/1268">#1268</a> (<a href="https://github.com/ryan-williams">ryan-williams</a>)</li>
+<li>[ADAM-1083] Cleaning up <code>org.bdgenomics.adam.models</code>. <a href="https://github.com/bigdatagenomics/adam/pull/1267">#1267</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>make py file py3-forward-compatible <a href="https://github.com/bigdatagenomics/adam/pull/1266">#1266</a> (<a href="https://github.com/ryan-williams">ryan-williams</a>)</li>
+<li>rm accidentally-added file <a href="https://github.com/bigdatagenomics/adam/pull/1265">#1265</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Finishing up the cleanup on org.bdgenomics.adam.rdd. <a href="https://github.com/bigdatagenomics/adam/pull/1264">#1264</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Clean up <code>org.bdgenomics.adam.rich</code> package. <a href="https://github.com/bigdatagenomics/adam/pull/1263">#1263</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Add docs for transform pipeline, ADAM-on-Toil <a href="https://github.com/bigdatagenomics/adam/pull/1262">#1262</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>updates for bdg utils 0.2.9-SNAPSHOT <a href="https://github.com/bigdatagenomics/adam/pull/1261">#1261</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1233] Expose header lines in Variant-related GenomicRDDs <a href="https://github.com/bigdatagenomics/adam/pull/1260">#1260</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1221] Bump Spark/Hadoop versions. <a href="https://github.com/bigdatagenomics/adam/pull/1258">#1258</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Rename org.bdgenomics.adam.rdd.features package to o.b.a.rdd.feature <a href="https://github.com/bigdatagenomics/adam/pull/1256">#1256</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Clean up documentation in <code>org.bdgenomics.adam.projection</code>. <a href="https://github.com/bigdatagenomics/adam/pull/1255">#1255</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1221] Bump Spark/Hadoop versions. <a href="https://github.com/bigdatagenomics/adam/pull/1254">#1254</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Misc shuffle join fixes. <a href="https://github.com/bigdatagenomics/adam/pull/1253">#1253</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1196] Add support for open ReferenceRegions. <a href="https://github.com/bigdatagenomics/adam/pull/1252">#1252</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1225] Move helper functions from ADAMFunSuite to SparkFunSuite. <a href="https://github.com/bigdatagenomics/adam/pull/1251">#1251</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Merge VariantAnnotation and DatabaseVariantAnnotation records <a href="https://github.com/bigdatagenomics/adam/pull/1250">#1250</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Miscellaneous VCF fixes <a href="https://github.com/bigdatagenomics/adam/pull/1247">#1247</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>HBase backend for Genotypes <a href="https://github.com/bigdatagenomics/adam/pull/1246">#1246</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>[ADAM-1242] Clean up dead code in org.bdgenomics.adam.util. <a href="https://github.com/bigdatagenomics/adam/pull/1243">#1243</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Small cleanup of &ldquo;replacing uses of deprecated class SAMFileReader&rdquo; <a href="https://github.com/bigdatagenomics/adam/pull/1236">#1236</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>replacing uses of deprecated class SAMFileReader <a href="https://github.com/bigdatagenomics/adam/pull/1235">#1235</a> (<a href="https://github.com/lbergelson">lbergelson</a>)</li>
+<li>[ADAM-1224] Replace BroadcastRegionJoin with tree based algo. <a href="https://github.com/bigdatagenomics/adam/pull/1234">#1234</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Fix reads2coverage issues <a href="https://github.com/bigdatagenomics/adam/pull/1230">#1230</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1212] Add empty assembly object, allows Maven build to create sources and javadoc artifacts <a href="https://github.com/bigdatagenomics/adam/pull/1215">#1215</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1211] Fix call to move_to_scala_2.sh, reorder Spark 2.x Scala 2.10 and 2.10 sections <a href="https://github.com/bigdatagenomics/adam/pull/1214">#1214</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>demonstrate multi-allelic gVCF failure &ndash; test added <a href="https://github.com/bigdatagenomics/adam/pull/1205">#1205</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>Merge VariantAnnotation and DatabaseVariantAnnotation records <a href="https://github.com/bigdatagenomics/adam/pull/1144">#1144</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Upgrade to bdg-formats-0.10.0 <a href="https://github.com/bigdatagenomics/adam/pull/1135">#1135</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.20.0 Released]]></title>
@@ -600,56 +766,6 @@ will settle down by the 1.0 release, currently targeted for early 2017.</p>
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/590">590</a>: [ADAM-589] Removed pileup code.</li>
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/586">586</a>: [ADAM-452] Fixes SM attribute on ADAM to BAM conversion.</li>
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/584">584</a>: [ADAM-583] Add k-mer counting functionality for nucleotide contig fragments</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ADAM 0.16.0 Released]]></title>
-    <link href="http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released/"/>
-    <updated>2015-02-18T16:32:31-08:00</updated>
-    <id>http://bigdatagenomics.github.io/blog/2015/02/18/adam-0-dot-16-dot-0-released</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.16.0">ADAM 0.16.0</a> is now available.</p>
-
-<p>This release improves the performance of Base Quality Score Recalibration (BQSR) by 3.5x, adds support for multiline FASTQ input, visualization of variants when given VCF input, includes a new RegionJoin implementation that is shuffle-based, and adds new methods for region coverage calculations.</p>
-
-<p>Drop into our Gitter channel to talk with us about this release</p>
-
-<p><a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a></p>
-
-<!-- more -->
-
-
-<p>Complete list of changes for ADAM <code>0.16.0</code>:</p>
-
-<ul>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/570">570</a>: A few small conversion fixes</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/579">579</a>: [ADAM-578] Update end of read when trimming.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/564">564</a>: [ADAM-563] Add warning message when saving Parquet files with incorrect extension</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/576">576</a>: Changed hashCode implementations to improve performance of BQSR</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/569">569</a>: Typo in the narrowPeak parser</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/568">568</a>: Moved the Timers object from bdg-utils back to ADAM</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/478">478</a>: Move non-genomics code</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/550">550</a>: [ADAM-549] Added documentation for testing and CI for ADAM.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/555">555</a>: Makes maybeLoadVCF private.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/558">558</a>: Makes Features2ADAMSuite use SparkFunSuite</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/557">557</a>: Randomize ports and turn off Spark UI to reduce bind exceptions in tests</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/552">552</a>: Create test suite for FlagStat</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/554">554</a>: privatize ADAMContext.maybeLoad{Bam,Fastq}</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/551">551</a>: [ADAM-386] Multiline FASTQ input</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/542">542</a>: Variants Visualization</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/545">545</a>: [ADAM-543][ADAM-544] Fix issues with ADAM scripts and classpath</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/535">535</a>: [ADAM-441] put a check in for Nothing. Throws an IAE if no return type is provided</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/546">546</a>: [ADAM-532] Fix wigFix intermittent test failure</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/534">534</a>: [ADAM-528][ADAM-533] Adds new RegionJoin impl that is shuffle-based</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/531">531</a>: [ADAM-529] Attaching scaladoc to released distribution.</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/413">413</a>: [ADAM-409][ADAM-520] Added local wigfix2bed tool</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/527">527</a>: [ADAM-526] <code>VcfAnnotation2ADAM</code> only counts once</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/523">523</a>: don&rsquo;t open non-.adam-extension files as ADAM files</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/521">521</a>: quieting wget output</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/482">482</a>: [ADAM-462] Coverage region calculation</li>
-<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/515">515</a>: [ADAM-510] fix for bash syntax error; add ADDL_JARS check to adam-submit</li>
 </ul>
 
 ]]></content>
