@@ -124,6 +124,54 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-03T08:24:15-08:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/03/lightning-fast-genomics/">Lightning Fast Genomics</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
+
+<blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
+
+<p>Andy and Xavier&rsquo;s talk included a demo: using Spark&rsquo;s MLlib to do population stratification across 1000 Genomes in just a few minutes in the cloud using Amazon Web Services (AWS). Their talk highlights the advantages of building on open-source technologies, like Apache <a href="http://spark.apache.org">Spark</a> and <a href="http://parquet.io">Parquet</a>, designed for performance and scale.</p>
+
+<p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-09-17T14:33:35-07:00" pubdate data-updated="true">Sep 17<span>th</span>, 2014</time>
         
       </p>
@@ -575,60 +623,6 @@ on high performance computer systems for bioinformatics, and is involved in the 
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-01-17T10:58:45-08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/17/adam-article-posted-on-oreilly-and-forbes-sites/">ADAM Article Posted on O&#8217;Reilly and Forbes Sites</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>ADAM was featured in an article that was posted to both the
-<a href="http://strata.oreilly.com/2014/01/big-data-systems-are-making-a-difference-in-the-fight-against-cancer.html">O&#8217;Reilly Strata</a>
-and <a href="http://www.forbes.com/sites/oreillymedia/2014/01/17/big-data-systems-are-making-a-difference-in-the-fight-against-cancer/">Forbes</a> web
-sites that opens with the following:</p>
-
-<blockquote><p>As open source, big data tools enter the early stages of maturation, data engineers and data scientists will have
-many opportunities to use them to “<a href="http://radar.oreilly.com/2009/01/work-on-stuff-that-matters-fir.html">work on stuff that matters</a>”.
-Along those lines, computational biology and medicine
-are areas where skilled data professionals are already beginning to make an impact.</p></blockquote>
-
-<p>The Tim O&#8217;Reilly post, &ldquo;<a href="http://radar.oreilly.com/2009/01/work-on-stuff-that-matters-fir.html">Work on Stuff that Matters: First Principles</a>&rdquo;,
-is a great read that encourages readers to work on something that matters to you more than money, create more value than you capture
-and take the long view. While ADAM is a very new project, we hope that it will be used someday soon to help save lives and enable researchers
-to ask questions that aren&rsquo;t possible today. We are taking the long view and sharing all this valuable software as Apache-licensed open-source.</p>
-
-<p>If you&rsquo;re interested in contributing, <a href="/mail">join our mailing list</a> and introduce yourself. We also mark open issues that are good introductory
-projects with a &ldquo;<a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&amp;page=1&amp;state=open">pick me up!</a>&rdquo; label. Of course, we welcome any
-contribution you&rsquo;d like to make!</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -672,6 +666,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
     
     <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
@@ -679,8 +675,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
     
     <a class="list-group-item " href="/blog/2015/11/11/adam-0-dot-18-dot-2-released/">ADAM 0.18.2 Released</a>
-    
-    <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
     
   </div>
 </section>

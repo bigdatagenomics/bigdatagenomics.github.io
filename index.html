@@ -124,6 +124,61 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-04-03T12:00:00-07:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2017</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM version 0.22.0 has been <a href="https://github.com/bigdatagenomics/adam/releases">released</a>!</p>
+
+<p>Due to major changes between Spark versions 1.6 and 2.0, we build for combinations of Apache Spark and Scala versions:
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.10-0.22.0">Spark 1.x and Scala 2.10</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent_2.11-0.22.0">Spark 1.x and Scala 2.11</a>,
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.10-0.22.0">Spark 2.x and Scala 2.10</a>, and
+<a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-spark2_2.11-0.22.0">Spark 2.x and Scala 2.11</a>.</p>
+
+<p>The focus of this release was performance, including major improvements to BQSR and INDEL realignment.</p>
+
+<p>More than 80 other issues were closed in this release, including bug fixes around VCF validation and paired end FASTQ parsing
+and new features such as pipe API support for features.</p>
+
+<p>The full list of changes since version 0.21.0 is below.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-01-06T11:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2017</time>
         
       </p>
@@ -593,54 +648,6 @@ Based on the data we have, we can for example:</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-03T08:24:15-08:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2014</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/03/lightning-fast-genomics/">Lightning Fast Genomics</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><a href="https://twitter.com/noootsab">Andy Petrella</a> and <a href="https://twitter.com/xtordoir">Xavier Tordoir</a> gave a talk, <em><a href="http://scala.io/talks.html#/#SVK-108">Scalable Genomics with ADAM</a></em>, at <a href="http://scala.io/">Scala.IO</a> in Paris, France.</p>
-
-<blockquote><p>We are at a time where biotech allow us to get personal genomes for $1000. Tremendous progress since the 70s in DNA sequencing have been done, e.g. more samples in an experiment, more genomic coverages at higher speeds. Genomic analysis standards that have been developed over the years weren&rsquo;t designed with scalability and adaptability in mind. In this talk, we’ll present a game changing technology in this area, ADAM, initiated by the AMPLab at Berkeley. ADAM is framework based on Apache Spark and the Parquet storage. We’ll see how it can speed up a sequence reconstruction to a factor 150.</p></blockquote>
-
-<p>Andy and Xavier&rsquo;s talk included a demo: using Spark&rsquo;s MLlib to do population stratification across 1000 Genomes in just a few minutes in the cloud using Amazon Web Services (AWS). Their talk highlights the advantages of building on open-source technologies, like Apache <a href="http://spark.apache.org">Spark</a> and <a href="http://parquet.io">Parquet</a>, designed for performance and scale.</p>
-
-<p>Andy also modified the <a href="https://github.com/Bridgewater/scala-notebook">Scala Notebook</a> to create <a href="https://github.com/andypetrella/spark-notebook">Spark Notebook</a> which enables visualization and reproducible analysis on Apache Spark inside a web browser. A great addition to the Spark ecosystem!</p>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/40715122" width="850" height="710" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="//fr.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala" title="Lightning fast genomics with Spark, Adam and Scala" target="_blank">Lightning fast genomics with Spark, Adam and Scala</a> </strong> from <strong><a href="//www.slideshare.net/noootsab" target="_blank">noootsab</a></strong> </div></p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -684,6 +691,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
     
     <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
@@ -691,8 +700,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
     
     <a class="list-group-item " href="/blog/2015/11/11/adam-0-dot-18-dot-2-released/">ADAM 0.18.2 Released</a>
-    
-    <a class="list-group-item " href="/blog/2015/07/10/genomic-analysis-using-adam/">Genomic Analysis Using ADAM, Spark and Deep Learning</a>
     
   </div>
 </section>
