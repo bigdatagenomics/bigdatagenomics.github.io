@@ -10,8 +10,10 @@ We are excited to announce the availability of the ADAM 0.23.0 release, along
 with releases of Avocado germline variant caller (release 0.1.0) and the DECA
 copy number variant caller (release 0.2.0). These releases contain an extensive
 number of feature additions, performance improvements, and bug patches, with
-over 375 issues and pull requests merged since the last ADAM release. Some of
-the highlights include:
+over 375 issues closed and pull requests merged or closed since the last ADAM
+release.
+
+Some of the highlights include:
 
 * A validated, high-performance end-to-end alignment/variant calling pipeline
   using ADAM, Cannoli, and Avocado.
@@ -65,14 +67,15 @@ Python:
 {% img center /images/pipe.png 750 %}
 
 By using Cannoli, we can accelerate alignment with BWA to take approximately
-10--15 minutes when running on a 1,024 core cluster. We can couple this rapid
-alignment pipeline with the fast preprocessing stages in ADAM and the variant
-calling stages in Avocado to call variants on a 60x coverage WGS dataset in
-approximately 45 minutes on a 1,024 core cluster. Avocado can be used to
+10--15 minutes when running on a 1,024 core cluster.
+
+We can couple this rapid alignment pipeline with the fast preprocessing stages in
+ADAM and the variant calling stages in Avocado to call variants on a 60x coverage WGS
+dataset in approximately 45 minutes on a 1,024 core cluster. Avocado can be used to
 call variants on a single sample, or to jointly call variants using a [gVCF-based
 workflow](http://bdg-avocado.readthedocs.io/en/latest/workflows/joint.html). When
 running on 1,024 cores, we were able to jointly genotype more than 10TB of gVCFs
-within approximately 6 hours. Avovcado has >99% accuracy when genotyping SNPs,
+within approximately 6 hours. Avocado has >99% accuracy when genotyping SNPs,
 and >96% accuracy when genotyping INDELs. Detailed benchmarking results can be
 found in [Chapter 8 of this thesis](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2017/EECS-2017-204.pdf).
 Avocado is two times faster than the GATK4's Spark-based implementation of the
@@ -89,7 +92,7 @@ GATK4's equivalent implementation.
 {% img center /images/speedup-bqsr.png %}
 
 We have work-in-progress towards a Spark SQL-based implementation of duplicate
-marking, which provides an additional >20% performance improvement. We hope to
+marking, which will provide an additional >20% performance improvement. We hope to
 introduce this new duplicate marker in the 0.24.0 release of ADAM.
 
 Manipulating Data using Spark SQL
@@ -245,7 +248,7 @@ import org.bdgenomics.adam.rdd.ADAMContext._
 scala> :quit
 {% endcodeblock %}
 
-Most of the major APIs in ADAM can be used through our R and Python bindings,
+Most of the major APIs in ADAM can be used through our Python and R bindings,
 with the exception of the region join API. We plan to enable the use of the
 region join API in Python and R in the 0.24.0 release of ADAM, along with other
 API compatibility improvements.
