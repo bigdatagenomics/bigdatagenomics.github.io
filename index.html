@@ -124,6 +124,69 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-03-28T00:00:00-07:00" pubdate data-updated="true">Mar 28<span>th</span>, 2018</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/">ADAM 0.24.0 and Cannoli 0.2.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">version 0.24.0</a> and
+Cannoli <a href="https://github.com/bigdatagenomics/cannoli/releases">version 0.2.0</a> have been released!</p>
+
+<p>As of version 0.24.0, support for Spark version 1.x and Scala 2.10.x has been dropped. ADAM and
+Cannoli currently build against Spark version 2.3.0 and Scala version 2.11.12.</p>
+
+<p>Major new features in ADAM version 0.24.0 include Spark SQL support across all genomic data
+types and access to the ADAM region join API through Python and R. The ADAM Python and R APIs are
+now feature complete relative to ADAM&rsquo;s Java API. ADAM version 0.24.0 also introduces
+Hive-style partitioning by genomic range for Parquet-backed Datasets. This greatly improves
+performance for genomic range based queries.</p>
+
+<p>With version 0.2.0, Cannoli now provides a functional API for interactive use in
+<code>cannoli-shell</code> (a Scala REPL based on Spark Shell, similar to <code>adam-shell</code>) and
+notebooks such as <a href="https://jupyter.org/">Jupyter</a>, <a href="https://zeppelin.apache.org/">Zeppelin</a>,
+and <a href="http://spark-notebook.io/">Spark Notebook</a>. This API allows for multiple
+Cannoli-wrapped bioinformatics tools as processes in a larger Spark-based workflow
+without having to write out to disk intermediately.</p>
+
+<h1>Changes since Previous Releases</h1>
+
+<p>The full list of changes to ADAM since version 0.23.0 and Cannoli since version 0.1.0 are below.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-01-04T09:47:53-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2018</time>
         
       </p>
@@ -916,74 +979,6 @@ will settle down by the 1.0 release, currently targeted for early 2017.</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-02T13:49:48-08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2015</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Scalable Genomes Clustering With ADAM and Spark</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>In this post, we will detail how to perform simple scalable population stratification analysis, leveraging ADAM and Spark MLlib, as previously presented at <a href="http://www.slideshare.net/noootsab/lightning-fast-genomics-with-spark-adam-and-scala">scala.io</a>.</p>
-
-<p>The data source is the set of genotypes from the <a href="http://1000genomes.org">1000genomes</a> project, resulting from whole genomes sequencing run on samples taken from about 1000 individuals with a known geographic and ethnic origin.</p>
-
-<p>This dataset is rather large and allows us to test scalability of the methods we present here and gives us the possibility to do interesting machine learning.
-Based on the data we have, we can for example:</p>
-
-<ul>
-<li>build models to classify genomes by population</li>
-<li>run unsupervised learning (clustering) to see if populations are reconstructed in the model.</li>
-<li>build models to infer missing genotypes</li>
-</ul>
-
-
-<p>We&rsquo;ve gone the second way (clustering), the line-up being the following:</p>
-
-<ul>
-<li>Setup the environment</li>
-<li>Collection and extraction of the original data</li>
-<li>Distribute the original data and convert it to the ADAM model</li>
-<li>Collect metadata (samples labels and completeness)</li>
-<li>Filter the data to match our cluster capacity (number of nodes, cpus and mem and wall clock time&hellip;)</li>
-<li>Read and prepare the ADAM formatted and distributed genotypes to have them into a separable high-dimensional space (need a metric)</li>
-<li>Apply the KMeans (train/predict)</li>
-<li>Assess performance</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a class="btn btn-default" rel="full-article" href="/blog/2015/02/02/scalable-genomes-clustering-with-adam-and-spark/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1027,6 +1022,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/">ADAM 0.24.0 and Cannoli 0.2.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2018/01/04/adam-0-dot-23-dot-0-released-plus-avocado-cannoli-and-deca-releases/">ADAM 0.23.0 Released (+ Avocado and DECA Releases)</a>
     
     <a class="list-group-item " href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a>
@@ -1034,8 +1031,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
     
     <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2016/02/25/adam-0-dot-19-dot-0-release/">ADAM 0.19.0 Released</a>
     
   </div>
 </section>

@@ -4,7 +4,7 @@
   <title><![CDATA[Big Data Genomics]]></title>
   <link href="http://bigdatagenomics.github.io/atom.xml" rel="self"/>
   <link href="http://bigdatagenomics.github.io/"/>
-  <updated>2018-01-08T21:50:25-08:00</updated>
+  <updated>2018-04-13T15:01:13-07:00</updated>
   <id>http://bigdatagenomics.github.io/</id>
   <author>
     <name><![CDATA[Big Data Genomics]]></name>
@@ -12,6 +12,226 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ADAM 0.24.0 and Cannoli 0.2.0 Released]]></title>
+    <link href="http://bigdatagenomics.github.io/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/"/>
+    <updated>2018-03-28T00:00:00-07:00</updated>
+    <id>http://bigdatagenomics.github.io/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases</id>
+    <content type="html"><![CDATA[<p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">version 0.24.0</a> and
+Cannoli <a href="https://github.com/bigdatagenomics/cannoli/releases">version 0.2.0</a> have been released!</p>
+
+<p>As of version 0.24.0, support for Spark version 1.x and Scala 2.10.x has been dropped. ADAM and
+Cannoli currently build against Spark version 2.3.0 and Scala version 2.11.12.</p>
+
+<p>Major new features in ADAM version 0.24.0 include Spark SQL support across all genomic data
+types and access to the ADAM region join API through Python and R. The ADAM Python and R APIs are
+now feature complete relative to ADAM&rsquo;s Java API. ADAM version 0.24.0 also introduces
+Hive-style partitioning by genomic range for Parquet-backed Datasets. This greatly improves
+performance for genomic range based queries.</p>
+
+<p>With version 0.2.0, Cannoli now provides a functional API for interactive use in
+<code>cannoli-shell</code> (a Scala REPL based on Spark Shell, similar to <code>adam-shell</code>) and
+notebooks such as <a href="https://jupyter.org/">Jupyter</a>, <a href="https://zeppelin.apache.org/">Zeppelin</a>,
+and <a href="http://spark-notebook.io/">Spark Notebook</a>. This API allows for multiple
+Cannoli-wrapped bioinformatics tools as processes in a larger Spark-based workflow
+without having to write out to disk intermediately.</p>
+
+<h1>Changes since Previous Releases</h1>
+
+<p>The full list of changes to ADAM since version 0.23.0 and Cannoli since version 0.1.0 are below.</p>
+
+<!-- more -->
+
+
+<h3>ADAM Version 0.24.0</h3>
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Phred values from 156–254 do not round trip properly between log space <a href="https://github.com/bigdatagenomics/adam/issues/1964">#1964</a></li>
+<li>Support VCF lines with positions at 0 <a href="https://github.com/bigdatagenomics/adam/issues/1959">#1959</a></li>
+<li>Don&rsquo;t initialize non-ref values to Int.MinValue <a href="https://github.com/bigdatagenomics/adam/issues/1957">#1957</a></li>
+<li>Support downsampling in recalibration <a href="https://github.com/bigdatagenomics/adam/issues/1955">#1955</a></li>
+<li>Cannot waive validation stringency for INFO Number=.,Type=Flag fields <a href="https://github.com/bigdatagenomics/adam/issues/1939">#1939</a></li>
+<li>Clip phred scores below Int.MaxValue <a href="https://github.com/bigdatagenomics/adam/issues/1934">#1934</a></li>
+<li>ADAMContext.getFsAndFilesWithFilter should throw exception if paths null or empty <a href="https://github.com/bigdatagenomics/adam/issues/1932">#1932</a></li>
+<li>Bump to Spark 2.3.0 <a href="https://github.com/bigdatagenomics/adam/issues/1931">#1931</a></li>
+<li>util.FileExtensions should be public for use downstream in Cannoli <a href="https://github.com/bigdatagenomics/adam/issues/1927">#1927</a></li>
+<li>Reduce logging level for ADAMKryoRegistrator <a href="https://github.com/bigdatagenomics/adam/issues/1925">#1925</a></li>
+<li>Revisit performance implications of commit 1eed8e8 <a href="https://github.com/bigdatagenomics/adam/issues/1923">#1923</a></li>
+<li>add akmorrow13 to PyPl for bdgenomics.adam <a href="https://github.com/bigdatagenomics/adam/issues/1919">#1919</a></li>
+<li>Read the Docs build failing with TypeError: super() argument 1 must be type, not None <a href="https://github.com/bigdatagenomics/adam/issues/1917">#1917</a></li>
+<li>Bump Hadoop-BAM dependency to 7.9.2. <a href="https://github.com/bigdatagenomics/adam/issues/1915">#1915</a></li>
+<li>cannot run pyadam from adam distribution 0.23.0 <a href="https://github.com/bigdatagenomics/adam/issues/1914">#1914</a></li>
+<li>adam2fasta/q are missing asSingleFile, disableFastConcat <a href="https://github.com/bigdatagenomics/adam/issues/1912">#1912</a></li>
+<li>Pipe API doesn&rsquo;t properly handle multiple arguments and spaces <a href="https://github.com/bigdatagenomics/adam/issues/1909">#1909</a></li>
+<li>Bump to HTSJDK 2.13.2 <a href="https://github.com/bigdatagenomics/adam/issues/1907">#1907</a></li>
+<li>S3A error: HTTP request: Timeout waiting for connection from pool <a href="https://github.com/bigdatagenomics/adam/issues/1906">#1906</a></li>
+<li>InputStream passed to VCFHeaderReader does not get closed <a href="https://github.com/bigdatagenomics/adam/issues/1900">#1900</a></li>
+<li>Support INFO fields set to missing <a href="https://github.com/bigdatagenomics/adam/issues/1898">#1898</a></li>
+<li>CLI to transfer between cloud storage and HDFS <a href="https://github.com/bigdatagenomics/adam/issues/1896">#1896</a></li>
+<li>Jenkins does not run python or R tests <a href="https://github.com/bigdatagenomics/adam/issues/1889">#1889</a></li>
+<li>pyadam throws application option error <a href="https://github.com/bigdatagenomics/adam/issues/1886">#1886</a></li>
+<li>ReferenceRegion in python does not exist <a href="https://github.com/bigdatagenomics/adam/issues/1884">#1884</a></li>
+<li>Caching GenomicRDD in pyspark <a href="https://github.com/bigdatagenomics/adam/issues/1883">#1883</a></li>
+<li>adam-submit aborts if ADAM_HOME is set <a href="https://github.com/bigdatagenomics/adam/issues/1882">#1882</a></li>
+<li>Allow piped commands to timeout <a href="https://github.com/bigdatagenomics/adam/issues/1875">#1875</a></li>
+<li>loadVcf does not dedupe sample ID <a href="https://github.com/bigdatagenomics/adam/issues/1874">#1874</a></li>
+<li>Add coverage command for reporting read coverage <a href="https://github.com/bigdatagenomics/adam/issues/1873">#1873</a></li>
+<li>Only python 2?  <a href="https://github.com/bigdatagenomics/adam/issues/1871">#1871</a></li>
+<li>Support VariantContextRDD from SQL <a href="https://github.com/bigdatagenomics/adam/issues/1867">#1867</a></li>
+<li>Cannot find <code>find-adam-assembly.sh</code> in bioconda build <a href="https://github.com/bigdatagenomics/adam/issues/1862">#1862</a></li>
+<li><code>_jvm.java.lang.Class.forName</code> does not work for certain configurations <a href="https://github.com/bigdatagenomics/adam/issues/1858">#1858</a></li>
+<li>Formatting error in CHANGES.md <a href="https://github.com/bigdatagenomics/adam/issues/1857">#1857</a></li>
+<li>Various improvements to readthedocs documentation <a href="https://github.com/bigdatagenomics/adam/issues/1853">#1853</a></li>
+<li>add filterByOverlappingRegion(query: ReferenceRegion) to R and python APIs <a href="https://github.com/bigdatagenomics/adam/issues/1852">#1852</a></li>
+<li>Support adding VCF header lines from Python <a href="https://github.com/bigdatagenomics/adam/issues/1840">#1840</a></li>
+<li>Support loadIndexedBam from Python <a href="https://github.com/bigdatagenomics/adam/issues/1836">#1836</a></li>
+<li>Add link to awesome list of applications that extend ADAM <a href="https://github.com/bigdatagenomics/adam/issues/1832">#1832</a></li>
+<li>loadIndexed bam lazily throws Exception if index does not exist <a href="https://github.com/bigdatagenomics/adam/issues/1830">#1830</a></li>
+<li>OAuth credentials for Github in Coveralls configuration are no longer valid <a href="https://github.com/bigdatagenomics/adam/issues/1829">#1829</a></li>
+<li>base counts per position <a href="https://github.com/bigdatagenomics/adam/issues/1825">#1825</a></li>
+<li>Issues loading BAM files in Google FS <a href="https://github.com/bigdatagenomics/adam/issues/1816">#1816</a></li>
+<li>Error when writing a vcf file to Parquet <a href="https://github.com/bigdatagenomics/adam/issues/1810">#1810</a></li>
+<li>transformAlignments cannot repartition files <a href="https://github.com/bigdatagenomics/adam/issues/1808">#1808</a></li>
+<li>GenotypeRDD should support <code>toVariants</code> method <a href="https://github.com/bigdatagenomics/adam/issues/1806">#1806</a></li>
+<li>Add support for python and R in Homebrew formula <a href="https://github.com/bigdatagenomics/adam/issues/1796">#1796</a></li>
+<li>Add <code>transformVariantContexts</code> or similar to cli <a href="https://github.com/bigdatagenomics/adam/issues/1793">#1793</a></li>
+<li>Issue while using Sorting option <a href="https://github.com/bigdatagenomics/adam/issues/1791">#1791</a></li>
+<li>Issue with adam2vcf <a href="https://github.com/bigdatagenomics/adam/issues/1787">#1787</a></li>
+<li>Remove explicit <code>&lt;compile&gt;</code> scopes from submodule POMs <a href="https://github.com/bigdatagenomics/adam/issues/1786">#1786</a></li>
+<li>java.nio.file.ProviderNotFoundException (Provider &ldquo;s3&rdquo; not found) <a href="https://github.com/bigdatagenomics/adam/issues/1732">#1732</a></li>
+<li>Accessing GenomicRDD join functions in python <a href="https://github.com/bigdatagenomics/adam/issues/1728">#1728</a></li>
+<li>ArrayIndexOutOfBoundsException in PhredUtils$.phredToSuccessProbability <a href="https://github.com/bigdatagenomics/adam/issues/1714">#1714</a></li>
+<li>Add ability to specify region bounds to pipe command <a href="https://github.com/bigdatagenomics/adam/issues/1707">#1707</a></li>
+<li>Unable to run pyadam, SQLException: Failed to start database &lsquo;metastore_db&rsquo; <a href="https://github.com/bigdatagenomics/adam/issues/1666">#1666</a></li>
+<li>SAMFormatException: Unrecognized tag type: ^@ <a href="https://github.com/bigdatagenomics/adam/issues/1657">#1657</a></li>
+<li>IndexOutOfBoundsException in BAMInputFormat.getSplits <a href="https://github.com/bigdatagenomics/adam/issues/1656">#1656</a></li>
+<li>overlaps considers that Strand.FORWARD cannot overlap with Strand.INDEPENDENT <a href="https://github.com/bigdatagenomics/adam/issues/1650">#1650</a></li>
+<li>migration converters <a href="https://github.com/bigdatagenomics/adam/issues/1629">#1629</a></li>
+<li>RFC: Removing Spark 1.x, Scala 2.10 support in 0.24.0 release <a href="https://github.com/bigdatagenomics/adam/issues/1597">#1597</a></li>
+<li>Eliminate unused ConcreteADAMRDDFunctions class <a href="https://github.com/bigdatagenomics/adam/issues/1580">#1580</a></li>
+<li>Add set theory/statistics packages to ADAM <a href="https://github.com/bigdatagenomics/adam/issues/1533">#1533</a></li>
+<li>Evaluate Apache Carbondata INDEXED column store file format for genomics <a href="https://github.com/bigdatagenomics/adam/issues/1527">#1527</a></li>
+<li>Stranded vs unstranded in getReferenceRegions() for features <a href="https://github.com/bigdatagenomics/adam/issues/1513">#1513</a></li>
+<li>Question:How to tranform a line of sam to AlignmentRecord? <a href="https://github.com/bigdatagenomics/adam/issues/1425">#1425</a></li>
+<li>Excessive compilation warnings about multiple scala libraries <a href="https://github.com/bigdatagenomics/adam/issues/695">#695</a></li>
+<li>Support Hive-style partitioning <a href="https://github.com/bigdatagenomics/adam/issues/651">#651</a></li>
+</ul>
+
+
+<p><strong>Merged and closed pull requests:</strong></p>
+
+<ul>
+<li>[ADAM-1964] Lower point where phred conversions are done using log code. <a href="https://github.com/bigdatagenomics/adam/pull/1965">#1965</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Add utility methods for adam-shell. <a href="https://github.com/bigdatagenomics/adam/pull/1958">#1958</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1955] Add support for downsampling during recalibration table generation <a href="https://github.com/bigdatagenomics/adam/pull/1963">#1963</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1957] Don&rsquo;t initialize missing likelihoods to MinValue. <a href="https://github.com/bigdatagenomics/adam/pull/1961">#1961</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1959] Support VCF rows at position 0. <a href="https://github.com/bigdatagenomics/adam/pull/1960">#1960</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-651] Implement Hive-style partitioning by genomic range of Parquet backed datasets <a href="https://github.com/bigdatagenomics/adam/pull/1948">#1948</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1914] Python profile needs to be specified for egg to be in distribution. <a href="https://github.com/bigdatagenomics/adam/pull/1946">#1946</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1917] Delete dependency on fulltoc. <a href="https://github.com/bigdatagenomics/adam/pull/1944">#1944</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1917] Try 3: fix Sphinx fulltoc. <a href="https://github.com/bigdatagenomics/adam/pull/1943">#1943</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1917] Set Sphinx version in requirements.txt. <a href="https://github.com/bigdatagenomics/adam/pull/1942">#1942</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1917] Set minimal Sphinx version for Readthedocs build. <a href="https://github.com/bigdatagenomics/adam/pull/1941">#1941</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1939] Allow validation stringency to waive off FLAG arrays. <a href="https://github.com/bigdatagenomics/adam/pull/1940">#1940</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1915] Bump to Hadoop-BAM 7.9.2. <a href="https://github.com/bigdatagenomics/adam/pull/1938">#1938</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1934] Clip phred values to 3233, instead of Int.MaxValue. <a href="https://github.com/bigdatagenomics/adam/pull/1936">#1936</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Ignore VCF INFO fields with number=G when stringency=LENIENT <a href="https://github.com/bigdatagenomics/adam/pull/1935">#1935</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>[ADAM-1931] Bump to Spark 2.3.0. <a href="https://github.com/bigdatagenomics/adam/pull/1933">#1933</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1840] Support adding VCF header lines from Python. <a href="https://github.com/bigdatagenomics/adam/pull/1930">#1930</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1927] Increase visibility for util.FileExtensions for use downstream. <a href="https://github.com/bigdatagenomics/adam/pull/1929">#1929</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1925] Reduce logging level for ADAMKryoRegistrator. <a href="https://github.com/bigdatagenomics/adam/pull/1928">#1928</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1923] Revert 1eed8e8 <a href="https://github.com/bigdatagenomics/adam/pull/1926">#1926</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Use SparkFiles.getRootDirectory in local mode. <a href="https://github.com/bigdatagenomics/adam/pull/1924">#1924</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-651] Implement Hive-style partitioning by genomic range of Parquet backed datasets <a href="https://github.com/bigdatagenomics/adam/pull/1922">#1922</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>Make Spark SQL APIs supported across all types <a href="https://github.com/bigdatagenomics/adam/pull/1921">#1921</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1909] Refactor pipe cmd parameter from String to Seq[String]. <a href="https://github.com/bigdatagenomics/adam/pull/1920">#1920</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Add Google Cloud documentation <a href="https://github.com/bigdatagenomics/adam/pull/1918">#1918</a> (<a href="https://github.com/Georgehe4">Georgehe4</a>)</li>
+<li>[ADAM-1917] Load sphinxcontrib.fulltoc with imp.load_sources. <a href="https://github.com/bigdatagenomics/adam/pull/1916">#1916</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1912] Add asSingleFile, disableFastConcat to adam2fasta/q. <a href="https://github.com/bigdatagenomics/adam/pull/1913">#1913</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-651] Hive-style partitioning of parquet files by genomic position <a href="https://github.com/bigdatagenomics/adam/pull/1911">#1911</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>Minor unit test/style fixes. <a href="https://github.com/bigdatagenomics/adam/pull/1910">#1910</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1907] Bump to HTSJDK 2.13.2. <a href="https://github.com/bigdatagenomics/adam/pull/1908">#1908</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1882] Don&rsquo;t abort adam-submit if ADAM_HOME is set. <a href="https://github.com/bigdatagenomics/adam/pull/1905">#1905</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1806] Add toVariants conversion from GenotypeRDD. <a href="https://github.com/bigdatagenomics/adam/pull/1904">#1904</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1882] Return true if ADAM_HOME is set, not exit 0. <a href="https://github.com/bigdatagenomics/adam/pull/1903">#1903</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1900] Close stream after reading VCF header. <a href="https://github.com/bigdatagenomics/adam/pull/1901">#1901</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1898] Support converting INFO fields set to empty (&lsquo;.&rsquo;). <a href="https://github.com/bigdatagenomics/adam/pull/1899">#1899</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Add Kryo registration for two classes required for Spark 2.3.0. <a href="https://github.com/bigdatagenomics/adam/pull/1897">#1897</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>[ADAM-1853] Various improvements to readthedocs documentation. <a href="https://github.com/bigdatagenomics/adam/pull/1893">#1893</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1889][ADAM-1884] updated ReferenceRegion in python <a href="https://github.com/bigdatagenomics/adam/pull/1892">#1892</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1889] Run R/Python tests. <a href="https://github.com/bigdatagenomics/adam/pull/1890">#1890</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1886] fix for pyadam to recognize >1 egg file <a href="https://github.com/bigdatagenomics/adam/pull/1887">#1887</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1883] Python and R caching <a href="https://github.com/bigdatagenomics/adam/pull/1885">#1885</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1875] Add ability to timeout a piped command. <a href="https://github.com/bigdatagenomics/adam/pull/1881">#1881</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1871] Fix print call that broke python 3 support. <a href="https://github.com/bigdatagenomics/adam/pull/1880">#1880</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1832] Use awesome list style and link to bigdatagenomics/awesome-adam. <a href="https://github.com/bigdatagenomics/adam/pull/1879">#1879</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-651] Hive-style partitioning of parquet files by genomic position <a href="https://github.com/bigdatagenomics/adam/pull/1878">#1878</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>[ADAM-1874] Dedupe samples when loading VCFs. <a href="https://github.com/bigdatagenomics/adam/pull/1876">#1876</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Fixes Coverage python API and adds tests <a href="https://github.com/bigdatagenomics/adam/pull/1870">#1870</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>added filterByOverlappingRegion for python <a href="https://github.com/bigdatagenomics/adam/pull/1869">#1869</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>Add command line option for populating nested variant.annotation field in Genotype records. <a href="https://github.com/bigdatagenomics/adam/pull/1865">#1865</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Hive partitioned(v4) rebased <a href="https://github.com/bigdatagenomics/adam/pull/1864">#1864</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>[ADAM-1597] Move to Scala 2.11 and Spark 2.x. <a href="https://github.com/bigdatagenomics/adam/pull/1861">#1861</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1857] Fix formatting error due to forward slashes. <a href="https://github.com/bigdatagenomics/adam/pull/1860">#1860</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1858] Use getattr instead of Class.forName from python API. <a href="https://github.com/bigdatagenomics/adam/pull/1859">#1859</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1836] Adds loadIndexedBam API to Python and Java. <a href="https://github.com/bigdatagenomics/adam/pull/1837">#1837</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Added check for bam index files in loadIndexedBam <a href="https://github.com/bigdatagenomics/adam/pull/1831">#1831</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1793] Adding vcf2adam and adam2vcf that handle separate variant and genotype data. <a href="https://github.com/bigdatagenomics/adam/pull/1794">#1794</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>added adam notebook <a href="https://github.com/bigdatagenomics/adam/pull/1778">#1778</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1666] SQLContext creation fix for Spark 2.x <a href="https://github.com/bigdatagenomics/adam/pull/1777">#1777</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>Add optional accumulator for VCF header lines to VCFOutFormatter. <a href="https://github.com/bigdatagenomics/adam/pull/1727">#1727</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>add hive style partitioning for contigName <a href="https://github.com/bigdatagenomics/adam/pull/1620">#1620</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>Add loadReadsFromSamString function into ADAMContext <a href="https://github.com/bigdatagenomics/adam/pull/1434">#1434</a> (<a href="https://github.com/xubo245">xubo245</a>)</li>
+</ul>
+
+
+<h3>Cannoli Version 0.2.0</h3>
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Update ADAM dependency version to 0.24.0. <a href="https://github.com/bigdatagenomics/cannoli/issues/118">#118</a></li>
+<li>Javadoc error and warnings <a href="https://github.com/bigdatagenomics/cannoli/issues/115">#115</a></li>
+<li>Update pipe method calls due to latest ADAM 0.24.0 snapshot <a href="https://github.com/bigdatagenomics/cannoli/issues/114">#114</a></li>
+<li>Split commands with subcommands into separate Cannoli CLI classes <a href="https://github.com/bigdatagenomics/cannoli/issues/110">#110</a></li>
+<li>Jenkins build failing due to upstream changes. <a href="https://github.com/bigdatagenomics/cannoli/issues/108">#108</a></li>
+<li>Provide functions for use in cannoli-shell or notebooks. <a href="https://github.com/bigdatagenomics/cannoli/issues/104">#104</a></li>
+<li>Error running BWA with Docker <a href="https://github.com/bigdatagenomics/cannoli/issues/103">#103</a></li>
+<li>Allow use of Singularity instead of Docker <a href="https://github.com/bigdatagenomics/cannoli/issues/98">#98</a></li>
+<li>Bump ADAM dependency version to 0.24.0-SNAPSHOT. <a href="https://github.com/bigdatagenomics/cannoli/issues/95">#95</a></li>
+<li>Drop support for Scala 2.10 and Spark 1.x. <a href="https://github.com/bigdatagenomics/cannoli/issues/94">#94</a></li>
+<li>Tidy up FreeBayes <a href="https://github.com/bigdatagenomics/cannoli/issues/67">#67</a></li>
+<li>Support loading reference files from HDFS/other file system <a href="https://github.com/bigdatagenomics/cannoli/issues/50">#50</a></li>
+<li>Attributes from freebayes header missing from variants and genotypes <a href="https://github.com/bigdatagenomics/cannoli/issues/43">#43</a></li>
+<li>Factor out docker/mapping code <a href="https://github.com/bigdatagenomics/cannoli/issues/34">#34</a></li>
+<li>Add wrappers for GMAP and GSNAP aligners <a href="https://github.com/bigdatagenomics/cannoli/issues/29">#29</a></li>
+<li>Jenkins failures due to missing publish_scaladoc.sh <a href="https://github.com/bigdatagenomics/cannoli/issues/21">#21</a></li>
+</ul>
+
+
+<p><strong>Merged and closed pull requests:</strong></p>
+
+<ul>
+<li>[CANNOLI-118] Update ADAM dependency version to 0.24.0. <a href="https://github.com/bigdatagenomics/cannoli/pull/121">#121</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-110] Split commands with subcommands into separate Cannoli CLI classes. <a href="https://github.com/bigdatagenomics/cannoli/pull/117">#117</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-115] Fix javadoc error and warnings. <a href="https://github.com/bigdatagenomics/cannoli/pull/116">#116</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-108] Command argument to pipe is now Seq[String]. <a href="https://github.com/bigdatagenomics/cannoli/pull/109">#109</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-98] Adding container builder. <a href="https://github.com/bigdatagenomics/cannoli/pull/107">#107</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Allow Singularity to run containers <a href="https://github.com/bigdatagenomics/cannoli/pull/106">#106</a> (<a href="https://github.com/jpdna">jpdna</a>)</li>
+<li>[CANNOLI-95] Bump ADAM dependency version to 0.24.0-SNAPSHOT <a href="https://github.com/bigdatagenomics/cannoli/pull/102">#102</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-94] Dropping support for Scala 2.10 and Spark 1.x. <a href="https://github.com/bigdatagenomics/cannoli/pull/101">#101</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-94][CANNOLI-95] Drop support for Scala 2.10 and Spark 1.x. <a href="https://github.com/bigdatagenomics/cannoli/pull/100">#100</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-43] Use accumulator for VCF header lines. <a href="https://github.com/bigdatagenomics/cannoli/pull/72">#72</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-104] Provide functions for use in cannoli-shell or notebooks. <a href="https://github.com/bigdatagenomics/cannoli/pull/69">#69</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Add CannoliCommand and CannoliAlignerCommand. <a href="https://github.com/bigdatagenomics/cannoli/pull/54">#54</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-29] Add minimal GMAP and GSNAP wrappers. <a href="https://github.com/bigdatagenomics/cannoli/pull/32">#32</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ADAM 0.23.0 Released (+ Avocado and DECA releases)]]></title>
@@ -2847,21 +3067,6 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 <li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/213">213</a>: BQSR updates</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Talk on ADAM at Global Alliance for Genomics and Health meeting]]></title>
-    <link href="http://bigdatagenomics.github.io/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam/"/>
-    <updated>2014-03-28T13:27:44-07:00</updated>
-    <id>http://bigdatagenomics.github.io/blog/2014/03/28/global-alliance-for-genomics-and-health-talk-on-adam</id>
-    <content type="html"><![CDATA[<p>Matt Massie gave a talk on ADAM at the <a href="http://genomicsandhealth.org/">Global Alliance for Genomics and Health</a>
-on the <a href="http://www.sanger.ac.uk/about/campus/">Hinxton Genome Campus</a>.</p>
-
-<iframe src="http://www.slideshare.net/slideshow/embed_code/31948595" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/mattmassie/ga4-gh-meeting-at-the-the-sanger-institute" title="Ga4 gh meeting at the the sanger institute" target="_blank">Ga4 gh meeting at the the sanger institute</a> </strong> from <strong><a href="http://www.slideshare.net/mattmassie" target="_blank">Matt Massie</a></strong> </div></p>
 ]]></content>
   </entry>
   
