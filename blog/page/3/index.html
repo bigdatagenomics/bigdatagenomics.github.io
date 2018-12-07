@@ -124,6 +124,72 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-05-13T15:18:06-07:00" pubdate data-updated="true">May 13<span>th</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/13/adam-0-dot-10-dot-0-released/">ADAM 0.10.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">0.10.0</a> is now available.</p>
+
+<h2>Parquet 1.4.3 upgrade</h2>
+
+<p>As developers, you need to know about a small (but significant) change to way Parquet projections work now. In the past, any record fields that were not in the projections were returned as null values. With our upgrade to Parquet 1.4.3, fields that are not in the your projections will be set to their default value (if one exists).</p>
+
+<h2>BQSR Performance and Concordance</h2>
+
+<p>This release adds the cycle covariate to BQSR. Our BQSR implementation can process the 1000g NA12878 High-Coverage Whole Genome in under 45 minutes using 100 EC2 nodes. Our concordance with GATK is high (>99.9%) for the data we&rsquo;ve tested. We&rsquo;ll publish the scripts we use for concordance testing in an upcoming release to allow broader, automated testing. Additionally, ADAM now processes the OQ tag to make comparing original quality scores easier.</p>
+
+<h2>Lots of other bug fixes and features&hellip;</h2>
+
+<ul>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/242">242</a>: Upgrade to Parquet 1.4.3</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/241">241</a>: Fixes to FASTA code to properly handle indices.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/239">239</a>: Make ADAMVCFOutputFormat public</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/233">233</a>: Build up reference information during cigar processing</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/234">234</a>: Predicate to filter conversion</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/235">235</a>: Remove unused contiglength field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/232">232</a>: Add <code>-pretty</code> and <code>-o</code> to the <code>print</code> command</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/230">230</a>: Remove duplicate mdtag field</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/231">231</a>: Helper scripts to run an ADAM Console.</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/226">226</a>: Fix ReferenceRegion from ADAMRecord</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/225">225</a>: Change Some to Option to check for unmapped reads</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/223">223</a>: Use SparkConf object to configure SparkContext</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/217">217</a>: Stop using reference IDs and use reference names instead</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/220">220</a>: Update SAM to ADAM conversion</li>
+<li>ISSUE <a href="https://github.com/bigdatagenomics/adam/pull/213">213</a>: BQSR updates</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-03-28T13:27:44-07:00" pubdate data-updated="true">Mar 28<span>th</span>, 2014</time>
         
       </p>
@@ -352,6 +418,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/">ADAM 0.25.0 and Cannoli 0.3.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/">ADAM 0.24.0 and Cannoli 0.2.0 Released</a>
     
     <a class="list-group-item " href="/blog/2018/01/04/adam-0-dot-23-dot-0-released-plus-avocado-cannoli-and-deca-releases/">ADAM 0.23.0 Released (+ Avocado and DECA Releases)</a>
@@ -359,8 +427,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a>
     
     <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
     
   </div>
 </section>

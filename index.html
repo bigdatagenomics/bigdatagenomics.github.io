@@ -124,6 +124,113 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-12-01T00:00:00-08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2018</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/">ADAM 0.25.0 and Cannoli 0.3.0 Released</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">version 0.25.0</a> and
+Cannoli <a href="https://github.com/bigdatagenomics/cannoli/releases">version 0.3.0</a> have been released!</p>
+
+<p>Since the 0.24.0 release of ADAM, more then 40 issues have been closed, including bug fixes around
+indexed reads and attributes in VCF. New features include additional filter by methods and multi-sample
+coverage. The ADAM Python APIs now support Python 3.</p>
+
+<p>Based on feedback from the <a href="https://www.open-bio.org/wiki/BOSC_2018">2018 GCCBOSC bioinformatics community conference</a>,
+at <a href="https://galaxyproject.org/events/gccbosc2018/collaboration/">2018 GCCBOSC CollaborationFest</a> the Cannoli API
+was refactored to greatly improve interactive use in <code>cannoli-shell</code> (a Scala REPL based on Spark Shell, similar
+to <code>adam-shell</code>) and notebooks such as <a href="https://jupyter.org/">Jupyter</a>, <a href="https://zeppelin.apache.org/">Zeppelin</a>,
+and <a href="http://spark-notebook.io/">Spark Notebook</a>.</p>
+
+<p>For example, here is an entire variant calling pipeline, based on bwa, ADAM, and Freebayes</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import org.bdgenomics.adam.rdd.ADAMContext._
+</span><span class='line'>import org.bdgenomics.cannoli.cli._
+</span><span class='line'>import org.bdgenomics.cannoli.cli.Cannoli._
+</span><span class='line'>
+</span><span class='line'>val sample = "sample"
+</span><span class='line'>val reference = "ref.fa"
+</span><span class='line'>
+</span><span class='line'>val reads = sc.loadPairedFastqAsFragments(sample + "_1.fq", sample + "_2.fq")
+</span><span class='line'>
+</span><span class='line'>val bwaArgs = new BwaArgs()
+</span><span class='line'>bwaArgs.sample = sample
+</span><span class='line'>bwaArgs.indexPath = reference
+</span><span class='line'>
+</span><span class='line'>val alignments = reads.alignWithBwa(bwaArgs)
+</span><span class='line'>val sorted = alignments.sortReadsByReferencePositionAndIndex()
+</span><span class='line'>val markdup = sorted.markDuplicates()
+</span><span class='line'>
+</span><span class='line'>val freebayesArgs = new FreebayesArgs()
+</span><span class='line'>freebayesArgs.referencePath = reference
+</span><span class='line'>
+</span><span class='line'>val variantContexts = markdup.callVariantsWithFreebayes(freebayesArgs)
+</span><span class='line'>
+</span><span class='line'>variantContexts.saveAsVcf(sample + ".freebayes.vcf.bgzf")</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Changes since Previous Releases</h1>
+
+<p>The full list of changes to ADAM since version 0.24.0 and Cannoli since version 0.2.0 are below.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="btn btn-default" rel="full-article" href="/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/">Read on &rarr;</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-03-28T00:00:00-07:00" pubdate data-updated="true">Mar 28<span>th</span>, 2018</time>
         
       </p>
@@ -931,54 +1038,6 @@ will settle down by the 1.0 release, currently targeted for early 2017.</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-18T16:32:31-08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2015</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">ADAM 0.16.0 Released</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><a href="https://github.com/bigdatagenomics/adam/releases/tag/adam-parent-0.16.0">ADAM 0.16.0</a> is now available.</p>
-
-<p>This release improves the performance of Base Quality Score Recalibration (BQSR) by 3.5x, adds support for multiline FASTQ input, visualization of variants when given VCF input, includes a new RegionJoin implementation that is shuffle-based, and adds new methods for region coverage calculations.</p>
-
-<p>Drop into our Gitter channel to talk with us about this release</p>
-
-<p><a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a></p>
-
-</div>
-  
-  
-    <footer>
-      <a class="btn btn-default" rel="full-article" href="/blog/2015/02/18/adam-0-dot-16-dot-0-released/">Read on &rarr;</a>
-    </footer>
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1022,6 +1081,8 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/">ADAM 0.25.0 and Cannoli 0.3.0 Released</a>
+    
     <a class="list-group-item " href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/">ADAM 0.24.0 and Cannoli 0.2.0 Released</a>
     
     <a class="list-group-item " href="/blog/2018/01/04/adam-0-dot-23-dot-0-released-plus-avocado-cannoli-and-deca-releases/">ADAM 0.23.0 Released (+ Avocado and DECA Releases)</a>
@@ -1029,8 +1090,6 @@ If you&#8217;re interested in contributing, take a look at the open <a href="htt
     <a class="list-group-item " href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a>
     
     <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
-    
-    <a class="list-group-item " href="/blog/2016/10/19/adam-0-dot-20-dot-0-release/">ADAM 0.20.0 Released</a>
     
   </div>
 </section>

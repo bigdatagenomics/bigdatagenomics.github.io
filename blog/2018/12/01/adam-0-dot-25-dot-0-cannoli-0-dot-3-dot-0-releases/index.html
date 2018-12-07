@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ADAM 0.25.0 and Cannoli 0.3.0 Released - Big Data Genomics</title>
+  <meta name="author" content="Big Data Genomics">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bigdatagenomics.github.io/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Big Data Genomics" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-49914824-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Big Data Genomics</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/projects">Projects</a>
+                </li>
+                <li >
+                    <a href="/mail">Mailing List</a>
+                </li>
+                <li >
+                    <a href="/cla">CLAs</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:bigdatagenomics.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+	       <img src="/images/github.png" /><a href="https://github.com/bigdatagenomics/">https://github.com/bigdatagenomics/</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/twitter.png"/><a href="https://twitter.com/bigdatagenomics">https://twitter.com/bigdatagenomics/</a><br/>
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-12-01T00:00:00-08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2018</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        ADAM 0.25.0 and Cannoli 0.3.0 Released
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p>ADAM <a href="https://github.com/bigdatagenomics/adam/releases">version 0.25.0</a> and
+Cannoli <a href="https://github.com/bigdatagenomics/cannoli/releases">version 0.3.0</a> have been released!</p>
+
+<p>Since the 0.24.0 release of ADAM, more then 40 issues have been closed, including bug fixes around
+indexed reads and attributes in VCF. New features include additional filter by methods and multi-sample
+coverage. The ADAM Python APIs now support Python 3.</p>
+
+<p>Based on feedback from the <a href="https://www.open-bio.org/wiki/BOSC_2018">2018 GCCBOSC bioinformatics community conference</a>,
+at <a href="https://galaxyproject.org/events/gccbosc2018/collaboration/">2018 GCCBOSC CollaborationFest</a> the Cannoli API
+was refactored to greatly improve interactive use in <code>cannoli-shell</code> (a Scala REPL based on Spark Shell, similar
+to <code>adam-shell</code>) and notebooks such as <a href="https://jupyter.org/">Jupyter</a>, <a href="https://zeppelin.apache.org/">Zeppelin</a>,
+and <a href="http://spark-notebook.io/">Spark Notebook</a>.</p>
+
+<p>For example, here is an entire variant calling pipeline, based on bwa, ADAM, and Freebayes</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import org.bdgenomics.adam.rdd.ADAMContext._
+</span><span class='line'>import org.bdgenomics.cannoli.cli._
+</span><span class='line'>import org.bdgenomics.cannoli.cli.Cannoli._
+</span><span class='line'>
+</span><span class='line'>val sample = "sample"
+</span><span class='line'>val reference = "ref.fa"
+</span><span class='line'>
+</span><span class='line'>val reads = sc.loadPairedFastqAsFragments(sample + "_1.fq", sample + "_2.fq")
+</span><span class='line'>
+</span><span class='line'>val bwaArgs = new BwaArgs()
+</span><span class='line'>bwaArgs.sample = sample
+</span><span class='line'>bwaArgs.indexPath = reference
+</span><span class='line'>
+</span><span class='line'>val alignments = reads.alignWithBwa(bwaArgs)
+</span><span class='line'>val sorted = alignments.sortReadsByReferencePositionAndIndex()
+</span><span class='line'>val markdup = sorted.markDuplicates()
+</span><span class='line'>
+</span><span class='line'>val freebayesArgs = new FreebayesArgs()
+</span><span class='line'>freebayesArgs.referencePath = reference
+</span><span class='line'>
+</span><span class='line'>val variantContexts = markdup.callVariantsWithFreebayes(freebayesArgs)
+</span><span class='line'>
+</span><span class='line'>variantContexts.saveAsVcf(sample + ".freebayes.vcf.bgzf")</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Changes since Previous Releases</h1>
+
+<p>The full list of changes to ADAM since version 0.24.0 and Cannoli since version 0.2.0 are below.</p>
+
+<!-- more -->
+
+
+<h3>ADAM version 0.25.0</h3>
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Expand illumina metadata regex to include &ldquo;N&rdquo; character  <a href="https://github.com/bigdatagenomics/adam/issues/2079">#2079</a></li>
+<li>Remove support for Hadoop 2.6 <a href="https://github.com/bigdatagenomics/adam/issues/2073">#2073</a></li>
+<li>NumberFormatException: For input string: &ldquo;nan&rdquo; in VCF <a href="https://github.com/bigdatagenomics/adam/issues/2068">#2068</a></li>
+<li>Support Spark 2.3.2 <a href="https://github.com/bigdatagenomics/adam/issues/2062">#2062</a></li>
+<li>Arrays should be passed to HTSJDK in the JVM primitive type <a href="https://github.com/bigdatagenomics/adam/issues/2059">#2059</a></li>
+<li>toCoverage() function for alignments does not distinguish samples <a href="https://github.com/bigdatagenomics/adam/issues/2049">#2049</a></li>
+<li>Building from adam-core module directory fails to generate Scala code for sql package <a href="https://github.com/bigdatagenomics/adam/issues/2047">#2047</a></li>
+<li>Data Sets <a href="https://github.com/bigdatagenomics/adam/issues/2043">#2043</a></li>
+<li>saveAsBed writes missing score values as &lsquo;.&rsquo; instead of &lsquo;0&rsquo; <a href="https://github.com/bigdatagenomics/adam/issues/2039">#2039</a></li>
+<li>Fix GFF3 parser to handle trailing FASTA <a href="https://github.com/bigdatagenomics/adam/issues/2037">#2037</a></li>
+<li>Add StorageLevel as an optional parameter to loadPairedFastq <a href="https://github.com/bigdatagenomics/adam/issues/2032">#2032</a></li>
+<li>Error: File name too long when building on encrypted file system <a href="https://github.com/bigdatagenomics/adam/issues/2031">#2031</a></li>
+<li>Fail to transform a VCF  file containing multiple genome data (Muliple sample) <a href="https://github.com/bigdatagenomics/adam/issues/2029">#2029</a></li>
+<li>Dataset and RDD constructors are missing from CoverageRDD <a href="https://github.com/bigdatagenomics/adam/issues/2027">#2027</a></li>
+<li>How to create a single RDD[Genotype] object out of multiple VCF files? <a href="https://github.com/bigdatagenomics/adam/issues/2025">#2025</a></li>
+<li>ReadTheDocs github banner is broken <a href="https://github.com/bigdatagenomics/adam/issues/2020">#2020</a></li>
+<li>-realign_indels throws serialization error with instrumentation enabled <a href="https://github.com/bigdatagenomics/adam/issues/2007">#2007</a></li>
+<li>Support 0 length FASTQ reads <a href="https://github.com/bigdatagenomics/adam/issues/2006">#2006</a></li>
+<li>Speed of Reading into ADAM RDDs from S3 <a href="https://github.com/bigdatagenomics/adam/issues/2003">#2003</a></li>
+<li>Support Python 3 <a href="https://github.com/bigdatagenomics/adam/issues/1999">#1999</a></li>
+<li>Unordered list of region join types in doc is missing nested levels <a href="https://github.com/bigdatagenomics/adam/issues/1997">#1997</a></li>
+<li>Add VariantContextRDD.saveAsPartitionedParquet, ADAMContext.loadPartitionedParquetVariantContexts <a href="https://github.com/bigdatagenomics/adam/issues/1996">#1996</a></li>
+<li>VCF annotation question <a href="https://github.com/bigdatagenomics/adam/issues/1994">#1994</a></li>
+<li>Fastq reader clips long reads at 10,000 bp <a href="https://github.com/bigdatagenomics/adam/issues/1992">#1992</a></li>
+<li>adam-submit Error: Number of executors must be a positive number on EMR 5.13.0/Spark 2.3.0 <a href="https://github.com/bigdatagenomics/adam/issues/1991">#1991</a></li>
+<li>Test against Spark 2.3.1, Parquet 1.8.3 <a href="https://github.com/bigdatagenomics/adam/issues/1989">#1989</a></li>
+<li>END does not get set when writing a gVCF <a href="https://github.com/bigdatagenomics/adam/issues/1988">#1988</a></li>
+<li>Support saving single files to filesystems that don&rsquo;t implement getScheme <a href="https://github.com/bigdatagenomics/adam/issues/1984">#1984</a></li>
+<li>Add additional filter by convenience methods <a href="https://github.com/bigdatagenomics/adam/issues/1978">#1978</a></li>
+<li>Limiting FragmentRDD pipe paralellism <a href="https://github.com/bigdatagenomics/adam/issues/1977">#1977</a></li>
+<li>Consider javadoc.io for API documentation linking <a href="https://github.com/bigdatagenomics/adam/issues/1976">#1976</a></li>
+<li>FASTQ Reader leaks connections <a href="https://github.com/bigdatagenomics/adam/issues/1974">#1974</a></li>
+<li>Update bioconda recipe for version 0.24.0 <a href="https://github.com/bigdatagenomics/adam/issues/1971">#1971</a></li>
+<li>Update homebrew formula at brewsci/homebrew-bio for version 0.24.0 <a href="https://github.com/bigdatagenomics/adam/issues/1970">#1970</a></li>
+<li>loadPartitionedParquetAlignments fails with Reference.all <a href="https://github.com/bigdatagenomics/adam/issues/1967">#1967</a></li>
+<li>Caused by: java.lang.VerifyError: class com.fasterxml.jackson.module.scala.ser.ScalaIteratorSerializer overrides final method withResolved <a href="https://github.com/bigdatagenomics/adam/issues/1953">#1953</a></li>
+<li>FASTQ input format needs to support index sequences <a href="https://github.com/bigdatagenomics/adam/issues/1697">#1697</a></li>
+<li>Changelog must be edited and committed manually during release process <a href="https://github.com/bigdatagenomics/adam/issues/936">#936</a></li>
+</ul>
+
+
+<p><strong>Merged and closed pull requests:</strong></p>
+
+<ul>
+<li>added pyspark mock modules for API documentation <a href="https://github.com/bigdatagenomics/adam/pull/2084">#2084</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>Added mock python modules for API python documentation <a href="https://github.com/bigdatagenomics/adam/pull/2082">#2082</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-2079] Expand illumina metadata regex to include &ldquo;N&rdquo; character <a href="https://github.com/bigdatagenomics/adam/pull/2081">#2081</a> (<a href="https://github.com/pauldwolfe">pauldwolfe</a>)</li>
+<li>ADAM-2079 Added &ldquo;N&rdquo; to regexs for illumina metadata <a href="https://github.com/bigdatagenomics/adam/pull/2080">#2080</a> (<a href="https://github.com/pauldwolfe">pauldwolfe</a>)</li>
+<li>Update docs with new template and documentation <a href="https://github.com/bigdatagenomics/adam/pull/2078">#2078</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-1992] Make maximum FASTQ read length configurable. <a href="https://github.com/bigdatagenomics/adam/pull/2077">#2077</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-2059] Properly pass back primitive typed arrays to HTSJDK. <a href="https://github.com/bigdatagenomics/adam/pull/2075">#2075</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Update dependency versions, including htsjdk to 2.16.1 and guava to 27.0-jre <a href="https://github.com/bigdatagenomics/adam/pull/2072">#2072</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1999] Support Python 3 <a href="https://github.com/bigdatagenomics/adam/pull/2070">#2070</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-2068] Prevent NumberFormatException for nan vs NaN in VCF files. <a href="https://github.com/bigdatagenomics/adam/pull/2069">#2069</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Update python MAKE file <a href="https://github.com/bigdatagenomics/adam/pull/2067">#2067</a> (<a href="https://github.com/Georgehe4">Georgehe4</a>)</li>
+<li>Update python MAKE file <a href="https://github.com/bigdatagenomics/adam/pull/2066">#2066</a> (<a href="https://github.com/Georgehe4">Georgehe4</a>)</li>
+<li>Update jenkins script to test python 3.6 <a href="https://github.com/bigdatagenomics/adam/pull/2060">#2060</a> (<a href="https://github.com/Georgehe4">Georgehe4</a>)</li>
+<li>[ADAM-2062] Update Spark version to 2.3.2 <a href="https://github.com/bigdatagenomics/adam/pull/2055">#2055</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Clean up fields and doc in fragment. <a href="https://github.com/bigdatagenomics/adam/pull/2054">#2054</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-2037] Support GFF3 files containing FASTA formatted sequences. <a href="https://github.com/bigdatagenomics/adam/pull/2053">#2053</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>modified CoverageRDD and FeatureRDD to extend MultisampleGenomicDataset <a href="https://github.com/bigdatagenomics/adam/pull/2051">#2051</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>Multi-sample coverage <a href="https://github.com/bigdatagenomics/adam/pull/2050">#2050</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-2047] Use source directory relative to project.basedir for adam codegen. <a href="https://github.com/bigdatagenomics/adam/pull/2048">#2048</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-2039] Adding support for writing BED format per UCSC definition <a href="https://github.com/bigdatagenomics/adam/pull/2042">#2042</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Update Jenkins Spark version to 2.2.2 <a href="https://github.com/bigdatagenomics/adam/pull/2035">#2035</a> (<a href="https://github.com/akmorrow13">akmorrow13</a>)</li>
+<li>[ADAM-2032] Add StorageLevel as an optional parameter to loadPairedFastq <a href="https://github.com/bigdatagenomics/adam/pull/2033">#2033</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-2027] Add RDD and Dataset constructors to CoverageRDD. <a href="https://github.com/bigdatagenomics/adam/pull/2028">#2028</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Allow for export of query name sorted SAM files <a href="https://github.com/bigdatagenomics/adam/pull/2026">#2026</a> (<a href="https://github.com/karenfeng">karenfeng</a>)</li>
+<li>[ADAM-2020] Fix ReadTheDocs Github banner. <a href="https://github.com/bigdatagenomics/adam/pull/2021">#2021</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1988] Add copyVariantEndToAttribute method to support gVCF END attribute … <a href="https://github.com/bigdatagenomics/adam/pull/2017">#2017</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-936] Use github-changes-maven-plugin to update CHANGES.md. <a href="https://github.com/bigdatagenomics/adam/pull/2014">#2014</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1992] Make maximum FASTQ read length configurable. <a href="https://github.com/bigdatagenomics/adam/pull/2011">#2011</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1697] Expand Illumina metadata regex to cover interleaved index sequences. <a href="https://github.com/bigdatagenomics/adam/pull/2010">#2010</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-2007] Make IndelRealignmentTarget implement Serializable. <a href="https://github.com/bigdatagenomics/adam/pull/2009">#2009</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-2006] Support loading 0-length reads as FASTQ. <a href="https://github.com/bigdatagenomics/adam/pull/2008">#2008</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1697] Expand Illumina metadata regex to cover index sequences <a href="https://github.com/bigdatagenomics/adam/pull/2004">#2004</a> (<a href="https://github.com/pauldwolfe">pauldwolfe</a>)</li>
+<li>[ADAM-1996] Load and save VariantContexts as partitioned Parquet. <a href="https://github.com/bigdatagenomics/adam/pull/2001">#2001</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1997] Nest list of region join types in joins doc. <a href="https://github.com/bigdatagenomics/adam/pull/1998">#1998</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1877] Add filterToReferenceName(s) to SequenceDictionary. <a href="https://github.com/bigdatagenomics/adam/pull/1995">#1995</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1984] Support file systems that don&rsquo;t set the scheme. <a href="https://github.com/bigdatagenomics/adam/pull/1985">#1985</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1978] Add additional filter by convenience methods. <a href="https://github.com/bigdatagenomics/adam/pull/1983">#1983</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Adding printAttribute methods for alignment records, features, and samples. <a href="https://github.com/bigdatagenomics/adam/pull/1982">#1982</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Fix partitioning code to use Long instead of Int <a href="https://github.com/bigdatagenomics/adam/pull/1980">#1980</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>[ADAM-1976] Adding core API documentation link and badge. <a href="https://github.com/bigdatagenomics/adam/pull/1979">#1979</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[ADAM-1974] Close unclosed stream in FastqInputFormat. <a href="https://github.com/bigdatagenomics/adam/pull/1975">#1975</a> (<a href="https://github.com/fnothaft">fnothaft</a>)</li>
+<li>Set defaults to schemas <a href="https://github.com/bigdatagenomics/adam/pull/1972">#1972</a> (<a href="https://github.com/ffinfo">ffinfo</a>)</li>
+<li>Add loadPairedFastqAsFragments method. <a href="https://github.com/bigdatagenomics/adam/pull/1866">#1866</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Adding loadPairedFastqAsFragments method <a href="https://github.com/bigdatagenomics/adam/pull/1828">#1828</a> (<a href="https://github.com/ffinfo">ffinfo</a>)</li>
+</ul>
+
+
+<h3>Cannoli Version 0.3.0</h3>
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Add implicit methods that attach to source RDD <a href="https://github.com/bigdatagenomics/cannoli/issues/131">#131</a></li>
+<li>Flip function and command line class names around <a href="https://github.com/bigdatagenomics/cannoli/issues/130">#130</a></li>
+<li>Add API documentation link and badge <a href="https://github.com/bigdatagenomics/cannoli/issues/128">#128</a></li>
+<li>Add homebrew formula at brewsci/homebrew-bio <a href="https://github.com/bigdatagenomics/cannoli/issues/124">#124</a></li>
+<li>Add bioconda recipe <a href="https://github.com/bigdatagenomics/cannoli/issues/123">#123</a></li>
+<li>Support validation stringency in out formatters <a href="https://github.com/bigdatagenomics/cannoli/issues/122">#122</a></li>
+<li>Add Ensembl Variant Effect Predictor (VEP) for variant annotation <a href="https://github.com/bigdatagenomics/cannoli/issues/112">#112</a></li>
+<li>Add Minimap2 for alignment <a href="https://github.com/bigdatagenomics/cannoli/issues/111">#111</a></li>
+</ul>
+
+
+<p><strong>Merged and closed pull requests:</strong></p>
+
+<ul>
+<li>Update release script for changelog. <a href="https://github.com/bigdatagenomics/cannoli/pull/143">#143</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-141] Update ADAM dependency to 0.25.0. <a href="https://github.com/bigdatagenomics/cannoli/pull/142">#142</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>Update default docker image for bowtie2. <a href="https://github.com/bigdatagenomics/cannoli/pull/140">#140</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-138] Update Cannoli per latest ADAM snapshot changes. <a href="https://github.com/bigdatagenomics/cannoli/pull/139">#139</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-131] Add implicits on Cannoli function source data sets. <a href="https://github.com/bigdatagenomics/cannoli/pull/133">#133</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-130] Extract function classes to core package. <a href="https://github.com/bigdatagenomics/cannoli/pull/132">#132</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-128] Adding API documentation link and badge. <a href="https://github.com/bigdatagenomics/cannoli/pull/129">#129</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-112]  Adding Ensembl Variant Effect Predictor (VEP) for variant annotation <a href="https://github.com/bigdatagenomics/cannoli/pull/127">#127</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-122] Support validation stringency in out formatters. <a href="https://github.com/bigdatagenomics/cannoli/pull/126">#126</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+<li>[CANNOLI-111] Adding Minimap2 for alignment. <a href="https://github.com/bigdatagenomics/cannoli/pull/119">#119</a> (<a href="https://github.com/heuermh">heuermh</a>)</li>
+</ul>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Big Data Genomics</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-12-01T00:00:00-08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2018</time>
+          
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/" title="Previous Post: ADAM 0.24.0 and Cannoli 0.2.0 Released">&laquo; ADAM 0.24.0 and Cannoli 0.2.0 Released</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <a href="/">
+<img src="https://avatars2.githubusercontent.com/u/5839438?s=256&v=4" height="256" width="256"/>
+</a>
+
+<hr size="1"/>
+<p><font size="+1">About us...</font></p>
+<p><em>
+This project is supported in part by NIH BD2K Award 1-U54HG007990-01 and NIH Cancer Cloud Pilot Award HHSN261201400006C with collaborators from the <a href="https://amplab.cs.berkeley.edu/">AMPLab</a> at UC Berkeley, <a href="https://genomics.soe.ucsc.edu/haussler/cancer_genomics">Genome Informatics Lab</a> at UC Santa Cruz, <a href="http://icahn.mssm.edu/">Icahn School of Medicine</a> at Mount Sinai, <a href="http://research.microsoft.com/">Microsoft Research</a>, <a href="http://www.cloudera.com/">Cloudera</a>, and the <a href="https://www.broadinstitute.org/">Broad Institute</a>.</em></p>
+
+<hr size="1"/>
+<p>
+<em>Chat with us...</em>
+<a href="https://gitter.im/bigdatagenomics/adam?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a>
+</p>
+<p>
+If you're interested in contributing, take a look at the open <a href="https://github.com/bigdatagenomics/adam/issues?labels=pick+me+up%21&page=1&state=open">"pick me up!" issues</a>.
+</p>
+<hr size="1"/>
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item active" href="/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/">ADAM 0.25.0 and Cannoli 0.3.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2018/03/28/adam-0-dot-24-dot-0-cannoli-0-dot-2-dot-0-releases/">ADAM 0.24.0 and Cannoli 0.2.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2018/01/04/adam-0-dot-23-dot-0-released-plus-avocado-cannoli-and-deca-releases/">ADAM 0.23.0 Released (+ Avocado and DECA Releases)</a>
+    
+    <a class="list-group-item " href="/blog/2017/04/03/adam-0-dot-22-dot-0-release/">ADAM 0.22.0 Released</a>
+    
+    <a class="list-group-item " href="/blog/2017/01/06/adam-0-dot-21-dot-0-release/">ADAM 0.21.0 Released</a>
+    
+  </div>
+</section>
+<font size="-1">
+YourKit is supporting the Big Data Genomics open source project with its full-featured Java Profiler.
+YourKit, LLC is the creator of innovative and intelligent tools for profiling
+Java and .NET applications. Take a look at YourKit's leading software products:
+<a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
+<a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.
+</font>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2018 - Big Data Genomics<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'bigdatagenomics';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bigdatagenomics.github.io/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/';
+        var disqus_url = 'http://bigdatagenomics.github.io/blog/2018/12/01/adam-0-dot-25-dot-0-cannoli-0-dot-3-dot-0-releases/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
